@@ -4,31 +4,36 @@ require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/cargo.php';
 class Servico implements Serializablee
 {
-    private $id, $nome, $descricao, $preco, $cargo;
+    private $cd_servico, $nm_servico, $ds_servico, $vl_servico, $cargo;
     
     // Recebe um array contendo os dados
-    public function __construct($id, $nome, $descricao, $preco, Cargo $cargo)
+    public function __construct($cd_servico, $nm_servico, $ds_servico, $vl_servico, Cargo $cargo)
     {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->descricao = $descricao;
-        $this->preco = $preco;
+        $this->cd_servico = $cd_servico;
+        $this->nm_servico = $nm_servico;
+        $this->ds_servico = $ds_servico;
+        $this->vl_servico = $vl_servico;
         $this->cargo = $cargo;
     }
     
     public function toArray()
     {
-        $dados['id'] = $this->id;
-        $dados['nome'] = $this->nome;
-        $dados['descricao'] = $this->descricao;
-        $dados['preco'] = $this->preco;
-        $dados['cargo'] = $this->cargo;
+        $dados['cd_servico'] = $this->cd_servico;
+        $dados['nm_servico'] = $this->nm_servico;
+        $dados['ds_servico'] = $this->ds_servico;
+        $dados['vl_servico'] = $this->vl_servico;
+        $dados['cd_cargo'] = $this->cargo->cd_cargo;
         
         return $dados;
     }
     
-    public function getClassName()
+    public static function getClassName()
     {
         return 'servico';
+    }
+    
+    public static function getChavePrimaria()
+    {
+        return 'cd_servico';
     }
 }

@@ -6,17 +6,19 @@ require_once APPPATH.'models/servico.php';
 require_once APPPATH.'models/tarefa.php';
 class Projeto implements Serializablee
 {
-    private $id, $cliente, $servicos, $preco, $dt_entrega, $descricao, $nome, $tarefas;
+    private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $vl_total;
+    private $cliente, $servicos, $tarefas;
     
     // Recebe um array contendo os dados
-    public function __construct($id, Cliente $cliente, $nome, $descricao,  $preco, $dt_entrega)
+    public function __construct($cd_projeto, $nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $vl_total, Cliente $cliente)
     {
-        $this->id = $id;
+        $this->cd_projeto = $cd_projeto;
         $this->cliente = $cliente;
-        $this->preco = $preco;
-        $this->dt_entrega = $dt_entrega;
-        $this->descricao = $descricao;
-        $this->nome = $nome;
+        $this->nm_projeto = $nm_projeto;
+        $this->dt_inicio = $dt_inicio;
+        $this->dt_termino = $dt_termino;
+        $this->ds_projeto = $ds_projeto;
+        $this->vl_total = $vl_total;
     }
     
     public function adicionaTarefa(Tarefa $tarefa)
@@ -26,18 +28,24 @@ class Projeto implements Serializablee
     
     public function toArray()
     {
-        $dados['id'] = $this->id;
-        $dados['id_cliente'] = $this->cliente->id;
-        $dados['preco'] = $this->preco;
-        $dados['dt_entrega'] = $this->dt_entrega;
-        $dados['descricao'] = $this->descricao;
-        $dados['nome'] = $this->nome;
+        $dados['cd_projeto'] = $this->cd_projeto;
+        $dados['nm_projeto'] = $this->nm_projeto;
+        $dados['dt_inicio'] = $this->dt_inicio;
+        $dados['dt_termino'] = $this->dt_termino;
+        $dados['ds_projeto'] = $this->ds_projeto;
+        $dados['vl_total'] = $this->vl_total;
+        $dados['cd_cliente'] = $this->cliente->cd_cliente;
         
         return $dados;
     }
     
-    public function getClassName()
+    public static function getClassName()
     {
         return 'projeto';
+    }
+    
+    public static function getChavePrimaria()
+    {
+        return 'cd_projeto';
     }
 }

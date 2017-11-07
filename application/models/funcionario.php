@@ -4,17 +4,19 @@ require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/cargo.php';
 class Funcionario implements Serializablee
 {
-    private $id, $nome, $salario, $email, $telefone, $endereco, $cargo, $tarefas;
+    private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario;
+    private $cargo, $tarefas;
     
     // Recebe um array contendo os dados
-    public function __construct($id, $nome, $salario, $email, $telefone, $endereco, Cargo $cargo)
+    public function __construct($id, $nome, $salario, $email, $telefone, $endereco, $vl_salario, Cargo $cargo)
     {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->salario = $salario;
-        $this->email = $email;
-        $this->telefone = $telefone;
-        $this->endereco = $endereco;
+        $this->cd_funcionario = $cd_funcionario;
+        $this->nm_funcionario = $nm_funcionario;
+        $this->cd_telefone = $cd_telefone;
+        $this->cd_celular = $cd_celular;
+        $this->ds_email = $ds_email;
+        $this->dt_nascimento = $dt_nascimento;
+        $this->vl_salario = $vl_salario;
         $this->cargo = $cargo;
     }
     
@@ -25,19 +27,25 @@ class Funcionario implements Serializablee
     
     public function toArray()
     {
-        $dados['id'] = $this->id;
-        $dados['nome'] = $this->nome;
-        $dados['salario'] = $this->salario;
-        $dados['email'] = $this->email;
-        $dados['telefone'] = $this->telefone;
-        $dados['endereco'] = $this->endereco;
-        $dados['cargo'] = $this->cargo;
+        $dados['cd_funcionario'] = $this->cd_funcionario;
+        $dados['nm_funcionario'] = $this->nm_funcionario;
+        $dados['cd_telefone'] = $this->cd_telefone;
+        $dados['cd_celular'] = $this->cd_celular;
+        $dados['ds_email'] = $this->ds_email;
+        $dados['dt_nascimento'] = $this->dt_nascimento;
+        $dados['vl_salario'] = $this->vl_salario;
+        $dados['cd_cargo'] = $this->cargo->cd_cargo;
         
         return $dados;
     }
     
-    public function getClassName()
+    public static function getClassName()
     {
         return 'funcionario';
+    }
+    
+    public static function getChavePrimaria()
+    {
+        return 'cd_funcionario';
     }
 }

@@ -1,9 +1,8 @@
 #menu{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    display: flex;
+    height: 100vh;
+    align-items: center;
 }
-
 
 #login-form{
     position: absolute;

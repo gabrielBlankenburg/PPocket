@@ -3,5 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 interface Serializablee
 {
     function toArray();
-    function getClassName();
+    static function getClassName();
+    static function getChavePrimaria();
 }

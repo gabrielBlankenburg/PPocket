@@ -4,14 +4,13 @@ require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/funcionario.php';
 class Cargo implements Serializablee
 {
-    private $id, $nome, $descricao, $funcionarios;
+    private $cd_cargo, $nm_cargo, $funcionarios;
     
     // Recebe um array contendo os dados
-    public function __construct($id, $nome, $descricao)
+    public function __construct($cd_cargo, $nm_cargo)
     {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->descricao = $descricao;
+        $this->cd_cargo = $nm_cargo;
+        $this->nm_cargo = $nm_cargo;
     }
     
     public function adicionaFuncionario(Funcionario $funcionario)
@@ -21,15 +20,19 @@ class Cargo implements Serializablee
     
     public function toArray()
     {
-        $dados['id'] = $this->id;
-        $dados['nome'] = $this->nome;
-        $dados['descricao'] = $this->descricao;
+        $dados['cd_cargo'] = $this->cd_cargo;
+        $dados['nm_cargo'] = $this->nm_cargo;
         
         return $dados;
     }
     
-    public function getClassName()
+    public static function getClassName()
     {
         return 'cargo';
+    }
+    
+    public static function getChavePrimaria()
+    {
+        return 'cd_cargo';
     }
 }
