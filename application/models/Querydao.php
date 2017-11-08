@@ -10,7 +10,7 @@ class Querydao extends CI_Model
         $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
         // Se inseriu com sucesso retorna o ultimo registro
         if ($insert){
-            $resp = $this->db->order_by($tabela->getPrimaryKey(),"desc")
+            $resp = $this->db->order_by($tabela->getChavePrimaria(), "desc")
     		->limit(1)
     		->get($tabela->getClassName())
     		->row();
@@ -25,4 +25,12 @@ class Querydao extends CI_Model
     {
         return $this->db->get($tabela_nome)->result_array();
     }
+    
+    public function selectWhere($tabela_nome, $condicoes, $limit = null, $offset = null)
+    {
+        return $this->db->get_where($tabela_nome, $condicoes, $limit, $offset)->result_array();
+    }
 }
+
+
+?>

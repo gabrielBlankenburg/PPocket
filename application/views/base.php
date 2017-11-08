@@ -18,7 +18,11 @@
             </div>
             <div class="col-md-10">
                 <?php
-                    $this->load->view($pagina);
+                    $dados['chave_primaria'] = $chave_primaria;
+                    if(isset($query)){
+                        $dados['query'] = $query;
+                    }
+                    $this->load->view($pagina, $dados);
                 ?>
             </div>
         </div>

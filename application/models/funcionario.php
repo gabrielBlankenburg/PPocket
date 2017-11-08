@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/cargo.php';
+
 class Funcionario implements Serializablee
 {
     private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario;
@@ -49,3 +50,5 @@ class Funcionario implements Serializablee
         return 'cd_funcionario';
     }
 }
+
+?>

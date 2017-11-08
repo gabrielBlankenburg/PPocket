@@ -36,3 +36,5 @@ class Cargo implements Serializablee
         return 'cd_cargo';
     }
 }
+
+?>

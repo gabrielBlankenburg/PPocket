@@ -1,6 +1,6 @@
 <div id="clientes" class="col-md-8">
     <ul class="list-group">
-        <clientes-listar v-for="item in clientesListar" v-bind:cliente="item" v-bind:key="item.cd_cliente"></clientes-listar>
+        <clientes-listar v-for="item in conteudoListar" v-bind:cliente="item" v-bind:key="item.<?= $chave_primaria; ?>"></clientes-listar>
     </ul>
 </div>
 <!-- Large modal -->

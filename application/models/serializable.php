@@ -6,3 +6,5 @@ interface Serializablee
     static function getClassName();
     static function getChavePrimaria();
 }
+
+?>

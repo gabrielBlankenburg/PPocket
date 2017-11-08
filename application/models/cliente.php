@@ -26,8 +26,14 @@ class Cliente implements Serializablee
         $this->projetos[] = $projeto;
     }
     
+    public function addChavePrimaria($cd_cliente)
+    {
+        $this->cd_cliente = $cd_cliente;
+    }
+    
     public function toArray()
     {
+        $dados['cd_cliente'] = $this->cd_cliente;
         $dados['nm_cliente'] = $this->nm_cliente;
         $dados['cd_cnpj'] = $this->cd_cnpj;
         $dados['cd_cpf'] = $this->cd_cpf;
@@ -50,3 +56,5 @@ class Cliente implements Serializablee
         return 'cd_cliente';
     }
 }
+
+?>

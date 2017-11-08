@@ -6,7 +6,8 @@ Vue.component('menu-item', {
 
 Vue.component('clientes-listar', {
     props: ['cliente'],
-    template: '<a href="#"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
+    // Redireciona para o link do cliente pelo id
+    template: '<a v-bind:href="'+"'clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
 })
 
 var painel = new Vue({
@@ -18,30 +19,37 @@ var painel = new Vue({
             {id: 2, conteudo: 'Serviços', link: '#'},
             {id: 3, conteudo: 'Funcionários', link: '#'}
         ],
-        clientesListar: []
+        conteudoListar: []
     }
 });
 
 $(document).ready(function(){
-    query.forEach(function(e){
-        painel.clientesListar.push(e);
-    });
+    listar(query);
     
-    $('form').submit(function(e){
-        e.preventDefault();
-        var url = base_url+'/clientes/cadastra_cliente_action';
-        var data = $('form').serialize();
-        $.ajax({
-            method: 'POST',
-            url: url,
-            data: data,
-            success: function(resp){
-                if(resp != 'false' && resp != false){
-                    painel.clientesListar.push(resp);
-                    $('.bd-example-modal-lg').modal('toggle');
-                }
-            }
-        });
+    $('form').submit(function(){
+        inserir();
         return false;
     })
 });
+
+function listar(objeto){
+    objeto.forEach(function(e){
+        painel.conteudoListar.push(e);
+    });
+}
+
+function inserir(){
+    var url = base_url+'/clientes/cadastra_cliente_action';
+    var data = $('form').serialize();
+    $.ajax({
+        method: 'POST',
+        url: url,
+        data: data,
+        success: function(resp){
+            if(resp != 'false' && resp != false){
+                painel.conteudoListar.push(resp);
+                $('.bd-example-modal-lg').modal('toggle');
+            }
+        }
+    });
+}
