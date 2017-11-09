@@ -95,7 +95,6 @@ class Clientes extends CI_Controller
 								$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
 		
 		$query = $this->querydao->updateAll($cliente);
-		
-		echo json_encode(($cliente->toArray()));
+		echo json_encode($query);
 	}
 }

@@ -30,7 +30,7 @@ class Querydao extends CI_Model
     {
         $this->db->set($tabela->toArray());
         $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
-        $this->db->update($tabela::getClassName()); 
+        return $this->db->update($tabela::getClassName()); 
     }
     
     public function selectWhere($tabela_nome, $condicoes, $limit = null, $offset = null)

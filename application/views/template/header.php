@@ -13,7 +13,10 @@
         <div class="row">
             <div id="menu" class="col-md-2">
                 <ul class="list-group">
-                    <menu-item v-for="item in menuItens" v-bind:item="item" v-bind:key="item.id"></menu-item>
+                    <a href="<?= base_url(); ?>projetos"><li class="list-group-item">Projetos</li></a>
+                    <a href="<?= base_url(); ?>clientes"><li class="list-group-item">Clientes</li></a>
+                    <a href="<?= base_url(); ?>serviços"><li class="list-group-item">Serviços</li></a>
+                    <a href="<?= base_url(); ?>funcionarios"><li class="list-group-item">Funcionários</li></a>
                 </ul>
             </div>
             <div class="col-md-10">

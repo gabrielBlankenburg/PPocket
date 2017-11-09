@@ -1,9 +1,3 @@
-// Carrega os itens do menu
-Vue.component('menu-item', {
-    props: ['item'],
-    template: '<a v-bind:href="item.link"><li class="list-group-item">{{ item.conteudo }}</li></a>'
-});
-
 Vue.component('clientes-listar', {
     props: ['cliente'],
     // Redireciona para o link do cliente pelo id
@@ -33,14 +27,20 @@ $(document).ready(function(){
         editar();
         return false;
     });
+    
+    if(document.getElementById('clientes')){
+        listar(query);
+    }
 });
 
+// Lista todos os elementos
 function listar(objeto){
     objeto.forEach(function(e){
         painel.conteudoListar.push(e);
     });
 }
 
+// Insere um elemento
 function inserir(){
     var data = $('form').serialize();
     $.ajax({
@@ -56,6 +56,7 @@ function inserir(){
     });
 }
 
+// Edita um objeto
 function editar(){
     var data = $('form').serialize();
     $.ajax({
@@ -63,9 +64,9 @@ function editar(){
         url: url,
         data: data,
         success: function(resp){
-            resp.forEach(function(e, i){
-                console.log(e, i)
-            })
+            // Mudar isso
+            if(resp == true || resp == 'true')
+                alert('inserido com sucesso!!!');
         }
     });
 }
