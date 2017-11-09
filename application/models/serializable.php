@@ -4,7 +4,7 @@ interface Serializablee
 {
     function toArray();
     static function getClassName();
-    static function getChavePrimaria();
+    static function getChavePrimariaNome();
 }
 
 ?>

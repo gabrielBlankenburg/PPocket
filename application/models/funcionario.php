@@ -45,7 +45,7 @@ class Funcionario implements Serializablee
         return 'funcionario';
     }
     
-    public static function getChavePrimaria()
+    public static function getChavePrimariaNome()
     {
         return 'cd_funcionario';
     }

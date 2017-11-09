@@ -31,7 +31,7 @@ class Cargo implements Serializablee
         return 'cargo';
     }
     
-    public static function getChavePrimaria()
+    public static function getChavePrimariaNome()
     {
         return 'cd_cargo';
     }

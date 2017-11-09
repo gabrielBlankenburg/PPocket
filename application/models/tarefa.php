@@ -38,7 +38,7 @@ class Tarefa implements Serializablee
         return 'tarefa';
     }
     
-    public static function getChavePrimaria()
+    public static function getChavePrimariaNome()
     {
         return 'cd_tarefa';
     }

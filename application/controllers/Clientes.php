@@ -14,13 +14,16 @@ class Clientes extends CI_Controller
 	public function index()
 	{
 		// Os dados pro view
-		$data['titulo'] = 'Clientes';
-		$data['pagina'] = 'painel/clientes';
-		$data['chave_primaria'] = Cliente::getChavePrimaria();
-		$data['query'] = $this->querydao->selectAll(Cliente::getClassName());
+		$dados['titulo'] = 'Clientes';
+		$dados['pagina'] = 'painel/clientes_listar';
+		$dados['chave_primaria'] = Cliente::getChavePrimariaNome();
+		$dados['query'] = $this->querydao->selectAll(Cliente::getClassName());
+		$dados['url'] = base_url().'clientes/cadastra_cliente_action';
 		
 		// Carrega a view
-		$this->load->view('base', $data);
+		$this->load->view('template/header', $dados);
+		$this->load->view('painel/clientes/clientes_listar', $dados);
+		$this->load->view('template/footer', $dados);
 	}
 	
 	public function cadastra_cliente_action()
@@ -37,22 +40,27 @@ class Clientes extends CI_Controller
 		$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
 								$ds_responsavel_email, $cd_responsavel_telefone);
 		
-		$cd_cliente = $this->querydao->insert($cliente);
-		if ($cd_cliente != false){
-			$cliente->addChavePrimaria($cd_cliente);
+		$insert = $this->querydao->insert($cliente);
+		if ($insert != false){
+			$cliente->addChavePrimaria($insert->cd_cliente);
 		}
-		echo json_encode(($cliente->toArray()));
+		
+		$retorno = $cliente->getAll();
+		echo json_encode($retorno);
 	}
 	
 	public function edita_cliente($cd_cliente)
 	{
-		$data['titulo'] = 'Clientes';
-		$data['pagina'] = 'painel/clientes_editar';
-		$data['chave_primaria'] = Cliente::getChavePrimaria();
+		$dados['titulo'] = 'Clientes';
+		$dados['pagina'] = 'painel/clientes/clientes_editar';
+		$dados['chave_primaria'] = Cliente::getChavePrimariaNome();
+		$dados['url'] = base_url().'clientes/edita_cliente_action';
 		
-		$condicoes = array(Cliente::getChavePrimaria() => $cd_cliente);
+		// Cria uma condição para pegar a chave primaria igual ao do parametro passado
+		$condicoes = array(Cliente::getChavePrimariaNome() => $cd_cliente);
 		$query = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes);
 		
+		// Não tiver exatamente um match significa que deu algum erro
 		if (count($query) == 1){
 			$nm_cliente = $query[0]['nm_cliente'];
 			$cd_cnpj = $query[0]['cd_cnpj'];
@@ -63,10 +71,31 @@ class Clientes extends CI_Controller
 			$ds_responsavel_email = $query[0]['ds_responsavel_email'];
 			$cd_responsavel_telefone = $query[0]['cd_responsavel_telefone'];
 			$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel, 
-									$ds_responsavel_email, $cd_responsavel_telefone);
-			$cliente->addChavePrimaria($cd_cliente);
+									$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
 		}
-		$data['query'] = $cliente->toArray();
-		$this->load->view('base', $data);
+		$dados['cliente'] = $cliente;
+		$this->load->view('template/header', $dados);
+		$this->load->view('painel/clientes/clientes_editar', $dados);
+		$this->load->view('template/footer', $dados);
+	}
+	
+	public function edita_cliente_action()
+	{
+		$cd_cliente = $this->input->post('cd_cliente');
+		$nm_cliente = $this->input->post('nm_cliente');
+		$cd_cnpj = $this->input->post('cd_cnpj');
+		$cd_cpf = $this->input->post('cd_cpf');
+		$ds_email = $this->input->post('ds_email');
+		$cd_telefone = $this->input->post('cd_telefone');
+		$nm_responsavel = $this->input->post('nm_responsavel');
+		$ds_responsavel_email = $this->input->post('ds_responsavel_email');
+		$cd_responsavel_telefone = $this->input->post('cd_responsavel_telefone');
+		
+		$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
+								$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
+		
+		$query = $this->querydao->updateAll($cliente);
+		
+		echo json_encode(($cliente->toArray()));
 	}
 }

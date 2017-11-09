@@ -44,7 +44,7 @@ class Projeto implements Serializablee
         return 'projeto';
     }
     
-    public static function getChavePrimaria()
+    public static function getChavePrimariaNome()
     {
         return 'cd_projeto';
     }

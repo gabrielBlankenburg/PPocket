@@ -12,7 +12,7 @@ Cadastrar Cliente
  aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-         <form class="offset-md-1 col-md-10">
+         <form class="offset-md-1 col-md-10" id="inserir">
             <div class="form-group">
                 <label for="nm_cliente">Nome do cliente</label>
                 <input type="text" class="form-control" id="nm_cliente" name="nm_cliente" placeholder="Nome da empresa do cliente">

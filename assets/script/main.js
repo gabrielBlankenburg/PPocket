@@ -24,12 +24,15 @@ var painel = new Vue({
 });
 
 $(document).ready(function(){
-    listar(query);
-    
-    $('form').submit(function(){
+    $('#inserir').submit(function(){
         inserir();
         return false;
-    })
+    });
+    
+    $('#editar').submit(function(e){
+        editar();
+        return false;
+    });
 });
 
 function listar(objeto){
@@ -39,7 +42,6 @@ function listar(objeto){
 }
 
 function inserir(){
-    var url = base_url+'/clientes/cadastra_cliente_action';
     var data = $('form').serialize();
     $.ajax({
         method: 'POST',
@@ -50,6 +52,20 @@ function inserir(){
                 painel.conteudoListar.push(resp);
                 $('.bd-example-modal-lg').modal('toggle');
             }
+        }
+    });
+}
+
+function editar(){
+    var data = $('form').serialize();
+    $.ajax({
+        method: 'POST',
+        url: url,
+        data: data,
+        success: function(resp){
+            resp.forEach(function(e, i){
+                console.log(e, i)
+            })
         }
     });
 }

@@ -32,7 +32,7 @@ class Servico implements Serializablee
         return 'servico';
     }
     
-    public static function getChavePrimaria()
+    public static function getChavePrimariaNome()
     {
         return 'cd_servico';
     }
