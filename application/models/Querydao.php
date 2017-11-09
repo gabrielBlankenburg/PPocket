@@ -37,6 +37,12 @@ class Querydao extends CI_Model
     {
         return $this->db->get_where($tabela_nome, $condicoes, $limit, $offset)->result_array();
     }
+    
+    public function remove(Serializablee $tabela)
+    {
+        $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+        return $this->db->delete($tabela::getClassName());
+    }
 }
 
 

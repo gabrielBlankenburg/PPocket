@@ -4,18 +4,23 @@ require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/funcionario.php';
 class Cargo implements Serializablee
 {
-    private $cd_cargo, $nm_cargo, $funcionarios;
+    private $cd_cargo, $nm_cargo;
     
     // Recebe um array contendo os dados
-    public function __construct($cd_cargo, $nm_cargo)
+    public function __construct($nm_cargo, $cd_cargo = null)
     {
-        $this->cd_cargo = $nm_cargo;
+        $this->cd_cargo = $cd_cargo;
         $this->nm_cargo = $nm_cargo;
     }
     
-    public function adicionaFuncionario(Funcionario $funcionario)
+    // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
+    public function addChavePrimaria($cd_cargo)
     {
-        $this->funcionarios[] = $funcionario;
+        $this->cd_cargo = $cd_cargo;
+    }
+    public function getChavePrimariaValor()
+    {
+        return $this->cd_cargo;
     }
     
     public function toArray()

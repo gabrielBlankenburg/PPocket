@@ -23,9 +23,13 @@ $(document).ready(function(){
         return false;
     });
     
-    $('#editar').submit(function(e){
+    $('#editar').submit(function(){
         editar();
         return false;
+    });
+    
+     $('#remover').click(function(){
+        remover();
     });
     
     if(document.getElementById('clientes')){
@@ -61,12 +65,29 @@ function editar(){
     var data = $('form').serialize();
     $.ajax({
         method: 'POST',
-        url: url,
+        url: urlAdd,
         data: data,
         success: function(resp){
             // Mudar isso
             if(resp == true || resp == 'true')
                 alert('inserido com sucesso!!!');
+        }
+    });
+}
+
+// Remove um objeto
+function remover(){
+    var data = $('form').serialize();
+    $.ajax({
+        method: 'POST',
+        url: urlDel,
+        data: data,
+        success: function(resp){
+            if (resp == 'false' || resp == false){
+                alert('Não foi possível remover do banco de dados');
+            } else{
+                window.location = resp;
+            }
         }
     });
 }

@@ -39,6 +39,11 @@ class Projeto implements Serializablee
         return $dados;
     }
     
+    public function getChavePrimariaValor()
+    {
+        return $this->cd_projeto;
+    }
+    
     public static function getClassName()
     {
         return 'projeto';

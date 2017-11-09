@@ -27,6 +27,11 @@ class Servico implements Serializablee
         return $dados;
     }
     
+    public function getChavePrimariaValor()
+    {
+        return $this->cd_servico;
+    }
+    
     public static function getClassName()
     {
         return 'servico';

@@ -33,6 +33,28 @@
         <label for="cd_responsavel_telefone">Telefone</label>
         <input type="text" class="form-control" id="cd_responsavel_telefone" name="cd_responsavel_telefone" value="<?= $cliente->getTelefoneResponsavel(); ?>" placeholder="Telefone do cliente">
     </div>
-    <button class="btn btn-danger">Remover Cliente</button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Cliente</button>
     <button type="submit" class="btn btn-primary offset-sm-7">Atualizar Cliente</button>
 </form>
+
+<!-- Modal -->
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Tem certeza?</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Isso irá remover o cliente definitivamente!</p>
+        </div>
+        <div class="modal-footer justify-content-start">
+            <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="remover" data-dismiss="modal">Remover</button>
+        </div>
+    </div>
+
+  </div>
+</div>

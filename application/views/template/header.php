@@ -17,6 +17,7 @@
                     <a href="<?= base_url(); ?>clientes"><li class="list-group-item">Clientes</li></a>
                     <a href="<?= base_url(); ?>serviços"><li class="list-group-item">Serviços</li></a>
                     <a href="<?= base_url(); ?>funcionarios"><li class="list-group-item">Funcionários</li></a>
+                    <a href="<?= base_url(); ?>tarefas"><li class="list-group-item">Tarefa</li></a>
                 </ul>
             </div>
             <div class="col-md-10">

@@ -33,6 +33,11 @@ class Tarefa implements Serializablee
         return $dados;
     }
     
+    public function getChavePrimariaValor()
+    {
+        return $this->cd_tarefa;
+    }
+    
     public static function getClassName()
     {
         return 'tarefa';
