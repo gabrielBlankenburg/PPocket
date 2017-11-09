@@ -2,17 +2,17 @@ Vue.component('clientes-listar', {
     props: ['cliente'],
     // Redireciona para o link do cliente pelo id
     template: '<a v-bind:href="'+"'clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
-})
+});
+
+Vue.component('cargos-listar', {
+    props: ['cargo'],
+    // Redireciona para o link do cliente pelo id
+    template: '<a v-bind:href="'+"'cargos/ver/'+"+'cargo.cd_cargo"><li class="listagem">{{ cargo.nm_cargo }}</li></a>'
+});
 
 var painel = new Vue({
     el: '#painel',
     data: {
-        menuItens: [
-            {id: 0, conteudo: 'Projetos', link: '#'},
-            {id: 1, conteudo: 'Clientes', link: '#'},
-            {id: 2, conteudo: 'Serviços', link: '#'},
-            {id: 3, conteudo: 'Funcionários', link: '#'}
-        ],
         conteudoListar: []
     }
 });
@@ -32,7 +32,7 @@ $(document).ready(function(){
         remover();
     });
     
-    if(document.getElementById('clientes')){
+    if(document.getElementById('clientes') || document.getElementById('cargos')){
         listar(query);
     }
 });

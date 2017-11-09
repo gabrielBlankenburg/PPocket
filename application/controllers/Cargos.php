@@ -17,34 +17,26 @@ class Cargos extends CI_Controller
 		$dados['titulo'] = 'Cargos';
 		$dados['chave_primaria'] = Cargo::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Cargo::getClassName());
-		$dados['url'] = base_url().'cargo/cadastra_cargo_action';
+		$dados['url'] = base_url().'cargos/cadastra_cargo_action';
 		
 		// Carrega a view
 		$this->load->view('template/header', $dados);
-		$this->load->view('painel/cargo/cargos_listar', $dados);
+		$this->load->view('painel/cargos/cargos_listar', $dados);
 		$this->load->view('template/footer', $dados);
 	}
 	
 	public function cadastra_cargo_action()
 	{
-		$nm_cliente = $this->input->post('nm_cliente');
-		$cd_cnpj = $this->input->post('cd_cnpj');
-		$cd_cpf = $this->input->post('cd_cpf');
-		$ds_email = $this->input->post('ds_email');
-		$cd_telefone = $this->input->post('cd_telefone');
-		$nm_responsavel = $this->input->post('nm_responsavel');
-		$ds_responsavel_email = $this->input->post('ds_responsavel_email');
-		$cd_responsavel_telefone = $this->input->post('cd_responsavel_telefone');
+		$nm_cargo = $this->input->post('nm_cargo');
 		
-		$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
-								$ds_responsavel_email, $cd_responsavel_telefone);
+		$cargo = new Cargo($nm_cargo);
 		
-		$insert = $this->querydao->insert($cliente);
+		$insert = $this->querydao->insert($cargo);
 		if ($insert != false){
-			$cliente->addChavePrimaria($insert->cd_cliente);
+			$cargo->addChavePrimaria($insert->cd_cargo);
 		}
 		
-		$retorno = $cliente->getAll();
+		$retorno = $cargo->getAll();
 		echo json_encode($retorno);
 	}
 	

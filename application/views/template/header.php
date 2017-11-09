@@ -14,6 +14,7 @@
             <div id="menu" class="col-md-2">
                 <ul class="list-group">
                     <a href="<?= base_url(); ?>projetos"><li class="list-group-item">Projetos</li></a>
+                    <a href="<?= base_url(); ?>cargos"><li class="list-group-item">Cargos</li></a>
                     <a href="<?= base_url(); ?>clientes"><li class="list-group-item">Clientes</li></a>
                     <a href="<?= base_url(); ?>serviços"><li class="list-group-item">Serviços</li></a>
                     <a href="<?= base_url(); ?>funcionarios"><li class="list-group-item">Funcionários</li></a>

@@ -13,6 +13,15 @@ class Cargo implements Serializablee
         $this->nm_cargo = $nm_cargo;
     }
     
+    // Retorna todos os elementos num array
+    public function getAll()
+    {
+        $dados['cd_cargo'] = $this->cd_cargo;
+        $dados['nm_cargo'] = $this->nm_cargo;
+        
+        return $dados;
+    }
+    
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
     public function addChavePrimaria($cd_cargo)
     {
