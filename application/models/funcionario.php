@@ -5,11 +5,11 @@ require_once APPPATH.'models/cargo.php';
 
 class Funcionario implements Serializablee
 {
-    private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario;
-    private $cargo, $tarefas;
+    private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario, $cargo;
     
     // Recebe um array contendo os dados
-    public function __construct($id, $nome, $salario, $email, $telefone, $endereco, $vl_salario, Cargo $cargo)
+    public function __construct($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, $dt_nascimento, 
+                                    Cargo $cargo, $cd_funcionario = null)
     {
         $this->cd_funcionario = $cd_funcionario;
         $this->nm_funcionario = $nm_funcionario;
@@ -21,9 +21,35 @@ class Funcionario implements Serializablee
         $this->cargo = $cargo;
     }
     
-    public function adicionaTarefa(Tarefa $tarefa)
+    // Retorna todos os elementos num array
+    public function getAll()
     {
-        $this->tarefas[] = $tarefa;
+        $dados['cd_funcionario'] = $this->cd_funcionario;
+        $dados['nm_funcionario'] = $this->nm_funcionario;
+        $dados['cd_telefone'] = $this->cd_telefone;
+        $dados['cd_celular'] = $this->cd_celular;
+        $dados['ds_email'] = $this->ds_email;
+        $dados['dt_nascimento'] = date('dmY', strtotime($this->dt_nascimento));
+        $dados['vl_salario'] = $this->vl_salario;
+        $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
+        $dados['nm_cargo'] = $this->cargo->getNomeCargo();
+        
+        return $dados;
+    }
+    
+    // Retorna um array contendo o nome da tabela que deverá ser feito um join e os campos que devem ser comparados
+    public static function getJoins()
+    {
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins = array(array('tabela_nome' => Cargo::getClassName(),
+                        'on' => 'funcionario.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome()));
+        return array('funcionario', $joins);
+    }
+    
+    // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
+    public function addChavePrimaria($cd_funcionario)
+    {
+        $this->cd_funcionario = $cd_funcionario;
     }
     
     public function toArray()
@@ -35,7 +61,7 @@ class Funcionario implements Serializablee
         $dados['ds_email'] = $this->ds_email;
         $dados['dt_nascimento'] = $this->dt_nascimento;
         $dados['vl_salario'] = $this->vl_salario;
-        $dados['cd_cargo'] = $this->cargo->cd_cargo;
+        $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
         
         return $dados;
     }

@@ -26,6 +26,14 @@ class Querydao extends CI_Model
         return $this->db->get($tabela_nome)->result_array();
     }
     
+    public function selectJoins($joins)
+    {
+        foreach ($joins[1] as $join) {
+            $this->db->join($join['tabela_nome'], $join['on']);
+        }
+        return $this->db->get($joins[0])->result_array();
+    }
+    
     public function updateAll(Serializablee $tabela)
     {
         $this->db->set($tabela->toArray());
