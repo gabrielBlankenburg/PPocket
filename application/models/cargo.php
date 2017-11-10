@@ -22,6 +22,11 @@ class Cargo implements Serializablee
         return $dados;
     }
     
+    public function getNomeCargo()
+    {
+        return $this->nm_cargo;
+    }
+    
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
     public function addChavePrimaria($cd_cargo)
     {

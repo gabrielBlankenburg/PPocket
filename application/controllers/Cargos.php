@@ -40,52 +40,36 @@ class Cargos extends CI_Controller
 		echo json_encode($retorno);
 	}
 	
-	public function edita_cliente($cd_cliente)
+	public function edita_cargo($cd_cargo)
 	{
-		$dados['titulo'] = 'Clientes';
-		$dados['pagina'] = 'painel/clientes/clientes_editar';
-		$dados['chave_primaria'] = Cliente::getChavePrimariaNome();
-		$dados['url'] = base_url().'clientes/edita_cliente_action';
+		$dados['titulo'] = 'Cargo';
+		$dados['chave_primaria'] = Cargo::getChavePrimariaNome();
+		$dados['urlEdit'] = base_url().'cargos/edita_cargo_action';
+		$dados['urlDel'] = base_url().'cargos/delete_cargo_action';
 		
 		// Cria uma condição para pegar a chave primaria igual ao do parametro passado
-		$condicoes = array(Cliente::getChavePrimariaNome() => $cd_cliente);
-		$query = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes);
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
 		
 		// Não tiver exatamente um match significa que deu algum erro
 		if (count($query) == 1){
-			$nm_cliente = $query[0]['nm_cliente'];
-			$cd_cnpj = $query[0]['cd_cnpj'];
-			$cd_cpf = $query[0]['cd_cpf'];
-			$ds_email = $query[0]['ds_email'];
-			$cd_telefone = $query[0]['cd_telefone'];
-			$nm_responsavel = $query[0]['nm_responsavel'];
-			$ds_responsavel_email = $query[0]['ds_responsavel_email'];
-			$cd_responsavel_telefone = $query[0]['cd_responsavel_telefone'];
-			$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel, 
-									$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
+			$nm_cargo = $query[0]['nm_cargo'];
+			$cargo = new Cargo($nm_cargo, $cd_cargo);
 		}
-		$dados['cliente'] = $cliente;
+		$dados['cargo'] = $cargo;
 		$this->load->view('template/header', $dados);
-		$this->load->view('painel/clientes/clientes_editar', $dados);
+		$this->load->view('painel/cargos/cargos_editar', $dados);
 		$this->load->view('template/footer', $dados);
 	}
 	
-	public function edita_cliente_action()
+	public function edita_cargo_action()
 	{
-		$cd_cliente = $this->input->post('cd_cliente');
-		$nm_cliente = $this->input->post('nm_cliente');
-		$cd_cnpj = $this->input->post('cd_cnpj');
-		$cd_cpf = $this->input->post('cd_cpf');
-		$ds_email = $this->input->post('ds_email');
-		$cd_telefone = $this->input->post('cd_telefone');
-		$nm_responsavel = $this->input->post('nm_responsavel');
-		$ds_responsavel_email = $this->input->post('ds_responsavel_email');
-		$cd_responsavel_telefone = $this->input->post('cd_responsavel_telefone');
+		$cd_cargo = $this->input->post('cd_cargo');
+		$nm_cargo = $this->input->post('nm_cargo');
 		
-		$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
-								$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
+		$cargo = new Cargo($nm_cargo, $cd_cargo);
 		
-		$query = $this->querydao->updateAll($cliente);
+		$query = $this->querydao->updateAll($cargo);
 		echo json_encode($query);
 	}
 }

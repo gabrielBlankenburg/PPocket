@@ -65,7 +65,7 @@ function editar(){
     var data = $('form').serialize();
     $.ajax({
         method: 'POST',
-        url: urlAdd,
+        url: urlEdit,
         data: data,
         success: function(resp){
             // Mudar isso
