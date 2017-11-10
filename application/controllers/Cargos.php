@@ -55,6 +55,8 @@ class Cargos extends CI_Controller
 		if (count($query) == 1){
 			$nm_cargo = $query[0]['nm_cargo'];
 			$cargo = new Cargo($nm_cargo, $cd_cargo);
+		} else{
+			echo 'nao encontrado'; die;
 		}
 		$dados['cargo'] = $cargo;
 		$this->load->view('template/header', $dados);
@@ -71,5 +73,20 @@ class Cargos extends CI_Controller
 		
 		$query = $this->querydao->updateAll($cargo);
 		echo json_encode($query);
+	}
+	
+	public function delete_cargo_action()
+	{
+		$nm_cargo = $this->input->post('nm_cargo');
+		$cd_cargo = $this->input->post('cd_cargo');
+		
+		$cargo = new Cargo($nm_cargo, $cd_cargo);
+		
+		$query = $this->querydao->remove($cargo);
+		if ($query){
+			echo base_url().'cargos';
+		} else{
+			echo 'false';
+		}
 	}
 }

@@ -73,6 +73,8 @@ class Clientes extends CI_Controller
 			$cd_responsavel_telefone = $query[0]['cd_responsavel_telefone'];
 			$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel, 
 									$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
+		} else{
+			echo 'não encontrado'; die;
 		}
 		$dados['cliente'] = $cliente;
 		$this->load->view('template/header', $dados);
