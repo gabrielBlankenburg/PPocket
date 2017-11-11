@@ -60,7 +60,7 @@ class Funcionarios extends CI_Controller
 		}
 		
 		$retorno = $funcionario->getAll();
-		echo json_encode($retorno);
+		echo json_encode($retorno, JSON_UNESCAPED_SLASHES);
 	}
 	
 	public function edita_funcionario($cd_funcionario)
@@ -87,23 +87,45 @@ class Funcionarios extends CI_Controller
 			
 			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
 											$dt_nascimento, $cargo, $cd_funcionario);
+			$cargos = $this->querydao->selectAll(Cargo::getClassName());
 		} else{
 			echo 'nao encontrado'; die;
 		}
+		$dados['cargos'] = $cargos;
 		$dados['funcionario'] = $funcionario;
 		$this->load->view('template/header', $dados);
 		$this->load->view('painel/funcionarios/funcionarios_editar', $dados);
 		$this->load->view('template/footer', $dados);
 	}
 	
-	public function edita_cargo_action()
+	public function edita_funcionario_action()
 	{
 		$cd_cargo = $this->input->post('cd_cargo');
-		$nm_cargo = $this->input->post('nm_cargo');
+		$cd_funcionario = $this->input->post('cd_funcionario');
+		$nm_funcionario = $this->input->post('nm_funcionario');
+        $cd_telefone = $this->input->post('cd_telefone');
+        $cd_celular = $this->input->post('cd_celular');
+        $ds_email = $this->input->post('ds_email');
+        $data = DateTime::createFromFormat('d/m/Y', $this->input->post('dt_nascimento'));
+        $dt_nascimento = $data->format('Y-m-d');
+        $vl_salario = $this->input->post('vl_salario');
 		
-		$cargo = new Cargo($nm_cargo, $cd_cargo);
+		// Busca o cargo
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
+		// Se o número de colunas for igual a 1, cria uma instancia de cargo com o cargo modificado (ou não)
+		if (count($query) == 1){
+			$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
+			
+			$condicoes = array(Funcionario::getChavePrimariaNome() => $cd_funcionario);
+			$query = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes);
+			
+			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
+										$dt_nascimento, $cargo, $cd_funcionario);
+		}
 		
-		$query = $this->querydao->updateAll($cargo);
+		
+		$query = $this->querydao->updateAll($funcionario);
 		echo json_encode($query);
 	}
 	

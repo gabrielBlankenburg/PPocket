@@ -29,12 +29,47 @@ class Funcionario implements Serializablee
         $dados['cd_telefone'] = $this->cd_telefone;
         $dados['cd_celular'] = $this->cd_celular;
         $dados['ds_email'] = $this->ds_email;
-        $dados['dt_nascimento'] = date('dmY', strtotime($this->dt_nascimento));
+        $dados['dt_nascimento'] = date('d/m/Y', strtotime($this->dt_nascimento));
         $dados['vl_salario'] = $this->vl_salario;
         $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
         $dados['nm_cargo'] = $this->cargo->getNomeCargo();
         
         return $dados;
+    }
+    
+    public function getChaveCargo()
+    {
+        return $this->cargo->getChavePrimariaValor();
+    }
+    
+    public function getNomeFuncionario()
+    {
+        return $this->nm_funcionario;
+    }
+    
+    public function getTelefoneFuncionario()
+    {
+        return $this->cd_telefone;
+    }
+    
+    public function getCelularFuncionario()
+    {
+        return $this->cd_celular;
+    }
+    
+    public function getEmailFuncionario()
+    {
+        return $this->ds_email;
+    }
+    
+    public function getNascimentoFuncionario()
+    {
+        return date('d/m/Y', strtotime($this->dt_nascimento));
+    }
+    
+    public function getSalarioFuncionario()
+    {
+        return $this->vl_salario;
     }
     
     // Retorna um array contendo o nome da tabela que deverá ser feito um join e os campos que devem ser comparados
