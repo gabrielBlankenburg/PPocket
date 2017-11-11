@@ -41,9 +41,9 @@ class Funcionario implements Serializablee
     public static function getJoins()
     {
         // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
-        $joins = array(array('tabela_nome' => Cargo::getClassName(),
-                        'on' => 'funcionario.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome()));
-        return array('funcionario', $joins);
+        $joins = array('tabela_nome' => Cargo::getClassName(),
+                        'on' => 'funcionario.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome());
+        return array($joins);
     }
     
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas

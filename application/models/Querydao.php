@@ -21,17 +21,14 @@ class Querydao extends CI_Model
         return $resp;
     }
     
-    public function selectAll($tabela_nome)
+    public function selectAll($tabela_nome, $joins = null)
     {
-        return $this->db->get($tabela_nome)->result_array();
-    }
-    
-    public function selectJoins($joins)
-    {
-        foreach ($joins[1] as $join) {
-            $this->db->join($join['tabela_nome'], $join['on']);
+        if (isset($joins)){
+            foreach ($joins as $join) {
+                $this->db->join($join['tabela_nome'], $join['on']);
+            }
         }
-        return $this->db->get($joins[0])->result_array();
+        return $this->db->get($tabela_nome)->result_array();
     }
     
     public function updateAll(Serializablee $tabela)
@@ -41,8 +38,13 @@ class Querydao extends CI_Model
         return $this->db->update($tabela::getClassName()); 
     }
     
-    public function selectWhere($tabela_nome, $condicoes, $limit = null, $offset = null)
+    public function selectWhere($tabela_nome, $condicoes, $joins = null, $limit = null, $offset = null)
     {
+        if (isset($joins)){
+            foreach ($joins as $join) {
+                $this->db->join($join['tabela_nome'], $join['on']);
+            }
+        }
         return $this->db->get_where($tabela_nome, $condicoes, $limit, $offset)->result_array();
     }
     
