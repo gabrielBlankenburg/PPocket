@@ -129,16 +129,29 @@ class Funcionarios extends CI_Controller
 		echo json_encode($query);
 	}
 	
-	public function delete_cargo_action()
+	public function delete_funcionario_action()
 	{
-		$nm_cargo = $this->input->post('nm_cargo');
 		$cd_cargo = $this->input->post('cd_cargo');
+		$cd_funcionario = $this->input->post('cd_funcionario');
+		$nm_funcionario = $this->input->post('nm_funcionario');
+        $cd_telefone = $this->input->post('cd_telefone');
+        $cd_celular = $this->input->post('cd_celular');
+        $ds_email = $this->input->post('ds_email');
+        $data = DateTime::createFromFormat('d/m/Y', $this->input->post('dt_nascimento'));
+        $dt_nascimento = $data->format('Y-m-d');
+        $vl_salario = $this->input->post('vl_salario');
 		
-		$cargo = new Cargo($nm_cargo, $cd_cargo);
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
 		
-		$query = $this->querydao->remove($cargo);
+		$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
+		
+		$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
+										$dt_nascimento, $cargo, $cd_funcionario);
+		
+		$query = $this->querydao->remove($funcionario);
 		if ($query){
-			echo base_url().'cargos';
+			echo base_url().'funcionarios';
 		} else{
 			echo 'false';
 		}

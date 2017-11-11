@@ -1,19 +1,19 @@
 Vue.component('clientes-listar', {
     props: ['cliente'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
+    template: '<a v-bind:href="'+"'"+baseUrl+"clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
 });
 
 Vue.component('cargos-listar', {
     props: ['cargo'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'cargos/ver/'+"+'cargo.cd_cargo"><li class="listagem">{{ cargo.nm_cargo }}</li></a>'
+    template: '<a v-bind:href="'+"'"+baseUrl+"cargos/ver/'+"+'cargo.cd_cargo"><li class="listagem">{{ cargo.nm_cargo }}</li></a>'
 });
 
 Vue.component('funcionarios-listar', {
     props: ['funcionario'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'funcionarios/ver/'+"+'funcionario.cd_funcionario"><li class="listagem">Nome: {{ funcionario.nm_funcionario }} | Cargo: {{ funcionario.nm_cargo }}</li></a>'
+    template: '<a v-bind:href="'+"'"+baseUrl+"funcionarios/ver/'+"+'funcionario.cd_funcionario"><li class="listagem">Nome: {{ funcionario.nm_funcionario }} | Cargo: {{ funcionario.nm_cargo }}</li></a>'
 });
 
 var painel = new Vue({
