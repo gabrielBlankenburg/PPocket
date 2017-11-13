@@ -55,5 +55,4 @@ class Querydao extends CI_Model
     }
 }
 
-
 ?>

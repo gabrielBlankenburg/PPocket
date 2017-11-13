@@ -16,6 +16,12 @@ Vue.component('funcionarios-listar', {
     template: '<a v-bind:href="'+"'"+baseUrl+"funcionarios/ver/'+"+'funcionario.cd_funcionario"><li class="listagem">Nome: {{ funcionario.nm_funcionario }} | Cargo: {{ funcionario.nm_cargo }}</li></a>'
 });
 
+Vue.component('servicos-listar', {
+    props: ['servico'],
+    // Redireciona para o link do cliente pelo id
+    template: '<a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico"><li class="listagem">Nome: {{ servico.nm_servico }} | Descrição: {{ servico.ds_descricao }} | Valor: {{ servico.vl_servico }} |Cargo: {{ servico.nm_cargo }}</li></a>'
+});
+
 var painel = new Vue({
     el: '#painel',
     data: {
@@ -38,7 +44,7 @@ $(document).ready(function(){
         remover();
     });
     
-    if(document.getElementById('clientes') || document.getElementById('cargos') || document.getElementById('funcionarios')){
+    if(document.getElementById('clientes') || document.getElementById('cargos') || document.getElementById('funcionarios') || document.getElementById('servicos')){
         listar(query);
     }
 });

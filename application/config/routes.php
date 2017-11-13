@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'clientes';
 $route['clientes/ver/(:num)'] = 'clientes/edita_cliente/$1';
 $route['cargos/ver/(:num)'] = 'cargos/edita_cargo/$1';
+$route['servicos/ver/(:num)'] = 'servicos/edita_servico/$1';
 $route['funcionarios/ver/(:num)'] = 'funcionarios/edita_funcionario/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
