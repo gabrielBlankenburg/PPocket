@@ -50,7 +50,7 @@ class Funcionarios extends CI_Controller
 		} else{
 			echo 'nao encontrado'; die;
 		}
-		
+		//Dúvida - Se não existir, é criado automaticamente?
 		$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
 										$dt_nascimento, $cargo);
 		
