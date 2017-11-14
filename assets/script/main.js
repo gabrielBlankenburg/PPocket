@@ -4,6 +4,12 @@ Vue.component('clientes-listar', {
     template: '<a v-bind:href="'+"'"+baseUrl+"clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
 });
 
+Vue.component('projetos-listar', {
+    props: ['projeto'],
+    // Redireciona para o link do cliente pelo id
+    template: '<a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_proejto"><li class="listagem">Projeto: {{ projeto.nm_projeto }} | Data de Início: {{ projeto.dt_inicio }} | Data de Término: {{ projeto.dt_termino }} | Descrição: {{ projeto.ds_projeto }} | Cliente: {{ projeto.nm_cliente }}</li></a>'
+});
+
 Vue.component('cargos-listar', {
     props: ['cargo'],
     // Redireciona para o link do cliente pelo id

@@ -9,15 +9,16 @@
 <body>
     <?php $query; ?>
     <form class="offset-md-1 col-md-10" id="editar">
-        <input type="hidden" name="cd_servico" value="<?= $cargo->getChavePrimariaValor(); ?>"/>
+        <input type="hidden" name="cd_projeto" value="<?= $projeto->getChavePrimariaValor(); ?>"/>
         <div class="form-group">
-            <label for="nm_servico">Nome do Serviço</label>
-            <input type="text" class="form-control" id="nm_servico" name="nm_servico" value="<?= $servico->getNomeServico(); ?>" placeholder="Nome do serviço">
-            <textarea type="text" class="form-control" id="ds_servico" name="ds_servico" value="<?= $servico->getDescricaoServico(); ?>" placeholder="Descrição do serviço"></textarea>
-            <input type="number" class="form-control" id="vl_servico" name="vl_servico" value="<?= $servico->getValorServico(); ?>" placeholder="Valor estimado do serviço">
+            <label for="nm_projeto">Projeto</label> 
+            <input type="text" class="form-control" id="nm_projeto" name="nm_projeto" value="<?= $projeto->getNomeProjeto(); ?>" placeholder="Nome do projeto">
+            <input type="date" class="form-control" id="dt_inicio" name="dt_inicio" value="<?= $projeto->getDataInicio(); ?>" placeholder="dd/mm/aaaa">           
+            <input type="date" class="form-control" id="dt_termino" name="dt_termino" value="<?= $projeto->getDataTermino(); ?>" placeholder="dd/mm/aaaa">
+            <textarea type="text" class="form-control" id="ds_projeto" name="ds_projeto" value="<?= $projeto->getDescricaoProjeto(); ?>" placeholder="Descrição do projeto"></textarea>
         </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Serviço</button>
-        <button type="submit" class="btn btn-success offset-sm-7">Atualizar Serviço</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Projeto</button>
+        <button type="submit" class="btn btn-success offset-sm-7">Atualizar Projeto</button>
     </form>
     <!-- Modal -->
     <div id="modal" class="modal fade" role="dialog">

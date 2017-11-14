@@ -53,6 +53,26 @@ class Projeto implements Serializablee
     {
         return 'cd_projeto';
     }
+    
+    public function getNomeProjeto()
+    {
+        return 'nm_projeto';
+    }
+    
+    public function getDataInicio()
+    {
+        return 'dt_inicio';
+    }
+    
+    public function getDataTermino()
+    {
+        return 'dt_termino';
+    }
+    
+    public function getDescricao()
+    {
+        return 'ds_projeto';
+    }
 }
 
 ?>
