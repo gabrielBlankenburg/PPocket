@@ -9,12 +9,21 @@
 <body>
     <?php $query; ?>
     <form class="offset-md-1 col-md-10" id="editar">
-        <input type="hidden" name="cd_servico" value="<?= $cargo->getChavePrimariaValor(); ?>"/>
+        <input type="hidden" name="cd_servico" value="<?= $servico->getChavePrimariaValor(); ?>"/>
         <div class="form-group">
             <label for="nm_servico">Nome do Serviço</label>
             <input type="text" class="form-control" id="nm_servico" name="nm_servico" value="<?= $servico->getNomeServico(); ?>" placeholder="Nome do serviço">
-            <textarea type="text" class="form-control" id="ds_servico" name="ds_servico" value="<?= $servico->getDescricaoServico(); ?>" placeholder="Descrição do serviço"></textarea>
+            <label for="ds_servico">Descrição do Serviço</label>
+            <textarea class="form-control" id="ds_servico" name="ds_servico" placeholder="Descrição do serviço"><?= $servico->getDescricaoServico(); ?></textarea>
+            <label for="vl_servico">Nome do Serviço</label>
             <input type="number" class="form-control" id="vl_servico" name="vl_servico" value="<?= $servico->getValorServico(); ?>" placeholder="Valor estimado do serviço">
+            <label for="cd_cargo">Cargo</label>
+            <select class="form-control" name="cd_cargo" id="cd_cargo">
+                <option>Escolha uma opção</option>
+                <?php foreach ($cargos as $cargo){ ?>
+                    <option value="<?= $cargo['cd_cargo']; ?>" <?= $cargo['cd_cargo'] == $servico->getChaveCargo() ? 'selected' : '' ?>><?= $cargo['nm_cargo']; ?></option>
+                <?php } ?>
+            </select>
         </div>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Serviço</button>
         <button type="submit" class="btn btn-success offset-sm-7">Atualizar Serviço</button>

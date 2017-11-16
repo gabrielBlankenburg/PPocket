@@ -52,6 +52,26 @@ class Servico implements Serializablee
         return array($joins);
     }
     
+    public function getNomeServico()
+    {
+        return $this->nm_servico;
+    }
+    
+    public function getDescricaoServico()
+    {
+        return $this->ds_servico;
+    }
+    
+    public function getChaveCargo()
+    {
+        return $this->cargo->getChavePrimariaValor();
+    }
+    
+    public function getValorServico()
+    {
+        return $this->vl_servico;
+    }
+    
     public function getChavePrimariaValor()
     {
         return $this->cd_servico;

@@ -62,19 +62,24 @@ class Servicos extends CI_Controller
 		
 		// Cria uma condição para pegar a chave primaria igual ao do parametro passado
 		$condicoes = array(Servico::getChavePrimariaNome() => $cd_servico);
-		$query = $this->querydao->selectWhere(Servico::getClassName(), $condicoes);
+		$query = $this->querydao->selectWhere(Servico::getClassName(), $condicoes, Servico::getJoins());
 		
 		// Não tiver exatamente um match significa que deu algum erro
 		
 		if (count($query) == 1){
+			$nm_cargo = $query[0]['nm_cargo'];
+			$cd_cargo = $query[0]['cd_cargo'];
 			$nm_servico = $query[0]['nm_servico'];
 			$ds_servico = $query[0]['ds_servico'];
 			$vl_servico = $query[0]['vl_servico'];
-			$servico = new Servico($cd_servico, $nm_servico, $ds_servico, $vl_servico/*, $cd_cargo*/);
+			$cargo = new Cargo($nm_cargo, $cd_cargo);
+			$servico = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
+			$cargos = $this->querydao->selectAll(Cargo::getClassName());
 		} else{
 			echo 'nao encontrado'; die;
 		}
 		$dados['servico'] = $servico;
+		$dados['cargos'] = $cargos;
 		$this->load->view('template/header', $dados);
 		$this->load->view('painel/servicos/servicos_editar', $dados);
 		$this->load->view('template/footer', $dados);
@@ -82,12 +87,23 @@ class Servicos extends CI_Controller
 	
 	public function edita_servico_action()
 	{
+		$cd_cargo = $this->input->post('cd_cargo');
 		$cd_servico = $this->input->post('cd_servico');
 		$nm_servico = $this->input->post('nm_servico');
  		$ds_servico = $this->input->post('ds_servico');
 		$vl_servico = $this->input->post('vl_servico');
 		
-		$servico = new Servico($cd_servico, $nm_servico, $ds_servico, $vl_servico /*$cd_cargo*/);
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
+		// Se o número de colunas for igual a 1, cria uma instancia de cargo com o cargo modificado (ou não)
+		if (count($query) == 1){
+			$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
+			
+			$condicoes = array(Servico::getChavePrimariaNome() => $cd_servico);
+			$query = $this->querydao->selectWhere(Servico::getClassName(), $condicoes);
+			
+			$servico = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
+		}
 		
 		$query = $this->querydao->updateAll($servico);
 		echo json_encode($query);
@@ -95,12 +111,23 @@ class Servicos extends CI_Controller
 	
 	public function delete_servico_action()
 	{
+		$cd_cargo = $this->input->post('cd_cargo');
 		$cd_servico = $this->input->post('cd_servico');
 		$nm_servico = $this->input->post('nm_servico');
  		$ds_servico = $this->input->post('ds_servico');
 		$vl_servico = $this->input->post('vl_servico');		
 		
-		$servico = new Servico($cd_servico, $nm_servico, $ds_servico, $vl_servico);
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
+		// Se o número de colunas for igual a 1, cria uma instancia de cargo com o cargo modificado (ou não)
+		if (count($query) == 1){
+			$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
+			
+			$condicoes = array(Servico::getChavePrimariaNome() => $cd_servico);
+			$query = $this->querydao->selectWhere(Servico::getClassName(), $condicoes);
+			
+			$servico = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
+		}
 		
 		$query = $this->querydao->remove($servico);
 		if ($query){
