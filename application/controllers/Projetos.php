@@ -8,6 +8,7 @@ class Projetos extends CI_Controller
 		parent::__construct();
 		require_once APPPATH.'models/cliente.php';
 		require_once APPPATH.'models/projeto.php';
+		require_once APPPATH.'models/servico.php';
 		$this->load->model('querydao');
 	}
 	
@@ -15,8 +16,10 @@ class Projetos extends CI_Controller
 	{
 	    $dados['titulo'] = 'Projetos';
 		$dados['chave_primaria'] = Projeto::getChavePrimariaNome();
-		$dados['query'] = $this->querydao->selectAll(Projeto::getClassName());
+		$dados['query'] = $this->querydao->selectAll(Projeto::getClassName(), Projeto::getJoins());
 		$dados['url'] = base_url().'projetos/cadastra_projeto_action';
+		
+		print_r($dados['query']);
 	}
 	
     public function cadastra_projeto_action()

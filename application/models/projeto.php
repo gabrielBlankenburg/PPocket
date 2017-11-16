@@ -6,11 +6,11 @@ require_once APPPATH.'models/servico.php';
 require_once APPPATH.'models/tarefa.php';
 class Projeto implements Serializablee
 {
-    private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $vl_total;
-    private $cliente, $servicos, $tarefas;
+    private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $vl_total, $cliente, $servicos;
     
     // Recebe um array contendo os dados
-    public function __construct($cd_projeto, $nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $vl_total, Cliente $cliente)
+    public function __construct($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $vl_total, Cliente $cliente, 
+                                    $servicos = null, $cd_projeto = null)
     {
         $this->cd_projeto = $cd_projeto;
         $this->cliente = $cliente;
@@ -19,11 +19,9 @@ class Projeto implements Serializablee
         $this->dt_termino = $dt_termino;
         $this->ds_projeto = $ds_projeto;
         $this->vl_total = $vl_total;
-    }
-    
-    public function adicionaTarefa(Tarefa $tarefa)
-    {
-        $this->tarefas[] = $tarefa;
+        if (!isset($servicos)){
+            $this->servicos = array();
+        }
     }
     
     public function toArray()
