@@ -14,8 +14,13 @@ class Servicos extends CI_Controller
 	{
 	    $dados['titulo'] = 'Serviços';
 		$dados['chave_primaria'] = Servico::getChavePrimariaNome();
-		$dados['query'] = $this->querydao->selectAll(Servico::getClassName());
+		$dados['cargos'] = $this->querydao->selectAll(Cargo::getClassName());
+		$dados['query'] = $this->querydao->selectAll(Servico::getClassName(), Servico::getJoins());
 		$dados['url'] = base_url().'servicos/cadastra_servico_action';
+		
+		$this->load->view('template/header', $dados);
+		$this->load->view('painel/servicos/servicos_listar', $dados);
+		$this->load->view('template/footer', $dados);
 	}
 	
     public function cadastra_servico_action()
@@ -23,7 +28,21 @@ class Servicos extends CI_Controller
 		$nm_servico = $this->input->post('nm_servico');
 		$ds_servico = $this->input->post('ds_servico');
 		$vl_servico = $this->input->post('vl_servico');
-		$servico = new Servico($cd_servico, $nm_servico, $ds_servico, $vl_servico /*$cd_cargo*/);
+		$cd_cargo = $this->input->post('cd_cargo');
+		
+		// Verifica se existe um cargo com o cd_cargo informado
+		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
+		
+		// Se não tiver exatamente um match significa que deu algum erro
+		if (count($query) == 1){
+			$cd_cargo = $query[0]['cd_cargo'];
+			$nm_cargo = $query[0]['nm_cargo'];
+			$cargo = new Cargo($nm_cargo, $cd_cargo);
+		} else{
+			echo 'nao encontrado'; die;
+		}
+		$servico = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo);
 		
 		$insert = $this->querydao->insert($servico);
 		if ($insert != false){

@@ -7,7 +7,7 @@ class Servico implements Serializablee
     private $cd_servico, $nm_servico, $ds_servico, $vl_servico, $cargo;
     
     // Recebe um array contendo os dados
-    public function __construct($cd_servico, $nm_servico, $ds_servico, $vl_servico, Cargo $cargo)
+    public function __construct($nm_servico, $ds_servico, $vl_servico, Cargo $cargo, $cd_servico = null)
     {
         $this->cd_servico = $cd_servico;
         $this->nm_servico = $nm_servico;
@@ -22,9 +22,34 @@ class Servico implements Serializablee
         $dados['nm_servico'] = $this->nm_servico;
         $dados['ds_servico'] = $this->ds_servico;
         $dados['vl_servico'] = $this->vl_servico;
-        $dados['cd_cargo'] = $this->cargo->cd_cargo;
+        $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
         
         return $dados;
+    }
+    
+    public function addChavePrimaria($cd_servico)
+    {
+        $this->cd_servico = $cd_servico;
+    }
+    
+    public function getAll()
+    {
+        $dados['cd_servico'] = $this->cd_servico;
+        $dados['nm_servico'] = $this->nm_servico;
+        $dados['ds_servico'] = $this->ds_servico;
+        $dados['vl_servico'] = $this->vl_servico;
+        $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
+        $dados['nm_cargo'] = $this->cargo->getNomeCargo();
+        
+        return $dados;
+    }
+    
+    public static function getJoins()
+    {
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins = array('tabela_nome' => Cargo::getClassName(),
+                        'on' => 'servico.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome());
+        return array($joins);
     }
     
     public function getChavePrimariaValor()
