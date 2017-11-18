@@ -77,6 +77,10 @@ class Projeto implements Serializablee
     {
         return 'ds_projeto';
     }
+    public function getChaveCliente()
+    {
+        return 'cd_cliente';
+    }
 }
 
 ?>
