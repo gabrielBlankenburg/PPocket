@@ -26,7 +26,13 @@
                         <label for="dt_termino">Data de Término</label>
                         <input type="date" class="form-control" id="dt_termino" name="dt_termino" placeholder="dd/mm/aaaa">
                         <textarea type="text" class="form-control" id="ds_projeto" name="ds_projeto" placeholder="Descrição do projeto"></textarea>
-                        <!--<input type="text" class="form-control" id="nm_cliente" name="nm_cliente" placeholder="Nome do Cliente associado ao Projeto">-->
+                        <label for="cd_cliente">Cliente relacionado ao Projeto</label>
+                        <select class="form-control" name="cd_cliente" id="cd_cliente">
+                            <option>Escolha uma opção</option>
+                            <?php foreach ($clientes as $cliente){ ?>
+                                <option value="<?= $cliente['cd_cliente']; ?>"><?= $cliente['nm_cliente']; ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar Projeto</button>
                 </form>

@@ -16,6 +16,13 @@
             <input type="date" class="form-control" id="dt_inicio" name="dt_inicio" value="<?= $projeto->getDataInicio(); ?>" placeholder="dd/mm/aaaa">           
             <input type="date" class="form-control" id="dt_termino" name="dt_termino" value="<?= $projeto->getDataTermino(); ?>" placeholder="dd/mm/aaaa">
             <textarea type="text" class="form-control" id="ds_projeto" name="ds_projeto" value="<?= $projeto->getDescricaoProjeto(); ?>" placeholder="Descrição do projeto"></textarea>
+            <label for="cd_cliente">Cliente</label>
+            <select class="form-control" name="cd_cliente" id="cd_cliente">
+                <option>Escolha uma opção</option>
+                <?php foreach ($clientes as $cliente){ ?>
+                    <option value="<?= $cliente['cd_cliente']; ?>" <?= $cliente['cd_cliente'] == $projeto->getChaveCliente() ? 'selected' : '' ?>><?= $cliente['nm_cliente']; ?></option>
+                <?php } ?>
+            </select>            
         </div>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Projeto</button>
         <button type="submit" class="btn btn-success offset-sm-7">Atualizar Projeto</button>
