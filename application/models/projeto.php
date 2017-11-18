@@ -10,7 +10,7 @@ class Projeto implements Serializablee
     
     // Recebe um array contendo os dados
     public function __construct($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $vl_total, Cliente $cliente, 
-                                    $servicos = null, $cd_projeto = null)
+                                $servicos = null, $cd_projeto = null)
     {
         $this->cd_projeto = $cd_projeto;
         $this->cliente = $cliente;
@@ -36,7 +36,13 @@ class Projeto implements Serializablee
         
         return $dados;
     }
-    
+    public static function getJoins()
+    {
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins = array('tabela_nome' => Cliente::getClassName(),
+                        'on' => 'cliente.cd_cliente = '.Cliente::getClassName().'.'.Cliente::getChavePrimariaNome());
+        return array($joins);
+    }    
     public function getChavePrimariaValor()
     {
         return $this->cd_projeto;
