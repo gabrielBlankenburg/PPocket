@@ -19,13 +19,14 @@
             <div class="modal-content">
                 <form class="offset-md-1 col-md-10" id="inserir">
                     <div class="form-group">
-                        <!--<label for="nm_projeto">Nome do Projeto</label>-->
+                        <label for="nm_projeto">Nome do Projeto</label>
                         <input type="text" class="form-control" id="nm_projeto" name="nm_projeto" placeholder="Nome do projeto">
                         <label for="dt_inicio">Data de Início</label>
                         <input type="date" class="form-control" id="dt_inicio" name="dt_inicio" placeholder="dd/mm/aaaa">        
                         <label for="dt_termino">Data de Término</label>
                         <input type="date" class="form-control" id="dt_termino" name="dt_termino" placeholder="dd/mm/aaaa">
-                        <textarea type="text" class="form-control" id="ds_projeto" name="ds_projeto" placeholder="Descrição do projeto"></textarea>
+                        <label for="ds_projeto">Descrição do projeto</label>
+                        <textarea class="form-control" id="ds_projeto" name="ds_projeto" placeholder="Descrição do projeto"></textarea>
                         <label for="cd_cliente">Cliente relacionado ao Projeto</label>
                         <select class="form-control" name="cd_cliente" id="cd_cliente">
                             <option>Escolha uma opção</option>

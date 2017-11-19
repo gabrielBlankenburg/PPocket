@@ -17,9 +17,12 @@ class Projetos extends CI_Controller
 	    $dados['titulo'] = 'Projetos';
 		$dados['chave_primaria'] = Projeto::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Projeto::getClassName(), Projeto::getJoins());
+		$dados['clientes'] = $this->querydao->selectAll(Cliente::getClassName());
 		$dados['url'] = base_url().'projetos/cadastra_projeto_action';
 		
-		print_r($dados['query']);
+		$this->load->view('template/header', $dados);
+		$this->load->view('painel/projetos/projetos_listar', $dados);
+		$this->load->view('template/footer', $dados);
 	}
 	
     public function cadastra_projeto_action()
