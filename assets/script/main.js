@@ -46,11 +46,23 @@ $(document).ready(function(){
         return false;
     });
     
-     $('#remover').click(function(){
+    $('#remover').click(function(){
         remover();
     });
     
-    if(document.getElementById('clientes') || document.getElementById('cargos') || document.getElementById('funcionarios') || document.getElementById('servicos')){
+    $('.add-multiple-input').click(function(){
+       addMultipleInput(); 
+       return false;
+    });
+    
+    $('.remove-multiple-input').click(function(){
+       removeMultipleInput(); 
+       return false;
+    });
+    
+    if(document.getElementById('clientes') || document.getElementById('cargos') || 
+        document.getElementById('funcionarios') || document.getElementById('servicos') || 
+        document.getElementById('projetos')){
         listar(query);
     }
 });
@@ -108,4 +120,13 @@ function remover(){
             }
         }
     });
+}
+
+function addMultipleInput(){
+    $('.multiple-input').first().clone().appendTo('.multiple-inputs');
+}
+
+function removeMultipleInput(){
+    if($('.multiple-input').length > 1)
+        $('.multiple-input').last().remove();
 }

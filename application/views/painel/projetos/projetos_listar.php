@@ -34,6 +34,17 @@
                                 <option value="<?= $cliente['cd_cliente']; ?>"><?= $cliente['nm_cliente']; ?></option>
                             <?php } ?>
                         </select>
+                        <div class="multiple-inputs">
+                            <label>Serviços</label>
+                            <select class="form-control multiple-input" name="cd_servico[]" id="cd_servico[]">
+                                <option>Escolha uma opção</option>
+                                <?php foreach ($servicos as $servico) { ?>
+                                    <option value="<?= $servico['cd_servico'] ?>"><?= $servico['nm_servico'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary add-multiple-input">Adcionar serviço</button>
+                        <button class="btn btn-danger remove-multiple-input">Remover serviço</button>
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar Projeto</button>
                 </form>
