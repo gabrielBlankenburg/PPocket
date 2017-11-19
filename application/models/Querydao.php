@@ -56,18 +56,27 @@ class Querydao extends CI_Model
     
     // Arrumar
     public function insertNparaN(MuitosParaMuitos $tabela){
-        $insert = $this->db->insert($tabela::getClassNparaN(), $tabela->insereChavesNparaN());
+        $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
         // Se inseriu com sucesso retorna o ultimo registro
         if ($insert){
-            $resp = $this->db->order_by($tabela::getChaveRelacionamentoNome(), "desc")
+            $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
     		->limit(1)
-    		->get($tabela::getClassNparaN())
+    		->get($tabela::getClassName())
     		->row();
+    		
+    		$tabela->addChavePrimaria($resp->$tabela->getChavePrimariaNome());
+        } else{
+            echo false;
+            die;
+        }
+        $insertMuitos = $this->db->insert($tabela::getClassNparaN(), $tabela->insereChavesNparaN());
+        // Se inseriu com sucesso retorna o ultimo registro
+        if ($insert){
+            header('Content-Type: application/json');
+            return $resp;
         } else{
             $resp = false;
         }
-        header('Content-Type: application/json');
-        return $resp;
     }
 }
 
