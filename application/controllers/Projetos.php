@@ -30,12 +30,41 @@ class Projetos extends CI_Controller
 	{
 		$nm_projeto = $this->input->post('nm_projeto');
 		$data_inicio = DateTime::createFromFormat('d/m/Y', $this->input->post('dt_inicio'));
-        $dt_inicio = $data->format('Y-m-d');
+        $dt_inicio = $data_inicio->format('Y-m-d');
 		$data_termino = DateTime::createFromFormat('d/m/Y', $this->input->post('dt_termino'));
-        $dt_termino = $data->format('Y-m-d');       
+        $dt_termino = $data_termino->format('Y-m-d');       
 		$ds_projeto = $this->input->post('ds_projeto');
-// 		$cd_cliente = $this->input->post('cd_cliente');
-		$projeto = new Projeto($cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto);
+		$cd_cliente = $this->input->post('cd_cliente');
+		$servicos = array();
+		
+		$conditions = array(Cliente::getChavePrimariaNome() => $cd_cliente);
+		$query_cliente = $this->querydao->selectWhere(Cliente::getClassName(), $conditions);
+		
+		// Cria um array de instancias de serviços
+		foreach ($this->input->post('cd_servico') as $servico){
+			$query_servico = $this->querydao->selectAll(Servico::getClassName());
+			if (isset($query) && !empty($query)){
+				$nm_servico = $query_servico->nm_servico;
+				$ds_servico = $query_servico->ds_servico;
+				$vl_servico = $query_servico->vl_servico;
+				$cd_cargo = $query_servico->cd_cargo;
+				$cd_servico = $query_servico->cd_servico;
+				// Cria um cargo do serviço
+				$conditions = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+				$query_cargo = $this->querydao->selectWhere(Cargo::getClassName(), $conditions);
+				
+				if (count($query_cargo) == 1){
+					$cd_cargo = $query_cargo[0]['cd_cargo'];
+					$nm_cargo = $query_cargo[0]['nm_cargo'];
+					$cargo = new Cargo($nm_cargo, $cd_cargo);
+				}
+				
+				$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo);
+			}
+		}
+		$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $vl_total, $cliente, $servicos);
+		
+		print_r($projeto); die;
 		
 		$insert = $this->querydao->insert($projeto);
 		if ($insert != false){

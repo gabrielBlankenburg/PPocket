@@ -53,6 +53,22 @@ class Querydao extends CI_Model
         $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
         return $this->db->delete($tabela::getClassName());
     }
+    
+    // Arrumar
+    public function insertNparaN(MuitosParaMuitos $tabela){
+        $insert = $this->db->insert($tabela::getClassNparaN(), $tabela->insereChavesNparaN());
+        // Se inseriu com sucesso retorna o ultimo registro
+        if ($insert){
+            $resp = $this->db->order_by($tabela::getChaveRelacionamentoNome(), "desc")
+    		->limit(1)
+    		->get($tabela::getClassNparaN())
+    		->row();
+        } else{
+            $resp = false;
+        }
+        header('Content-Type: application/json');
+        return $resp;
+    }
 }
 
 ?>

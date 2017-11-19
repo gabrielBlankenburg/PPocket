@@ -4,7 +4,8 @@ require_once APPPATH.'models/serializable.php';
 require_once APPPATH.'models/cliente.php';
 require_once APPPATH.'models/servico.php';
 require_once APPPATH.'models/tarefa.php';
-class Projeto implements Serializablee
+require_once APPPATH.'models/MuitosParaMuitos.php';
+class Projeto implements Serializablee, MuitosParaMuitos
 {
     private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $vl_total, $cliente, $servicos;
     
@@ -80,6 +81,19 @@ class Projeto implements Serializablee
     public function getChaveCliente()
     {
         return 'cd_cliente';
+    }
+    
+    // Muitos Para Muitos
+    public static function getClassNparaN(){
+        return 'projeto_servico';
+    }
+    
+    public function insereChavesNparaN(){
+        return array('cd_projeto' => $this->cd_projeto, Servico::getClassName() => $this->cd_servico);
+    }
+    
+    public static function getChaveRelacionamentoNome(){
+        return 'cd_projeto_servico';
     }
 }
 
