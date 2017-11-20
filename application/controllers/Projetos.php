@@ -58,6 +58,7 @@ class Projetos extends CI_Controller
 				$ds_servico = $query_servico[0]['ds_servico'];
 				$vl_servico = $query_servico[0]['vl_servico'];
 				$cd_cargo = $query_servico[0]['cd_cargo'];
+				$cd_servico = $query_servico[0]['cd_servico'];
 				// Cria um cargo do serviço
 				$conditions = array(Cargo::getChavePrimariaNome() => $cd_cargo);
 				$query_cargo = $this->querydao->selectWhere(Cargo::getClassName(), $conditions);
@@ -68,12 +69,12 @@ class Projetos extends CI_Controller
 					$cargo = new Cargo($nm_cargo, $cd_cargo);
 				}
 				
-				$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo);
+				$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
 			}
 		}
 		$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos);
 		
-		$insert = $this->querydao->insert($projeto);
+		$insert = $this->querydao->insertNparaN($projeto);
 		if ($insert != false){
 			$projeto->addChavePrimaria($insert->cd_projeto);
 		}

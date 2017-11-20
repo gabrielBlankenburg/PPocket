@@ -19,8 +19,11 @@ class Projeto implements Serializablee, MuitosParaMuitos
         $this->dt_inicio = $dt_inicio;
         $this->dt_termino = $dt_termino;
         $this->ds_projeto = $ds_projeto;
-        if (!isset($servicos)){
-            $this->servicos = array();
+        $this->servicos = array();
+        if (isset($servicos)){
+            foreach ($servicos as $servico) {
+                $this->servicos[] = $servico;
+            }
         }
     }
     
@@ -104,7 +107,12 @@ class Projeto implements Serializablee, MuitosParaMuitos
     }
     
     public function insereChavesNparaN(){
-        return array('cd_projeto' => $this->cd_projeto, Servico::getClassName() => $this->cd_servico);
+        $tabelas = array();
+        foreach ($this->servicos as $servico) {
+            $tabelas[] = array('cd_projeto' => $this->cd_projeto, 
+                                Servico::getChavePrimariaNome() => $servico->getChavePrimariaValor());
+        }
+        return $tabelas;
     }
     
     public static function getChaveRelacionamentoNome(){

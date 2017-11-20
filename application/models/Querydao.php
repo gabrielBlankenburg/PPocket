@@ -64,12 +64,19 @@ class Querydao extends CI_Model
     		->get($tabela::getClassName())
     		->row();
     		
-    		$tabela->addChavePrimaria($resp->$tabela->getChavePrimariaNome());
+    		$nome_chave = $tabela->getChavePrimariaNome();
+    		$tabela->addChavePrimaria($resp->{$nome_chave});
         } else{
             echo false;
             die;
         }
-        $insertMuitos = $this->db->insert($tabela::getClassNparaN(), $tabela->insereChavesNparaN());
+        foreach ($tabela->insereChavesNparaN() as $t) {
+            $insertMuitos = $this->db->insert($tabela::getClassNparaN(), $t);
+            if (!$insertMuitos){
+                echo false;
+                die;
+            }
+        }
         // Se inseriu com sucesso retorna o ultimo registro
         if ($insert){
             header('Content-Type: application/json');
