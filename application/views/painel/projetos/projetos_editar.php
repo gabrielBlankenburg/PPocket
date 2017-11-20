@@ -13,16 +13,36 @@
         <div class="form-group">
             <label for="nm_projeto">Projeto</label> 
             <input type="text" class="form-control" id="nm_projeto" name="nm_projeto" value="<?= $projeto->getNomeProjeto(); ?>" placeholder="Nome do projeto">
+            <label for="dt_inicio">Data de início</label>
             <input type="date" class="form-control" id="dt_inicio" name="dt_inicio" value="<?= $projeto->getDataInicio(); ?>" placeholder="dd/mm/aaaa">           
+            <label for="dt_termino">Data de término</label>
             <input type="date" class="form-control" id="dt_termino" name="dt_termino" value="<?= $projeto->getDataTermino(); ?>" placeholder="dd/mm/aaaa">
-            <textarea type="text" class="form-control" id="ds_projeto" name="ds_projeto" value="<?= $projeto->getDescricaoProjeto(); ?>" placeholder="Descrição do projeto"></textarea>
+            <label for="ds_projeto">Descrição</label>
+            <textarea class="form-control" id="ds_projeto" name="ds_projeto"><?= $projeto->getDescricaoProjeto(); ?></textarea>
             <label for="cd_cliente">Cliente</label>
             <select class="form-control" name="cd_cliente" id="cd_cliente">
                 <option>Escolha uma opção</option>
                 <?php foreach ($clientes as $cliente){ ?>
                     <option value="<?= $cliente['cd_cliente']; ?>" <?= $cliente['cd_cliente'] == $projeto->getChaveCliente() ? 'selected' : '' ?>><?= $cliente['nm_cliente']; ?></option>
                 <?php } ?>
-            </select>            
+            </select>    
+            <div class="multiple-inputs">
+                <label>Serviços</label>
+                <?php foreach ($projeto->getServicos() as $projeto_servico) { ?>
+                    <select class="form-control multiple-input" name="cd_servico[]" id="cd_servico[]">
+                        <option>Escolha uma opção</option>
+                        <?php foreach ($servicos as $servico) { ?>
+                            <option value="<?= $servico['cd_servico'] ?>" 
+                                <?= $servico['cd_servico'] == $projeto_servico->getChavePrimariaValor() ? 'selected'
+                                : '' ?>>
+                                    <?= $servico['nm_servico'] ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                <?php } ?>
+            </div>
+            <button class="btn btn-primary add-multiple-input">Adcionar serviço</button>
+            <button class="btn btn-danger remove-multiple-input">Remover serviço</button>
         </div>
         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Projeto</button>
         <button type="submit" class="btn btn-success offset-sm-7">Atualizar Projeto</button>

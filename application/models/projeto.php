@@ -66,26 +66,31 @@ class Projeto implements Serializablee, MuitosParaMuitos
     
     public function getNomeProjeto()
     {
-        return 'nm_projeto';
+        return $this->nm_projeto;
     }
     
     public function getDataInicio()
     {
-        return 'dt_inicio';
+        return $this->dt_inicio;
     }
     
     public function getDataTermino()
     {
-        return 'dt_termino';
+        return $this->dt_termino;
     }
     
-    public function getDescricao()
+    public function getDescricaoProjeto()
     {
-        return 'ds_projeto';
+        return $this->ds_projeto;
     }
     public function getChaveCliente()
     {
-        return 'cd_cliente';
+        return $this->cliente->getChavePrimariaValor();
+    }
+    
+    public function getServicos()
+    {
+        return $this->servicos;
     }
     
     public function getAll()
@@ -102,11 +107,13 @@ class Projeto implements Serializablee, MuitosParaMuitos
     }
     
     // Muitos Para Muitos
-    public static function getClassNparaN(){
+    public static function getClassNparaN()
+    {
         return 'projeto_servico';
     }
     
-    public function insereChavesNparaN(){
+    public function insereChavesNparaN()
+    {
         $tabelas = array();
         foreach ($this->servicos as $servico) {
             $tabelas[] = array('cd_projeto' => $this->cd_projeto, 
@@ -115,7 +122,22 @@ class Projeto implements Serializablee, MuitosParaMuitos
         return $tabelas;
     }
     
-    public static function getChaveRelacionamentoNome(){
+    public static function getNparaNJoins()
+    {
+        $joins = array();
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins[] = array('tabela_nome' => Cliente::getClassName(),
+                        'on' => 'projeto.cd_cliente = '.Cliente::getClassName().'.'.Cliente::getChavePrimariaNome());
+        $joins[] = array('tabela_nome' => 'projeto_servico',
+                        'on' => 'projeto.cd_projeto = projeto_servico.cd_projeto');
+        $joins[] = array('tabela_nome' => Servico::getClassName(),
+                        'on' => 'projeto_servico.cd_servico = '.Servico::getClassName()
+                        .'.'.Servico::getChavePrimariaNome());
+        return $joins;
+    }   
+    
+    public static function getChaveRelacionamentoNome()
+    {
         return 'cd_projeto_servico';
     }
 }
