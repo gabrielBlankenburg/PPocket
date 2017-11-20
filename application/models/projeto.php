@@ -140,6 +140,17 @@ class Projeto implements Serializablee, MuitosParaMuitos
     {
         return 'cd_projeto_servico';
     }
+    
+    public function toArrayRelacionamento()
+    {
+        $dados = array();
+        foreach ($this->servicos as $servico) {
+            $dados[] = array('cd_projeto' => $this->cd_projeto, 
+                                'cd_servico' => $servico->getChavePrimariaValor());
+        }
+        return $dados;
+    }
+    
 }
 
 ?>

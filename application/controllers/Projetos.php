@@ -140,7 +140,7 @@ class Projetos extends CI_Controller
 					$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
 				}
 			}
-			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos);
+			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
 			
 		} else{
 			echo 'nao encontrado'; die;
@@ -157,16 +157,58 @@ class Projetos extends CI_Controller
 	
 	public function edita_projeto_action()
 	{
-		$cd_projeto = $this->input->post('cd_projeto');
 		$nm_projeto = $this->input->post('nm_projeto');
-		$dt_inicio = $this->input->post('dt_inicio');
-		$dt_termino=  $this->input->post('dt_termino');		
- 		$ds_projeto = $this->input->post('ds_projeto');
+        $dt_inicio = $this->input->post('dt_inicio');
+        $dt_termino = $this->input->post('dt_termino');       
+		$ds_projeto = $this->input->post('ds_projeto');
+		$cd_cliente = $this->input->post('cd_cliente');
+		$cd_projeto = $this->input->post('cd_projeto');
+		$servicos = array();
 		
-		$projeto = new Projeto($cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto/*, $cd_cliente*/);
+		$condicoes = array(Cliente::getChavePrimariaNome() => $cd_cliente);
+		$query_cliente = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes);
 		
-		$query = $this->querydao->updateAll($projeto);
-		echo json_encode($query);
+		if (count($query_cliente) == 1){
+			$cliente = new Cliente($query_cliente[0]['nm_cliente'], $query_cliente[0]['cd_cnpj'], 
+									$query_cliente[0]['cd_cpf'], $query_cliente[0]['ds_email'], 
+									$query_cliente[0]['cd_telefone'], $query_cliente[0]['nm_responsavel'],
+									$query_cliente[0]['ds_responsavel_email'], $query_cliente[0]['cd_responsavel_telefone'], 
+									$query_cliente[0]['cd_cliente']);
+		} else{
+			echo false;
+			die;
+		}
+		// Cria um array de instancias de serviços
+		foreach ($this->input->post('cd_servico') as $cd_servico){
+			$condicoes = array(Servico::getChavePrimariaNome() => $cd_servico);
+			$query_servico = $this->querydao->selectWhere(Servico::getClassName(), $condicoes);
+			if (isset($query_servico) && !empty($query_servico)){
+				$nm_servico = $query_servico[0]['nm_servico'];
+				$ds_servico = $query_servico[0]['ds_servico'];
+				$vl_servico = $query_servico[0]['vl_servico'];
+				$cd_cargo = $query_servico[0]['cd_cargo'];
+				$cd_servico = $query_servico[0]['cd_servico'];
+				// Cria um cargo do serviço
+				$conditions = array(Cargo::getChavePrimariaNome() => $cd_cargo);
+				$query_cargo = $this->querydao->selectWhere(Cargo::getClassName(), $conditions);
+				
+				if (count($query_cargo) == 1){
+					$cd_cargo = $query_cargo[0]['cd_cargo'];
+					$nm_cargo = $query_cargo[0]['nm_cargo'];
+					$cargo = new Cargo($nm_cargo, $cd_cargo);
+				}
+				
+				$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
+			}
+		}
+		$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
+		
+		$insert = $this->querydao->updateAllNparaN($projeto);
+		if ($insert){
+			echo true;
+		} else{
+			false;
+		}
 	}
 	
 	public function delete_projeto_action()

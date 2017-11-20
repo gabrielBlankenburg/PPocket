@@ -54,7 +54,6 @@ class Querydao extends CI_Model
         return $this->db->delete($tabela::getClassName());
     }
     
-    // Arrumar
     public function insertNparaN(MuitosParaMuitos $tabela){
         $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
         // Se inseriu com sucesso retorna o ultimo registro
@@ -84,6 +83,28 @@ class Querydao extends CI_Model
         } else{
             $resp = false;
         }
+    }
+    
+    public function updateAllNparaN(MuitosParaMuitos $tabela)
+    {
+        $this->db->set($tabela->toArray());
+        $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+        if (!$this->db->update($tabela::getClassName())){
+            return false;
+        }
+        
+        $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+        if (!$this->db->delete($tabela::getClassNparaN())){
+            return false;
+        }
+        foreach ($tabela->toArrayRelacionamento() as $dado) {
+            $insertMuitos = $this->db->insert($tabela::getClassNparaN(), $dado);
+            if (!$insertMuitos){
+                echo false;
+                die;
+            }
+        }
+        return true; 
     }
 }
 
