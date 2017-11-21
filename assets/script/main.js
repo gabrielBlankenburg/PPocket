@@ -13,7 +13,7 @@ Vue.component('projetos-listar', {
 Vue.component('cargos-listar', {
     props: ['cargo'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'"+baseUrl+"cargos/ver/'+"+'cargo.cd_cargo"><li class="listagem">{{ cargo.nm_cargo }}</li></a>'
+    template: '<tr><td>{{ cargo.cd_cargo }}</td><td>{{ cargo.nm_cargo }}</td><td><a v-bind:href="'+"'"+baseUrl+"cargos/ver/'+"+'cargo.cd_cargo"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 Vue.component('funcionarios-listar', {
