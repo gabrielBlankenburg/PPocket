@@ -7,7 +7,7 @@ Vue.component('clientes-listar', {
 Vue.component('projetos-listar', {
     props: ['projeto'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_projeto"><li class="listagem">Projeto: {{ projeto.nm_projeto }} | Data de Início: {{ projeto.dt_inicio }} | Data de Término: {{ projeto.dt_termino }} | Descrição: {{ projeto.ds_projeto }} | Cliente: {{ projeto.nm_cliente }}</li></a>'
+    template: '<div class="projeto-item"><!-- Projeto Item Header --><div class="projeto-item_header"><div class="projeto-header_titulo"><h2>{{ projeto.nm_projeto }}</h2></div></div><!-- Projeto Item Corpo --><div class="projeto-item_corpo"><ul class="list-unstyled projeto-corpo_ul"><li class="projeto-corpo_categoria"> <b>Data Término:</b> <small>{{ projeto.dt_termino }}</small> </li><li class="projeto-corpo_cliente"> <b>Cliente:</b> <small>{{ projeto.nm_cliente }}</small> </li><li class="projeto-corpo_descricao"> <b>Descrição:</b> <small>{{ projeto.ds_projeto }}</small></li></ul></div><!-- Projeto Item Footer --><div class="projeto-item_footer"><div class="row"><div class="btn btn-default btn-block btn-principal"><a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_projeto"> Abrir </a></div></div></div></div>'
 });
 
 Vue.component('cargos-listar', {

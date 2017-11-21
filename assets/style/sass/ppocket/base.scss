@@ -3,8 +3,8 @@
  =========================================================
  * Base PPocket - v1.0.0
 
- Contém a ligação entre os mixins e arquivos de base.
- Estrutura de Css Padrão.
+ Contem a ligacaoo entre os mixins e arquivos de base.
+ Estrutura de Css Padrao.
  =========================================================
 
  */
@@ -25,7 +25,7 @@ html, body {
 	box-sizing: border-box;
 }
 
-// Padrões
+// Padroes
 .btn {
 	@include btnRedon;
 }
@@ -36,7 +36,7 @@ html, body {
 	@include btnCor($primaria, transparent, $secundaria, $primaria); 
 }
 
-// Css das páginas e sections
+// Css das paginas e sections
 
 @import './animacoes';
 @import './mobile';

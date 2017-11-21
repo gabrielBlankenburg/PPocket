@@ -1,4 +1,4 @@
-/* ======= Funções ======= */
+/* ======= Funcoes ======= */
 
 // Define default font size
 @function calculateRem($size) {
@@ -47,7 +47,7 @@
     }
 }
 
-// Botão 
+// Botao 
 @mixin btnCor($cor, $corHover, $corFont, $corFontHover) {
     background: $cor;
     cursor: pointer;
@@ -74,7 +74,7 @@
 // Box Shadow
 // $a = Esquerda ou Direita
 // $b = Cima ou Baixo
-// $c = Nível de esfumaçado
+// $c = Nivel de esfumacado
 @mixin box-shadow($a, $b, $c, $cor) {
   box-shadow: $a $b $c $cor;
   -webkit-box-shadow: $a $b $c $cor;
@@ -103,7 +103,7 @@
 
 }
 
-// Transições
+// Transicoes
 $ease-in-quad:      cubic-bezier(0.550,  0.085, 0.680, 0.530);
 $ease-in-cubic:     cubic-bezier(0.550,  0.055, 0.675, 0.190);
 $ease-in-quart:     cubic-bezier(0.895,  0.030, 0.685, 0.220);

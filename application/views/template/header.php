@@ -46,7 +46,7 @@
                     <a href="<?= base_url(); ?>projetos"><li>Projetos</li></a>
                     <a href="<?= base_url(); ?>cargos"><li>Cargos</li></a>
                     <a href="<?= base_url(); ?>clientes"><li>Clientes</li></a>
-                    <a href="<?= base_url(); ?>serviços"><li>Serviços</li></a>
+                    <a href="<?= base_url(); ?>servicos"><li>Serviços</li></a>
                     <a href="<?= base_url(); ?>funcionarios"><li>Funcionários</li></a>
                     <a href="<?= base_url(); ?>tarefas"><li>Tarefa</li></a>
                 </ul>
