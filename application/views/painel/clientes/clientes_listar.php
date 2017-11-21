@@ -87,19 +87,19 @@
                         <label class="pp-form_label" for="cd_responsavel_telefone">Telefone</label>
                         <input type="text" class="pp-form_input__text form-control" id="cd_responsavel_telefone" name="cd_responsavel_telefone" placeholder="Telefone do cliente">
                     </div>
-            </div>
-            <div class="modal-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
+                    <div class="modal-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
-                        </div>
-                    </form>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

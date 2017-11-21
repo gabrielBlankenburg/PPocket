@@ -12,6 +12,7 @@ class Funcionarios extends CI_Controller
 		
 	}
 	
+	// Para a view, carrega também a lista de todos os cargos para poder mostrar na tag <select>
 	public function index()
 	{
 		// Os dados pro view
@@ -26,6 +27,8 @@ class Funcionarios extends CI_Controller
 		$this->load->view('template/footer', $dados);
 	}
 	
+	// Para cadastrar um funcionário, é necessário um cargo, então é feito um select no cargo específico, criado uma
+	// instância de cargo, depois insere essa instância no construtor de funcionário junto com os outros parâmetros
 	public function cadastra_funcionario_action()
 	{
 		$cd_cargo = $this->input->post('cd_cargo');
@@ -97,6 +100,8 @@ class Funcionarios extends CI_Controller
 		$this->load->view('template/footer', $dados);
 	}
 	
+	// Quando vai editar um funcionário, cria primeiro uma instância de cargo, e depois uma instância de funcionário
+	// e então é atualizado o funcionário
 	public function edita_funcionario_action()
 	{
 		$cd_cargo = $this->input->post('cd_cargo');
@@ -128,6 +133,8 @@ class Funcionarios extends CI_Controller
 		echo json_encode($query);
 	}
 	
+	// Cria uma instância de cargo, depois uma instância de funcionário passando a instancia de cargo como parametro, 
+	// e a partir disso deleta o funcionário
 	public function delete_funcionario_action()
 	{
 		$cd_cargo = $this->input->post('cd_cargo');

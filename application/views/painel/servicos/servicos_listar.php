@@ -68,20 +68,20 @@
                         <?php } ?>
                     </select>
                 </div>
-            
-        </div>
-        <div class="modal-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
-                            </form>                    
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form> 
+            
+        </div>
     </div>
 </div>

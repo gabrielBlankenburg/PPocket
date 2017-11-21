@@ -106,12 +106,17 @@ class Projeto implements Serializablee, MuitosParaMuitos
         return $dados;
     }
     
-    // Muitos Para Muitos
+    // MUITOS PARA MUITOS
+    
+    // Retorna o nome da tabela de relacionamento
     public static function getClassNparaN()
     {
         return 'projeto_servico';
     }
     
+    // Retorna um array, que contém outros arrays, estes possuem a primeira chave o nome do campo do id do projeto,
+    // e o primeiro valor como o valor do id do projeto, a segunda chave é o nome do id do serviço atual e o segundo 
+    // valor é o valor do id do serviço atual
     public function insereChavesNparaN()
     {
         $tabelas = array();
@@ -122,6 +127,7 @@ class Projeto implements Serializablee, MuitosParaMuitos
         return $tabelas;
     }
     
+    // Retorna os join necessários para a tabela de relacionamento. 
     public static function getNparaNJoins()
     {
         $joins = array();
@@ -141,6 +147,7 @@ class Projeto implements Serializablee, MuitosParaMuitos
         return 'cd_projeto_servico';
     }
     
+    // Retorna os dados dos campos da tabela de relacionamento (exceto o proprio id da tabela)
     public function toArrayRelacionamento()
     {
         $dados = array();

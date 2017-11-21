@@ -37,6 +37,7 @@ class Cargo implements Serializablee
         return $this->cd_cargo;
     }
     
+    // Retorna os dados necessários para um update num array
     public function toArray()
     {
         $dados['cd_cargo'] = $this->cd_cargo;

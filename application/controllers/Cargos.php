@@ -11,20 +11,21 @@ class Cargos extends CI_Controller
 		
 	}
 	
-	
+	// A variável $dados passa as variáveis que vão para o view. Na posição query, ele seleciona todos os cargos
+	// cadastrados para a view listar eles
 	public function index()
 	{
-		// Os dados pro view
 		$dados['titulo'] = 'Cargos';
 		$dados['query'] = $this->querydao->selectAll(Cargo::getClassName());
 		$dados['url'] = base_url().'cargos/cadastra_cargo_action';
 		
-		// Carrega a view
 		$this->load->view('template/header', $dados);
 		$this->load->view('painel/cargos/cargos_listar', $dados);
 		$this->load->view('template/footer', $dados);
 	}
 	
+	// Quando enviar o formulário de cadastro, ele cria instancia o objeto cargo e insere no banco de dados, retornando
+	// um json do metodo getAll de $cargo. Esse método retorna todos os dados do objeto
 	public function cadastra_cargo_action()
 	{
 		$nm_cargo = $this->input->post('nm_cargo');
@@ -40,6 +41,8 @@ class Cargos extends CI_Controller
 		echo json_encode($retorno);
 	}
 	
+	// É acessado pelo cd_cargo, Ele busca a query com o cd_cargo especifico, se não encontrar retorna "não encontrado"
+	// e depois manda para a view todas as infos de determinado cargo
 	public function edita_cargo($cd_cargo)
 	{
 		$dados['titulo'] = 'Cargo';
@@ -64,6 +67,7 @@ class Cargos extends CI_Controller
 		$this->load->view('template/footer', $dados);
 	}
 	
+	// Cria uma instancia de cargo com as infos mandadas pelo post, e então da update nela
 	public function edita_cargo_action()
 	{
 		$cd_cargo = $this->input->post('cd_cargo');
@@ -75,6 +79,7 @@ class Cargos extends CI_Controller
 		echo json_encode($query);
 	}
 	
+	// Cria uma instância de cargo e deleta ela
 	public function delete_cargo_action()
 	{
 		$nm_cargo = $this->input->post('nm_cargo');

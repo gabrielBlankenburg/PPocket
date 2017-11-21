@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Faz as mesmas coisas que os outros controllers, porém é maior pois depende de mais instancias
 class Projetos extends CI_Controller 
 {
     public function __construct()

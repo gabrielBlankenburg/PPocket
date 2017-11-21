@@ -52,7 +52,6 @@ class Clientes extends CI_Controller
 	{
 		$dados['titulo'] = 'Clientes';
 		$dados['pagina'] = 'painel/clientes/clientes_editar';
-		$dados['chave_primaria'] = Cliente::getChavePrimariaNome();
 		$dados['urlEdit'] = base_url().'clientes/edita_cliente_action';
 		$dados['urlDel'] = base_url().'clientes/delete_cliente_action';
 		
@@ -93,8 +92,8 @@ class Clientes extends CI_Controller
 		$ds_responsavel_email = $this->input->post('ds_responsavel_email');
 		$cd_responsavel_telefone = $this->input->post('cd_responsavel_telefone');
 		
-		$cliente = new Cliente($cd_cliente, $nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
-								$ds_responsavel_email, $cd_responsavel_telefone);
+		$cliente = new Cliente($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel,
+								$ds_responsavel_email, $cd_responsavel_telefone, $cd_cliente);
 		
 		$query = $this->querydao->updateAll($cliente);
 		echo json_encode($query);

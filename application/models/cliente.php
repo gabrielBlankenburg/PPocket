@@ -5,7 +5,7 @@ require_once APPPATH.'models/projeto.php';
 class Cliente implements Serializablee
 {
     private $cd_cliente, $nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel;
-    private $ds_responsavel_email, $cd_responsavel_telefone, $projetos;
+    private $ds_responsavel_email, $cd_responsavel_telefone;
     
     // Recebe um array contendo os dados
     public function __construct($nm_cliente, $cd_cnpj, $cd_cpf, $ds_email, $cd_telefone, $nm_responsavel, 
@@ -20,11 +20,6 @@ class Cliente implements Serializablee
         $this->nm_responsavel = $nm_responsavel;
         $this->ds_responsavel_email = $ds_responsavel_email;
         $this->cd_responsavel_telefone = $cd_responsavel_telefone;
-    }
-    
-    public function adicionaProjeto(Projeto $projeto)
-    {
-        $this->projetos[] = $projeto;
     }
     
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
@@ -42,19 +37,9 @@ class Cliente implements Serializablee
         return $this->nm_cliente;
     }
     
-    public function setNomeCliente($valor)
-    {
-        $this->nm_cliente = $valor;
-    }
-    
     public function getCpf()
     {
         return $this->cd_cpf;
-    }
-    
-    public function setCpf($valor)
-    {
-        $this->cpf = $valor;
     }
     
     public function getCnpj()
@@ -62,19 +47,9 @@ class Cliente implements Serializablee
         return $this->cd_cnpj;
     }
     
-    public function setCnpj($valor)
-    {
-        $this->cnpj = $valor;
-    }
-    
     public function getEmail()
     {
         return $this->ds_email;
-    }
-    
-    public function setEmail($valor)
-    {
-        $this->ds_email = $valor;
     }
     
     public function getTelefone()
@@ -92,29 +67,14 @@ class Cliente implements Serializablee
         return $this->nm_responsavel;
     }
     
-    public function setNomeResponsavel($valor)
-    {
-        $this->nm_responsavel = $valor;
-    }
-    
     public function getEmailResponsavel()
     {
         return $this->ds_responsavel_email;
     }
     
-    public function setEmailResponsavel($valor)
-    {
-        $this->ds_responsavel_email = $valor;
-    }
-    
     public function getTelefoneResponsavel()
     {
         return $this->cd_responsavel_telefone;
-    }
-    
-    public function setTelefoneResponsavel($valor)
-    {
-        $this->cd_responsavel_telefone = $valor;
     }
     
     // Retorna todos os elementos num array
@@ -135,7 +95,7 @@ class Cliente implements Serializablee
     
     // METODOS SERIALAZIBLEE
     
-    // retorna os elementos que poderão ser alterados
+    // retorna os dados dos elementos necessários para um update
     public function toArray()
     {
         $dados['nm_cliente'] = $this->nm_cliente;
