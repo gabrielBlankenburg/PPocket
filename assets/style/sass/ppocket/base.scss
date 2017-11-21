@@ -1,0 +1,43 @@
+/*
+
+ =========================================================
+ * Base PPocket - v1.0.0
+
+ Contém a ligação entre os mixins e arquivos de base.
+ Estrutura de Css Padrão.
+ =========================================================
+
+ */
+
+@import './var';
+@import './tipografia';
+@import './mixins/geral';
+@import './mixins/transp';
+
+html, body {
+	width: 100%;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	font-family: 'Lato', sans-seif;
+	background: $secundaria;
+	color: $fonte-1;
+	box-sizing: border-box;
+}
+
+// Padrões
+.btn {
+	@include btnRedon;
+}
+.btn-principal { 
+	@include btnCor(transparent, $primaria, $primaria, $secundaria); 
+}
+.btn-principal_full { 
+	@include btnCor($primaria, transparent, $secundaria, $primaria); 
+}
+
+// Css das páginas e sections
+
+@import './animacoes';
+@import './mobile';
+

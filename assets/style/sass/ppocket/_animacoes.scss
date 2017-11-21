@@ -1,0 +1,52 @@
+
+svg {
+	width: 130px;
+    position: relative;
+    left: 30%;
+    top: 90px;
+    animation: circle 20s infinite $ease-in-out-cubic;
+}
+
+@keyframes circle {
+	1% {
+    	transform: scale(1.1,1.1);
+	}
+	11% {
+		left: 30%;
+    	top: 90px;
+    	transform: scale(1);
+    }
+	// 22% {
+	// 	left: 30%;
+ //    	top: 270px;
+	// }
+	33% {
+		left: 30%;
+		top: 400px;
+	}
+	// 44% {
+	// 	left: 40%;
+ //    	top: 400px;
+	// }
+	55% {
+		left: 50%;
+    	top: 400px;
+	}
+	// 66% {
+	// 	left: 60%;
+ //    	top: 280px;
+	// }
+	77% {
+		left: 60%;
+    	top: 90px;
+	}
+	// 88% {
+	// 	left: 30%;
+ //    	top: 90px;
+	// }
+	99% {
+		left: 30%;
+    	top: 90px;
+		transform: scale(1.1,1.1);
+	}
+}

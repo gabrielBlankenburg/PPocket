@@ -1,0 +1,90 @@
+/*
+
+ =========================================================
+ * Modal PPocket - v1.0.0
+
+  Estilização da Página dos Modals
+ =========================================================
+
+ */
+
+// Padrão Modal
+.modal-ppocket { display: none; }
+.modal-ppocket {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+	background: rgba($complem, .8);
+	.modal-wrapper {
+		width: 50%;
+		min-height: 175px;
+		background: $secundaria;
+		@include box-shadow(0,0,60px, #111);
+		@include center('both');
+		border-radius: 20px;
+		.modal-header {
+			width: 100%;
+			border: none;
+			padding: 0 15px;
+			h2 {
+				margin-top: 10px;
+			}
+		} // Modal Header
+		.modal-body {
+			background: $complem;
+			height: 70vh;
+			overflow-y: scroll;
+		} // Modal Body
+		.modal-footer {
+			border: none;
+			padding: 15px;
+		}
+		.modal-close {
+			padding-top: 30px;
+			font-size: 2em;
+		} // Modal Close
+	} // Modal Wrapper
+} // Modal PPocket
+
+
+.pp-form{
+	text-align: center;
+	.pp-form_label {
+		width: 100%;
+	} // pp Form Label
+	.pp-form_input__text, .pp-form_input__submit {
+	    margin: 0 auto;
+	    text-align: center;
+	}
+	.pp-form_input__text {
+		width: 100%;
+		background: transparent;
+		color: $primaria;
+	    border: none;
+	    box-shadow: 0 0 40px #111;
+	    &:focus {
+			background: $complem;
+	    }
+	} // pp Form Input Text
+	.pp-form_input__submit {
+		margin-top: 0px;
+		display: flex;
+	    @include btnCor($primaria, $complem, $primaria, $complem);
+	} // pp Form Input Submit
+	.pp-form_p > small {
+		font-size: 65%;
+		color: rgba($fonte-1, .8);
+		line-height: 4;
+		span {
+			text-decoration: underline;
+		}
+		&:hover {
+			color: $fonte-1;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+	}
+} // PP Form
