@@ -104,6 +104,23 @@ class Querydao extends CI_Model
                 die;
             }
         }
+        return true;
+    }
+    
+    public function removeNparaN(MuitosParaMuitos $tabela)
+    {
+        foreach ($tabela->toArrayRelacionamento() as $dado) {
+            $remove = $this->db->delete($tabela::getClassNparaN(), $dado);
+            if (!$remove){
+                echo false;
+                die;
+            }
+        }
+        
+        $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+        return $this->db->delete($tabela::getClassName());
+        
+        
         return true; 
     }
 }

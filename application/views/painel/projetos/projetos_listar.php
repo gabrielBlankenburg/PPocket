@@ -1,4 +1,4 @@
-    <div class="projetos">
+    <div id="projetos">
     	<div class="container">
     		<div class="row">
     			<div class="col-6">
@@ -80,18 +80,19 @@
                         <button class="btn btn-outline-danger remove-multiple-input">Remover serviço</button>
                         <button class="btn btn-outline-primary add-multiple-input">Adcionar serviço</button>
                     </div>
-            </div>
-            <div class="modal-footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col">
-                            <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
+                    <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
+                            </div>
+                            <div class="col">
+                                <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar Projeto</button>
+                            </div>
                         </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar Projeto</button>
-                        </form>
                     </div>
-                </div>
+                </form>
             </div>
+            
         </div>
     </div>
