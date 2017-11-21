@@ -33,6 +33,14 @@ class Tarefa implements Serializablee
         return $dados;
     }
     
+    public static function getJoins()
+    {
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins = array('tabela_nome' => Servico::getClassName(),
+                        'on' => 'tarefa.cd_servico = '.Servico::getClassName().'.'.Servico::getChavePrimariaNome());
+        return array($joins);
+    } 
+    
     public function getChavePrimariaValor()
     {
         return $this->cd_tarefa;
