@@ -1,7 +1,7 @@
-Vue.component('clientes-listar', {
+Vue.component('clientes-listar', { 
     props: ['cliente'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'"+baseUrl+"clientes/ver/'+"+'cliente.cd_cliente"><li class="listagem">{{ cliente.nm_cliente }}</li></a>'
+    template: '<tr><td>{{ cliente.cd_cliente }}</td><td>{{ cliente.nm_cliente }}</td><td>{{ cliente.ds_email }}</td><td>{{ cliente.nm_responsavel }}</td><td>{{ cliente.ds_responsavel_email }}</td><td><span class="text-warning"><i class="fa fa-envelope-o"></i></span><a v-bind:href="'+"'"+baseUrl+"clientes/ver/'+"+'cliente.cd_cliente"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 Vue.component('projetos-listar', {
