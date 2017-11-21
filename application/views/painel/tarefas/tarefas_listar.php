@@ -9,7 +9,7 @@
 <body>
     <div id="tarefas" class="col-md-8">
         <ul class="list-group">
-            <tarefas-listar v-for="item in conteudoListar" v-bind:tarefa="item" v-bind:key="item.<?= $chave_primaria; ?>"></tarefas-listar>
+            <tarefas-listar v-for="item in conteudoListar" v-bind:tarefa="item" v-bind:key="item.<?= Tarefa::getChavePrimariaNome(); ?>"></tarefas-listar>
         </ul>
     </div>
     <!-- Large modal -->

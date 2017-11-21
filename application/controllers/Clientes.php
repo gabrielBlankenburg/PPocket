@@ -16,7 +16,6 @@ class Clientes extends CI_Controller
 		// Os dados pro view
 		$dados['titulo'] = 'Clientes';
 		$dados['pagina'] = 'painel/clientes_listar';
-		$dados['chave_primaria'] = Cliente::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Cliente::getClassName());
 		$dados['url'] = base_url().'clientes/cadastra_cliente_action';
 		

@@ -15,7 +15,6 @@ class Projetos extends CI_Controller
 	public function index()
 	{
 	    $dados['titulo'] = 'Projetos';
-		$dados['chave_primaria'] = Projeto::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Projeto::getClassName(), Projeto::getJoins());
 		$dados['clientes'] = $this->querydao->selectAll(Cliente::getClassName());
 		$dados['servicos'] = $this->querydao->selectAll(Servico::getClassName());

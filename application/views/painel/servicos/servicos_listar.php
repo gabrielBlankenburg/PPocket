@@ -25,7 +25,7 @@
                     </thead>
                     <tbody class="table-listar_body">
                         <template>
-                            <servicos-listar v-for="item in conteudoListar" v-bind:servico="item" v-bind:key="item.<?= $chave_primaria; ?>"></servicos-listar>
+                            <servicos-listar v-for="item in conteudoListar" v-bind:servico="item" v-bind:key="item.<?= Servico::getChavePrimariaNome(); ?>"></servicos-listar>
                         </template>
                     </tbody>
                     <tfoot class="table-listar_footer">

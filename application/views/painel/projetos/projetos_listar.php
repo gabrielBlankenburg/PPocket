@@ -28,7 +28,7 @@
                 </div>
                 <!-- Projetos já criados -->
                 <div>
-                    <projetos-listar v-for="item in conteudoListar" v-bind:projeto="item" v-bind:key="item.<?= $chave_primaria; ?>"></projetos-listar>
+                    <projetos-listar v-for="item in conteudoListar" v-bind:projeto="item" v-bind:key="item.<?= Projeto::getChavePrimariaNome(); ?>"></projetos-listar>
                 </div>
     		</div>	
     	</div>

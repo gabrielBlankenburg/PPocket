@@ -22,7 +22,7 @@
                 </thead>
                 <tbody class="table-listar_body">
                     <template>
-                        <cargos-listar v-for="item in conteudoListar" v-bind:cargo="item" v-bind:key="item.<?= $chave_primaria; ?>"></cargos-listar>
+                        <cargos-listar v-for="item in conteudoListar" v-bind:cargo="item" v-bind:key="item.<?= Cargo::getChavePrimariaNome(); ?>"></cargos-listar>
                     </template>
                 </tbody>
                 <tfoot class="table-listar_footer">

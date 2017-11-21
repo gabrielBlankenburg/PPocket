@@ -11,11 +11,11 @@ class Cargos extends CI_Controller
 		
 	}
 	
+	
 	public function index()
 	{
 		// Os dados pro view
 		$dados['titulo'] = 'Cargos';
-		$dados['chave_primaria'] = Cargo::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Cargo::getClassName());
 		$dados['url'] = base_url().'cargos/cadastra_cargo_action';
 		

@@ -25,7 +25,7 @@
                 </thead>
                 <tbody class="table-listar_body">
                     <template>
-                        <clientes-listar v-for="item in conteudoListar" v-bind:cliente="item" v-bind:key="item.<?= $chave_primaria; ?>"></clientes-listar>
+                        <clientes-listar v-for="item in conteudoListar" v-bind:cliente="item" v-bind:key="item.<?= Cliente::getChavePrimariaNome(); ?>"></clientes-listar>
                     </template>
                 </tbody>
                 <tfoot class="table-listar_footer">

@@ -16,7 +16,6 @@ class Funcionarios extends CI_Controller
 	{
 		// Os dados pro view
 		$dados['titulo'] = 'Funcioários';
-		$dados['chave_primaria'] = Funcionario::getChavePrimariaNome();
 		$dados['query'] = $this->querydao->selectAll(Funcionario::getClassName(), Funcionario::getJoins());
 		$dados['cargos'] = $this->querydao->selectAll(Cargo::getClassName());
 		$dados['url'] = base_url().'funcionarios/cadastra_funcionario_action';

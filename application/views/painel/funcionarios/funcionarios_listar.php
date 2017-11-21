@@ -1,6 +1,6 @@
 <div id="funcionarios" class="col-md-8">
     <ul class="list-group">
-        <funcionarios-listar v-for="item in conteudoListar" v-bind:funcionario="item" v-bind:key="item.<?= $chave_primaria; ?>"></funcionarios-listar>
+        <funcionarios-listar v-for="item in conteudoListar" v-bind:funcionario="item" v-bind:key="item.<?= Funcionario::getChavePrimariaNome(); ?>"></funcionarios-listar>
     </ul>
 </div>
 <!-- Large modal -->

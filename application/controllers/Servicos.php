@@ -13,7 +13,6 @@ class Servicos extends CI_Controller
 	public function index()
 	{
 	    $dados['titulo'] = 'Serviços';
-		$dados['chave_primaria'] = Servico::getChavePrimariaNome();
 		$dados['cargos'] = $this->querydao->selectAll(Cargo::getClassName());
 		$dados['query'] = $this->querydao->selectAll(Servico::getClassName(), Servico::getJoins());
 		$dados['url'] = base_url().'servicos/cadastra_servico_action';
