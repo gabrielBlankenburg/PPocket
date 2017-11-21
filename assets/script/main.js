@@ -25,7 +25,7 @@ Vue.component('funcionarios-listar', {
 Vue.component('servicos-listar', {
     props: ['servico'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico"><li class="listagem">Nome: {{ servico.nm_servico }} | Descrição: {{ servico.ds_descricao }} | Valor: {{ servico.vl_servico }} |Cargo: {{ servico.nm_cargo }}</li></a>'
+    template: '<tr><td>{{ servico.nm_servico }} </td><td>{{ servico.ds_servico }}</td><td>{{ servico.vl_servico }}</td><td>{{ servico.nm_cargo }}</td><td><a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 var painel = new Vue({

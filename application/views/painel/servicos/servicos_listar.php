@@ -1,10 +1,40 @@
-    <div id="servicos" class="col-md-8">
-        <ul class="list-group">
-            <servicos-listar v-for="item in conteudoListar" v-bind:servico="item" v-bind:key="item.<?= $chave_primaria; ?>"></servicos-listar>
-        </ul>
+<div id="servicos">
+    <div class="container">
+		<div class="row">
+			<div class="col-6">
+				<h3> <small>Lista</small> <br> <strong>Serviços</strong> </h3>
+				<hr>
+			</div>	
+			<div class="col-6">
+				<div class="projetos-novo_wrapper__btn">
+					<button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar novo serviço</button>
+				</div>
+			</div>
+		</div>
+    	<div class="row">
+    	    <div class="tables" style="width: 100%">
+        	    <table class="table table-listar">
+                    <thead class="table-listar_header">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Valor</th>
+                            <th>Cargo</th>
+                            <th>Detalhes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-listar_body">
+                        <template>
+                            <servicos-listar v-for="item in conteudoListar" v-bind:servico="item" v-bind:key="item.<?= $chave_primaria; ?>"></servicos-listar>
+                        </template>
+                    </tbody>
+                    <tfoot class="table-listar_footer">
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
     </div>
-    
-    <button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar novo serviço</button>
     
     <!-- Modal Novo Serviço -->
     <div id="modal" class="modal-ppocket">
@@ -22,23 +52,23 @@
             </div>
         </div>
         <div class="modal-body">
-            <form class="offset-md-1 col-md-10" id="inserir">
+            <form class="pp-form" id="inserir">
                 <div class="form-group">
                     <label class="pp-form_label" for="nm_servico">Nome do Serviço</label>
-                    <input type="text pp-form_input__text" class="form-control" id="nm_servico" name="nm_servico" placeholder="Nome do serviço">
+                    <input type="text" class="pp-form_input__text form-control" id="nm_servico" name="nm_servico" placeholder="Nome do serviço">
                     <label class="pp-form_label" for="ds_servico">Descrição do Serviço</label>
-                    <textarea class="form-control pp-form_input__text" id="ds_servico" name="ds_servico" placeholder="Descrição do serviço"></textarea>
+                    <textarea class="pp-form_input__text  form-control" id="ds_servico" name="ds_servico" placeholder="Descrição do serviço"></textarea>
                     <label class="pp-form_label" for="vl_servico">Valor do Serviço</label>
-                    <input type="number pp-form_input__text" class="form-control" id="vl_servico" name="vl_servico" placeholder="Valor do serviço">
+                    <input type="number" class="pp-form_input__text form-control" id="vl_servico" name="vl_servico" placeholder="Valor do serviço">
                     <label class="pp-form_label" for="cd_cargo">Cargo responsável pelo serviço</label>
-                    <select class="form-control pp-form_input__text" name="cd_cargo" id="cd_cargo">
+                    <select class="pp-form_input__text  form-control" name="cd_cargo" id="cd_cargo">
                         <option>Escolha uma opção</option>
                         <?php foreach ($cargos as $cargo){ ?>
                             <option value="<?= $cargo['cd_cargo']; ?>"><?= $cargo['nm_cargo']; ?></option>
                         <?php } ?>
                     </select>
                 </div>
-               
+            
         </div>
         <div class="modal-footer">
                 <div class="container-fluid">
@@ -47,8 +77,9 @@
                             <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
                         </div>
                         <div class="col">
-                                <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
-                            </form>
+                            <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar</button>
+                            </form>                    
+                        </div>
                     </div>
                 </div>
             </div>
