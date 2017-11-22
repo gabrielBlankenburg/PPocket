@@ -62,8 +62,37 @@ $(document).ready(function(){
     
     if(document.getElementById('clientes') || document.getElementById('cargos') || 
         document.getElementById('funcionarios') || document.getElementById('servicos') || 
-        document.getElementById('projetos')){
+        document.getElementById('projetos') || document.getElementById('tarefas')){
         listar(query);
+    }
+    
+    // Lista os serviços e funcionários das tarefas via ajax
+    if(document.getElementById('tarefas')){
+        $('select').change(function(){
+            if($(this).val() > 0){
+                var aux = getSelect($(this));
+                if (aux == false)
+                    return;
+            }
+            
+            if($(this).attr('id') == 'cd_projeto'){
+                $('#cd_servico').html('<option value="0" selected>Escolha um projeto</option>');
+                $('#cd_funcionario').html('<option value="0" selected>Escolha um funcionário</option>');
+                if($(this).val() > 0){
+                    aux.forEach(function(e){
+                        $('#cd_servico').append('<option value="'+e.cd_servico+'">'+e.nm_servico+'</option>')
+                    });
+                }
+            }
+            else if($(this).attr('id') == 'cd_servico'){
+                $('#cd_funcionario').html('<option value="0" selected>Escolha um funcionario</option>');
+                if($(this).val() > 0){
+                    aux.forEach(function(e){
+                        $('#cd_funcionario').append('<option value="'+e.cd_funcionario+'">'+e.nm_funcionario+'</option>')
+                    });
+                }
+            }
+        })
     }
 });
 
@@ -129,4 +158,31 @@ function addMultipleInput(){
 function removeMultipleInput(){
     if($('.multiple-input').length > 1)
         $('.multiple-input').last().remove();
+}
+
+function getSelect(e){
+    var data = $('form').serialize();
+    var aux;
+    
+    if($(e).attr('id') == 'cd_projeto'){
+        var metodo = 'Servicos'
+    }
+    else if($(e).attr('id') == 'cd_servico'){
+        var metodo = 'Funcionarios'
+    }
+    $.ajax({
+        method: 'GET',
+        url: baseUrl+'tarefas/apiGet'+metodo,
+        data: data,
+        async: false,
+        success: function(resp){
+            console.log(resp)
+            if (resp == 'false' || resp == false){
+                aux = false;
+            } else{
+                aux = resp;
+            }
+        }
+    });
+    return aux
 }

@@ -43,7 +43,19 @@ class Projeto implements Serializablee, MuitosParaMuitos
         $joins = array('tabela_nome' => Cliente::getClassName(),
                         'on' => 'projeto.cd_cliente = '.Cliente::getClassName().'.'.Cliente::getChavePrimariaNome());
         return array($joins);
-    }    
+    }
+    
+    public static function getAllJoins()
+    {
+        // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
+        $joins = array();
+        $joins[] = array('tabela_nome' => 'projeto_servico',
+                        'on' => 'projeto.cd_projeto = projeto_servico.cd_projeto');
+        $joins[] = array('tabela_nome' => 'servico',
+        'on' => 'servico.cd_servico = projeto_servico.cd_servico');
+        return $joins;
+    }
+    
     public function getChavePrimariaValor()
     {
         return $this->cd_projeto;

@@ -30,6 +30,26 @@ class Tarefas extends CI_Controller
 		$this->load->view('template/footer', $dados);
 	}
 	
+	// As funções que têm api de prefixo farão uma busca na tabela indicada
+	public function apiGetServicos()
+	{
+		$cd_projeto = $this->input->get('cd_projeto');
+		$condicoes = array('projeto.'.Projeto::getChavePrimariaNome() => $cd_projeto);
+		$resp = $this->querydao->selectWhere(Projeto::getClassName(), $condicoes, Projeto::getAllJoins());
+		header('Content-Type: application/json');
+		echo json_encode($resp);
+	}
+	public function apiGetFuncionarios()
+	{
+		$cd_servico = $this->input->get('cd_servico');
+		$condicoes = array(Servico::getChavePrimariaNome() => $cd_servico);
+		$query_servico = $this->querydao->selectWhere(Servico::getClassName(), $condicoes);
+		$condicoes = array('cd_cargo' => $query_servico[0]['cd_cargo']);
+		$resp = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes);
+		header('Content-Type: application/json');
+		echo json_encode($resp);
+	}
+	
     public function cadastra_projeto_action()
 	{
 		$nm_projeto = $this->input->post('nm_projeto');
