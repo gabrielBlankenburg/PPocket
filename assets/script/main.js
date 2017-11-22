@@ -74,7 +74,6 @@ $(document).ready(function(){
                 if (aux == false)
                     return;
             }
-            
             if($(this).attr('id') == 'cd_projeto'){
                 $('#cd_servico').html('<option value="0" selected>Escolha um projeto</option>');
                 $('#cd_funcionario').html('<option value="0" selected>Escolha um funcionário</option>');
