@@ -8,7 +8,7 @@
                 </div>  
                 <div class="col-6">
                     <div class="projetos-novo_wrapper__btn">
-                        <button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar Cliente</button>
+                        <button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar Tarefa</button>
                     </div>
                 </div>
             </div>

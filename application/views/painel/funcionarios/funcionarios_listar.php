@@ -46,6 +46,14 @@
                         <?php } ?>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="cd_rg">RG</label>
+                    <input type="number" class="form-control" id="cd_rg" name="cd_rg" placeholder="rg">
+                </div>
+                <div class="form-group">
+                    <label for="cd_cpf">CPF</label>
+                    <input type="number" class="form-control" id="cd_cpf" name="cd_cpf" placeholder="cpf">
+                </div>
                 <button type="submit" class="btn btn-primary">Cadastrar Funcionario</button>
             </form>
         </div>
