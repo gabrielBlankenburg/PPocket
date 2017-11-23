@@ -132,10 +132,12 @@ class Tarefas extends CI_Controller
 				$cd_telefone = $query_funcionario[0]['cd_telefone'];
 				$cd_celular = $query_funcionario[0]['cd_celular'];
 				$dt_nascimento = $query_funcionario[0]['dt_nascimento'];
+				$cd_rg = $query_funcionario[0]['cd_rg'];
+				$cd_cpf = $query_funcionario[0]['cd_cpf'];
 				$cd_funcionario = $query_funcionario[0]['cd_funcionario'];
 				
 				$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
-												$dt_nascimento, $cargoEscolhido, $cd_funcionario);
+												$dt_nascimento, $cd_rg, $cd_cpf, $cargoEscolhido, $cd_funcionario);
 				$cargos = $this->querydao->selectAll(Cargo::getClassName());
 			} else{
 				echo 'nao encontrado'; die;
