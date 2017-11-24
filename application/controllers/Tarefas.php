@@ -19,9 +19,7 @@ class Tarefas extends CI_Controller
 	{
 	    $dados['titulo'] = 'Tarefas';
 		$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
-		$dados['funcionarios'] = $this->querydao->selectAll(Funcionario::getClassName());
 		$dados['projetos'] = $this->querydao->selectAll(Projeto::getClassName());
-		$dados['servico'] = $this->querydao->selectAll(Servico::getClassName());
 		$dados['url'] = base_url().'tarefas/cadastra_tarefa_action';
 		
 		
@@ -158,24 +156,41 @@ class Tarefas extends CI_Controller
 		}
 	}
 	
-	public function edita_projeto($cd_projeto)
+	public function edita_tarefa($cd_tarefa)
 	{
-		$dados['titulo'] = 'Projetos';
-		$dados['chave_primaria'] = Projeto::getChavePrimariaNome();
-		$dados['urlEdit'] = base_url().'projetos/edita_projeto_action';
-		$dados['urlDel'] = base_url().'projetos/delete_projeto_action';
+		$dados['titulo'] = 'Tarefas';
+		$dados['chave_primaria'] = Tarefa::getChavePrimariaNome();
+		$dados['urlEdit'] = base_url().'tarefas/edita_tarefa_action';
+		$dados['urlDel'] = base_url().'tarefas/delete_tarefa_action';
 		
 		// Cria uma condição para pegar a chave primaria igual ao do parametro passado
-		$condicoes = array(Projeto::getChavePrimariaNome() => $cd_projeto);
-		$query = $this->querydao->selectWhere(Projeto::getClassName(), $condicoes);
+		$condicoes = array(Tarefa::getChavePrimariaNome() => $cd_tarefa);
+		$query = $this->querydao->selectWhere(Tarefa::getClassName(), $condicoes);
+		
+		if (count($query) != 1){
+			echo 'não encontrado';
+			die;
+		}
+		
+		$nm_tarefa = $query[0]['nm_tarefa'];
+		$ds_tarefa = $query[0]['ds_tarefa'];
+		$ic_concluido = $query[0]['ic_concluido'];
+		$cd_projeto = $query[0]['cd_projeto'];
+		$cd_servico_escolhido = $query[0]['cd_servico'];
+		$cd_funcionario = $query[0]['cd_funcionario'];
+		$servicoEscolhido;
+		$cargoEscolhido;
+		
+		$condicoes_projeto = array(Projeto::getChavePrimariaNome() => $cd_projeto);
+		$query_projeto = $this->querydao->selectWhere(Projeto::getClassName(), $condicoes_projeto);
 		
 		// Não tiver exatamente um match significa que deu algum erro
-		if (count($query) == 1){
-			$nm_projeto = $query[0]['nm_projeto'];
-			$dt_inicio = $query[0]['dt_inicio']; 
-			$dt_termino = $query[0]['dt_termino']; 
-			$ds_projeto = $query[0]['ds_projeto'];
-			$cd_cliente = $query[0]['cd_cliente'];
+		if (count($query_projeto) == 1){
+			$nm_projeto = $query_projeto[0]['nm_projeto'];
+			$dt_inicio = $query_projeto[0]['dt_inicio']; 
+			$dt_termino = $query_projeto[0]['dt_termino']; 
+			$ds_projeto = $query_projeto[0]['ds_projeto'];
+			$cd_cliente = $query_projeto[0]['cd_cliente'];
 			
 			$condicoes_cliente = array(Cliente::getChavePrimariaNome() => $cd_cliente);
 			$query_cliente = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes_cliente);
@@ -213,17 +228,46 @@ class Tarefas extends CI_Controller
 					}
 					
 					$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
+					if ($cd_servico_escolhido == $cd_servico){
+						$servicoEscolhido = end($servicos);
+						$cargoEscolhido = $cargo;
+					}
 				}
 			}
 			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
-			print_r($projeto); die;
+			
+			$condicoes = array(Funcionario::getChavePrimariaNome() => $cd_funcionario);
+			$query_funcionario = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes, Funcionario::getJoins());
+			
+			// Não tiver exatamente um match significa que deu algum erro
+			if (count($query_funcionario) == 1){
+				$nm_funcionario = $query_funcionario[0]['nm_funcionario'];
+				$vl_salario = $query_funcionario[0]['vl_salario'];
+				$ds_email = $query_funcionario[0]['ds_email'];
+				$cd_telefone = $query_funcionario[0]['cd_telefone'];
+				$cd_celular = $query_funcionario[0]['cd_celular'];
+				$dt_nascimento = $query_funcionario[0]['dt_nascimento'];
+				$cd_rg = $query_funcionario[0]['cd_rg'];
+				$cd_cpf = $query_funcionario[0]['cd_cpf'];
+				$cd_funcionario = $query_funcionario[0]['cd_funcionario'];
+				
+				$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
+												$dt_nascimento, $cd_rg, $cd_cpf, $cargoEscolhido, $cd_funcionario);
+				$cargos = $this->querydao->selectAll(Cargo::getClassName());
+			} else{
+				echo 'nao encontrado'; die;
+			}
+			
+			$tarefa = new Tarefa($nm_tarefa, $ds_tarefa, $ic_concluido, $servicoEscolhido, $projeto, $funcionario);
 		} else{
 			echo 'nao encontrado'; die;
 		}
 		
-		$clientes = $this->querydao->selectAll(Cliente::getClassName());
-		$dados['servicos'] = $this->querydao->selectAll(Servico::getClassName());
-		$dados['projeto'] = $projeto;
+		$dados['projetos'] = $this->querydao->selectAll(Projeto::getClassName());
+		$condicoes_joins = array('projeto.'.Projeto::getChavePrimariaNome() => $cd_projeto);
+		$servicos = $this->querydao->selectWhere(Projeto::getClassName(), $condicoes_joins, Projeto::getAllJoins());
+
+		
 		$dados['clientes'] = $clientes;
 		$this->load->view('template/header', $dados);
 		$this->load->view('painel/projetos/projetos_editar', $dados);

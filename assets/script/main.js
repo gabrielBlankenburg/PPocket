@@ -31,7 +31,7 @@ Vue.component('servicos-listar', {
 Vue.component('tarefas-listar', {
     props: ['tarefa'],
     // Redireciona para o link do cliente pelo id
-    template: '<tr><td>{{ tarefa.cd_tarefa }} </td><td>{{ tarefa.nm_tarefa }}</td><td>{{ tarefa.nm_projeto }}</td><td>{{ tarefa.nm_servico }}</td><td>{{ tarefa.nm_funcionario }}</td><td><a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'tarefa.cd_tarefa"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
+    template: '<tr><td>{{ tarefa.cd_tarefa }} </td><td>{{ tarefa.nm_tarefa }}</td><td>{{ tarefa.nm_projeto }}</td><td>{{ tarefa.nm_servico }}</td><td>{{ tarefa.nm_funcionario }}</td><td><a v-bind:href="'+"'"+baseUrl+"tarefas/ver/'+"+'tarefa.cd_tarefa"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 var painel = new Vue({
