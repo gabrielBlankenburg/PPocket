@@ -52,8 +52,8 @@
                 </select>
             </div>
         </div>
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Projeto</button>
-        <button type="submit" class="btn btn-success offset-sm-7">Atualizar Projeto</button>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
+        <button type="submit" class="btn btn-success offset-sm-7">Atualizar Tarefa</button>
     </form>
     <!-- Modal -->
     <div id="modal" class="modal fade" role="dialog">
@@ -65,7 +65,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Isso irá remover o serviço definitivamente!</p>
+                    <p>Isso irá remover a tarefa definitivamente!</p>
                 </div>
                 <div class="modal-footer justify-content-start">
                     <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>

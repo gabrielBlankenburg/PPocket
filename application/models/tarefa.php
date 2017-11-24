@@ -23,8 +23,8 @@ class Tarefa implements Serializablee
     
     public function toArray()
     {
-        $dados['cd_tarefa'] = $this->cd_tarefa;
         $dados['nm_tarefa'] = $this->nm_tarefa;
+        $dados['ds_tarefa'] = $this->ds_tarefa;
         $dados['ic_concluido'] = $this->ic_concluido;
         $dados['cd_servico'] = $this->servico->getChavePrimariaValor();
         $dados['cd_projeto'] = $this->projeto->getChavePrimariaValor();
