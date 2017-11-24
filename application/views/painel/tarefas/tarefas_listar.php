@@ -80,7 +80,7 @@
                             <option value="0" selected>Escolha um projeto</option>
                         </select>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label class="pp-form_label" for="cd_funcionario">Funcionário</label>
                         <select class="pp-form_input__text form-control" id="cd_funcionario" name="cd_funcionario">
                             <option value="0">Escolha um projeto</option>

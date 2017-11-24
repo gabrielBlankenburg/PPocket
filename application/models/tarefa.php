@@ -41,6 +41,36 @@ class Tarefa implements Serializablee
         return array($joins);
     } 
     
+    public function getNomeTarefa()
+    {
+        return $this->nm_tarefa;
+    }
+    
+    public function getDescricaoTarefa()
+    {
+        return $this->ds_tarefa;
+    }
+    
+    public function getConcluido()
+    {
+        return $this->ic_concluido;
+    }
+    
+    public function getChaveProjeto()
+    {
+        return $this->projeto->getChavePrimariaValor();
+    }
+    
+    public function getChaveServico()
+    {
+        return $this->servico->getChavePrimariaValor();
+    }
+    
+    public function getChaveFuncionario()
+    {
+        return $this->funcionario->getChavePrimariaValor();
+    }
+    
     public function addChavePrimaria($cd_tarefa)
     {
         $this->cd_tarefa = $cd_tarefa;

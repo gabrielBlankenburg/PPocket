@@ -73,7 +73,7 @@ $(document).ready(function(){
     }
     
     // Lista os serviços e funcionários das tarefas via ajax
-    if(document.getElementById('tarefas')){
+    if(document.getElementById('tarefas') || document.getElementById('tarefa')){
         $('select').change(function(){
             if($(this).val() > 0){
                 var aux = getSelect($(this));

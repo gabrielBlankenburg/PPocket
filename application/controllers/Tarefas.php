@@ -259,6 +259,7 @@ class Tarefas extends CI_Controller
 			}
 			
 			$tarefa = new Tarefa($nm_tarefa, $ds_tarefa, $ic_concluido, $servicoEscolhido, $projeto, $funcionario);
+			$dados['tarefa'] = $tarefa;
 		} else{
 			echo 'nao encontrado'; die;
 		}
@@ -268,9 +269,11 @@ class Tarefas extends CI_Controller
 		$servicos = $this->querydao->selectWhere(Projeto::getClassName(), $condicoes_joins, Projeto::getAllJoins());
 
 		
-		$dados['clientes'] = $clientes;
+		$dados['clientes'] = $this->querydao->selectAll(Cliente::getClassName());
+		$dados['servicos'] = $this->querydao->selectAll(Servico::getClassName());
+		$dados['funcionarios'] = $this->querydao->selectAll(Funcionario::getClassName());
 		$this->load->view('template/header', $dados);
-		$this->load->view('painel/projetos/projetos_editar', $dados);
+		$this->load->view('painel/tarefas/tarefas_editar', $dados);
 		$this->load->view('template/footer', $dados);
 	}
 	
