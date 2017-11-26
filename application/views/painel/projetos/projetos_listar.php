@@ -2,7 +2,7 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-6">
-    				<h3> <small>Projetos</small> <br> <strong>Criados</strong> </h3>
+    				<h3> <small>Projetos</small> <br> <strong>Cadastrados</strong> </h3>
     				<hr>
     			</div>	
     			<div class="col-6">
@@ -27,9 +27,9 @@
                 	</div>
                 </div>
                 <!-- Projetos já criados -->
-                <div>
+                <template>
                     <projetos-listar v-for="item in conteudoListar" v-bind:projeto="item" v-bind:key="item.<?= Projeto::getChavePrimariaNome(); ?>"></projetos-listar>
-                </div>
+                </template>
     		</div>	
     	</div>
     </div>
@@ -41,7 +41,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <h2 class="h3"><small>Cadastrar</small> <br> <strong>Cliente</strong></h2>
+                            <h2 class="h3"><small>Cadastrar</small> <br> <strong>Projeto</strong></h2>
                         </div>
                         <div class="col">
                             <p class="float-right modal-close modal-btn_close" data-dismiss="modal"><i class="fa fa-close"></i></p>
@@ -77,22 +77,26 @@
                             </select>
                         </div>
                         <br>
-                        <button class="btn btn-outline-danger remove-multiple-input">Remover serviço</button>
-                        <button class="btn btn-outline-primary add-multiple-input">Adcionar serviço</button>
+                        <div class="row">
+                            <p class="d-block mx-auto text-danger remove-multiple-input"><i class="fa fa-close"></i> Remover serviço</p>
+                        </div>
+                        <div class="row">
+                            <p class="d-block mx-auto text-primary add-multiple-input"><i class="fa fa-plus"></i> Adcionar serviço</p>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                                <button class="btn btn-default btn-outline-danger modal-btn_close" data-dismiss="modal">Cancelar</button>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar Projeto</button>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <button class="btn btn-default btn-outline-danger modal-btn_close float-left" data-dismiss="modal">Cancelar</button>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar Projeto</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            
         </div>
     </div>

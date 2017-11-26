@@ -12,6 +12,23 @@ html, body {
 	height: 100%;
 }
 
+::-webkit-scrollbar {
+	background: $complem; 
+	width:8px;
+} /* Fundo da barra */ 
+
+::-webkit-scrollbar-thumb {
+	background: $secundaria;
+	border-radius: 20px; 
+	width:8px;
+} /* Barra */ 
+
+*[class*="-multiple-input"] {
+	&:hover {
+		cursor: pointer;
+	}
+}
+
 .painel-header, .painel-sidebar {
 	@include box-shadow(0,0,80px,$complem);
 }

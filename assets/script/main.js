@@ -7,7 +7,7 @@ Vue.component('clientes-listar', {
 Vue.component('projetos-listar', {
     props: ['projeto'],
     // Redireciona para o link do cliente pelo id
-    template: '<div class="projeto-item"><!-- Projeto Item Header --><div class="projeto-item_header"><div class="projeto-header_titulo"><h2>{{ projeto.nm_projeto }}</h2></div></div><!-- Projeto Item Corpo --><div class="projeto-item_corpo"><ul class="list-unstyled projeto-corpo_ul"><li class="projeto-corpo_categoria"> <b>Data Término:</b> <small>{{ projeto.dt_termino }}</small> </li><li class="projeto-corpo_cliente"> <b>Cliente:</b> <small>{{ projeto.nm_cliente }}</small> </li><li class="projeto-corpo_descricao"> <b>Descrição:</b> <small>{{ projeto.ds_projeto }}</small></li></ul></div><!-- Projeto Item Footer --><div class="projeto-item_footer"><div class="row"><div class="btn btn-default btn-block btn-principal"><a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_projeto"> Abrir </a></div></div></div></div>'
+    template: '<div class="projeto-item"><!-- Projeto Item Header --><div class="projeto-item_header"><div class="projeto-header_titulo"><h2>{{ projeto.nm_projeto }}</h2></div></div><!-- Projeto Item Corpo --><div class="projeto-item_corpo"><ul class="list-unstyled projeto-corpo_ul"><li class="projeto-corpo_categoria"> <b>Data Término:</b> <small>{{ projeto.dt_termino }}</small> </li><li class="projeto-corpo_cliente"> <b>Cliente:</b> <small>{{ projeto.nm_cliente }}</small> </li><li class="projeto-corpo_descricao"> <b>Descrição:</b> <small>{{ projeto.ds_projeto }}</small></li></ul></div><!-- Projeto Item Footer --><div class="projeto-item_footer"><div class="row"><div class="btn btn-default btn-block btn-principal"><a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_projeto" class="text-danger"> Abrir </a></div></div></div></div>'
 });
 
 Vue.component('cargos-listar', {
@@ -25,7 +25,7 @@ Vue.component('funcionarios-listar', {
 Vue.component('servicos-listar', {
     props: ['servico'],
     // Redireciona para o link do cliente pelo id
-    template: '<tr><td>{{ servico.nm_servico }} </td><td>{{ servico.ds_servico }}</td><td>{{ servico.vl_servico }}</td><td>{{ servico.nm_cargo }}</td><td><a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
+    template: '<tr><td>{{ servico.nm_servico }} </td><td>{{ servico.ds_servico }}</td><td>{{ servico.vl_servico }}</td><td>{{ servico.nm_cargo }}</td><td><a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger" id=><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 Vue.component('tarefas-listar', {
@@ -118,7 +118,7 @@ function inserir(){
         success: function(resp){
             if(resp != 'false' && resp != false){
                 painel.conteudoListar.push(resp);
-                $('.bd-example-modal-lg').modal('toggle');
+                $('.modal-ppocket').modal('toggle');
             }
         }
     });
