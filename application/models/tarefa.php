@@ -9,8 +9,8 @@ class Tarefa implements Serializablee
     private $cd_tarefa, $nm_tarefa, $ds_tarefa, $ic_concluido, $projeto, $servico, $funcionario;
     
     // Recebe um array contendo os dados
-    public function __construct($cd_tarefa, $nm_tarefa, $ds_tarefa, $ic_concluido, Servico $servico, 
-                                Projeto $projeto, Funcionario $funcionario)
+    public function __construct($nm_tarefa, $ds_tarefa, $ic_concluido, Servico $servico, 
+                                Projeto $projeto, Funcionario $funcionario, $cd_tarefa = null)
     {
         $this->cd_tarefa = $cd_tarefa;
         $this->nm_tarefa = $nm_tarefa;
@@ -23,12 +23,12 @@ class Tarefa implements Serializablee
     
     public function toArray()
     {
-        $dados['cd_tarefa'] = $this->cd_tarefa;
         $dados['nm_tarefa'] = $this->nm_tarefa;
+        $dados['ds_tarefa'] = $this->ds_tarefa;
         $dados['ic_concluido'] = $this->ic_concluido;
-        $dados['cd_servico'] = $this->servico->cd_servico;
-        $dados['cd_projeto'] = $this->projeto->cd_projeto;
-        $dados['cd_funcionario'] = $this->funcionario->cd_funcionario;
+        $dados['cd_servico'] = $this->servico->getChavePrimariaValor();
+        $dados['cd_projeto'] = $this->projeto->getChavePrimariaValor();
+        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValor();
         
         return $dados;
     }
@@ -40,6 +40,57 @@ class Tarefa implements Serializablee
                         'on' => 'tarefa.cd_servico = '.Servico::getClassName().'.'.Servico::getChavePrimariaNome());
         return array($joins);
     } 
+    
+    public function getNomeTarefa()
+    {
+        return $this->nm_tarefa;
+    }
+    
+    public function getDescricaoTarefa()
+    {
+        return $this->ds_tarefa;
+    }
+    
+    public function getConcluido()
+    {
+        return $this->ic_concluido;
+    }
+    
+    public function getChaveProjeto()
+    {
+        return $this->projeto->getChavePrimariaValor();
+    }
+    
+    public function getChaveServico()
+    {
+        return $this->servico->getChavePrimariaValor();
+    }
+    
+    public function getChaveFuncionario()
+    {
+        return $this->funcionario->getChavePrimariaValor();
+    }
+    
+    public function addChavePrimaria($cd_tarefa)
+    {
+        $this->cd_tarefa = $cd_tarefa;
+    }
+    
+    public function getAll()
+    {
+        $dados['cd_tarefa'] = $this->cd_tarefa;
+        $dados['nm_tarefa'] = $this->nm_tarefa;
+        $dados['ic_concluido'] = $this->ic_concluido;
+        $dados['ds_tarefa'] = $this->ds_tarefa;
+        $dados['nm_projeto'] = $this->projeto->getNomeProjeto();
+        $dados['cd_projeto'] = $this->projeto->getChavePrimariaValor();
+        $dados['nm_servico'] = $this->servico->getNomeServico();
+        $dados['cd_servico'] = $this->servico->getChavePrimariaValor();
+        $dados['nm_funcionario'] = $this->funcionario->getNomeFuncionario();
+        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValor();
+        
+        return $dados;
+    }
     
     public function getChavePrimariaValor()
     {

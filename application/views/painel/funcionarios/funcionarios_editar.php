@@ -35,6 +35,14 @@
         <label for="dt_nascimento">Data de nascimento</label>
         <input type="text" class="form-control" id="dt_nascimento" name="dt_nascimento" value="<?= $funcionario->getNascimentoFuncionario(); ?>" placeholder="Data de Nascimento do Funcionário">
     </div>
+    <div class="form-group">
+        <label for="cd_rg">RG</label>
+        <input type="number" class="form-control" id="cd_rg" name="cd_rg" value="<?= $funcionario->getRgFuncionario(); ?>" placeholder="RG">
+    </div>
+    <div class="form-group">
+        <label for="cd_cpf">CPF</label>
+        <input type="number" class="form-control" id="cd_cpf" name="cd_cpf" value="<?= $funcionario->getCpfFuncionario(); ?>" placeholder="CPF">
+    </div>
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Remover Funcionario</button>
     <button type="submit" class="btn btn-primary offset-sm-7">Atualizar Funcionario</button>
 </form>
