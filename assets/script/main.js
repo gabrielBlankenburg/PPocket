@@ -19,7 +19,7 @@ Vue.component('cargos-listar', {
 Vue.component('funcionarios-listar', {
     props: ['funcionario'],
     // Redireciona para o link do cliente pelo id
-    template: '<a v-bind:href="'+"'"+baseUrl+"funcionarios/ver/'+"+'funcionario.cd_funcionario"><li class="listagem">Nome: {{ funcionario.nm_funcionario }} | Cargo: {{ funcionario.nm_cargo }}</li></a>'
+    template: '<tr><td>{{ funcionario.nm_funcionario }}</td><td>{{ funcionario.nm_cargo }}</td><td><a v-bind:href="'+"'"+baseUrl+"funcionarios/ver/'+"+'funcionario.cd_funcionario"><span class="text-info"><i class="fa fa-pencil-square-o"></i></span></a><span class="text-danger"><i class="fa fa-window-close-o"></i></span></td></tr>'
 });
 
 Vue.component('servicos-listar', {
