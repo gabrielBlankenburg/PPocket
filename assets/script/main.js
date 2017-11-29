@@ -108,7 +108,7 @@ Vue.component('servicos-listar', {
                                 <i class="fa fa-pencil-square-o"></i>\
                             </span>\
                         </a>\
-                        <span class="text-danger" id=>\
+                        <span class="text-danger">\
                             <i class="fa fa-window-close-o"></i>\
                         </span>\
                     </td>\
