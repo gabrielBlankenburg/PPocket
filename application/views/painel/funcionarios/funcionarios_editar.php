@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
         <label for="vl_salario">Salário</label>
-        <input type="number" class="form-control" id="vl_salario" name="vl_salario" value="<?= $funcionario->getSalarioFuncionario(); ?>" placeholder="Salário do funcionário">
+        <input type="text" class="form-control" id="vl_salario" name="vl_salario" value="<?= $funcionario->getSalarioFuncionario(); ?>" placeholder="Salário do funcionário">
     </div>
     <div class="form-group">
         <label for="ds_email">Email</label>

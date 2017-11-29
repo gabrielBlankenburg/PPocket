@@ -15,7 +15,6 @@
             <table class="table table-listar">
                 <thead class="table-listar_header">
                     <tr>
-                        <th>Código</th>
                         <th>Nome do Cargo</th>
                         <th>Detalhes</th>
                     </tr>

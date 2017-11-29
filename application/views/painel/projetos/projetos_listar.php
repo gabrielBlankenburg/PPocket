@@ -53,13 +53,13 @@
                <form class="pp-form" id="inserir">
                     <div class="form-group">
                         <label class="pp-form_label" for="nm_projeto">Nome do Projeto</label>
-                        <input type="text" class="pp-form_input__text form-control'" id="nm_projeto" name="nm_projeto" placeholder="Nome do projeto">
+                        <input type="text" class="pp-form_input__text form-control" id="nm_projeto" name="nm_projeto" placeholder="Nome do projeto">
                         <label class="pp-form_label" for="dt_inicio">Data de Início</label>
-                        <input type="date" class="pp-form_input__text form-control'" id="dt_inicio" name="dt_inicio" placeholder="dd/mm/aaaa">        
+                        <input type="date" class="pp-form_input__text form-control" id="dt_inicio" name="dt_inicio" placeholder="dd/mm/aaaa">        
                         <label class="pp-form_label" for="dt_termino">Data de Término</label>
-                        <input type="date" class="pp-form_input__text form-control'" id="dt_termino" name="dt_termino" placeholder="dd/mm/aaaa">
+                        <input type="date" class="pp-form_input__text form-control" id="dt_termino" name="dt_termino" placeholder="dd/mm/aaaa">
                         <label class="pp-form_label" for="ds_projeto">Descrição do projeto</label>
-                        <textarea class="pp-form_input__text form-control'" id="ds_projeto" name="ds_projeto" placeholder="Descrição do projeto"></textarea>
+                        <textarea class="pp-form_input__text form-control" id="ds_projeto" name="ds_projeto" placeholder="Descrição do projeto"></textarea>
                         <label class="pp-form_label" for="cd_cliente">Cliente relacionado ao Projeto</label>
                         <select class="pp-form_input__text form-control" name="cd_cliente" id="cd_cliente">
                             <option>Escolha uma opção</option>

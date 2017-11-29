@@ -16,6 +16,7 @@
                 <thead class="table-listar_header">
                     <tr> 
                         <th>Nome do Funcionário</th>
+                        <th>Email</th>
                         <th>Cargo</th>
                         <th>Detalhes</th>
                     </tr>

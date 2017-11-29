@@ -23,11 +23,11 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_cnpj">CNPJ</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_cnpj" name="cd_cnpj" value="<?= $cliente->getCnpj(); ?>" placeholder="CNPJ">
+                    <input type="text" class="pp-form_input__text form-control cnpj" id="cd_cnpj" name="cd_cnpj" value="<?= $cliente->getCnpj(); ?>" placeholder="CNPJ">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_cpf">CPF</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_cpf" name="cd_cpf" value="<?= $cliente->getCpf(); ?>" placeholder="CPF">
+                    <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" value="<?= $cliente->getCpf(); ?>" placeholder="CPF">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="ds_email">Email</label>
@@ -35,21 +35,21 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_telefone">Telefone</label>
-                    <input type="text" class="pp-form_input__text form-control" id="cd_telefone" name="cd_telefone" value="<?= $cliente->getTelefone(); ?>" placeholder="Telefone do cliente">
+                    <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_telefone" name="cd_telefone" value="<?= $cliente->getTelefone(); ?>" placeholder="Telefone do cliente">
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label class="pp-form_label" for="nm_responsavel">Nome do cliente</label>
+                    <label class="pp-form_label" for="nm_responsavel">Nome do Responsável</label>
                     <input type="text" class="pp-form_input__text form-control" id="nm_responsavel" name="nm_responsavel" value="<?= $cliente->getNomeResponsavel(); ?>" placeholder="Nome do cliente">
                 </div>
                 <div class="form-group">
-                    <label class="pp-form_label" for="ds_responsavel_email">Email</label>
+                    <label class="pp-form_label" for="ds_responsavel_email">Email do Responsável</label>
                     <input type="email" class="pp-form_input__text form-control" id="ds_responsavel_email" name="ds_responsavel_email" value="<?= $cliente->getEmailResponsavel(); ?>" placeholder="exemplo@email.com">
                 </div>
                 <div class="form-group">
-                    <label class="pp-form_label" for="cd_responsavel_telefone">Telefone</label>
-                    <input type="text" class="pp-form_input__text form-control" id="cd_responsavel_telefone" name="cd_responsavel_telefone" value="<?= $cliente->getTelefoneResponsavel(); ?>" placeholder="Telefone do cliente">
+                    <label class="pp-form_label" for="cd_responsavel_telefone">Telefone do Responsável</label>
+                    <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_responsavel_telefone" name="cd_responsavel_telefone" value="<?= $cliente->getTelefoneResponsavel(); ?>" placeholder="Telefone do cliente">
                 </div>
             </div>
         </div>

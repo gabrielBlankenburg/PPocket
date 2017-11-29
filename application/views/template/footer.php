@@ -15,6 +15,7 @@
         var urlDel = "<?= isset($urlDel) ? $urlDel : 'null' ?>";
         var query = <?= isset($query) ? json_encode($query) : 'null'; ?>;
     </script>
+    <script src="<?= base_url(); ?>assets/script/jquery.mask.min.js"></script>
     <script src="<?= base_url(); ?>assets/script/main.js"></script>
 </body>
 </html>

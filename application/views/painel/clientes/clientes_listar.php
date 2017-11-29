@@ -14,7 +14,7 @@
             </div>
             <table class="table table-listar">
                 <thead class="table-listar_header">
-                    <tr>
+                    <tr> 
                         <th>Código</th>
                         <th>Nome Cliente</th>
                         <th>Email</th>
@@ -61,11 +61,11 @@
                     </div>
                     <div class="form-group">
                         <label class="pp-form_label" for="cd_cnpj">CNPJ</label>
-                        <input type="number" class="pp-form_input__text form-control" id="cd_cnpj" name="cd_cnpj" placeholder="CNPJ">
+                        <input type="text" class="pp-form_input__text form-control cnpj" id="cd_cnpj" name="cd_cnpj" placeholder="CNPJ">
                     </div>
                     <div class="form-group">
                         <label class="pp-form_label" for="cd_cpf">CPF</label>
-                        <input type="number" class="pp-form_input__text form-control" id="cd_cpf" name="cd_cpf" placeholder="CPF">
+                        <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" placeholder="CPF">
                     </div>
                     <div class="form-group">
                         <label class="pp-form_label" for="ds_email">Email</label>
@@ -73,19 +73,19 @@
                     </div>
                     <div class="form-group">
                         <label class="pp-form_label" for="cd_telefone">Telefone</label>
-                        <input type="text" class="pp-form_input__text form-control" id="cd_telefone" name="cd_telefone" placeholder="Telefone do cliente">
+                        <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_telefone" name="cd_telefone" placeholder="Telefone do cliente">
                     </div>
                     <div class="form-group">
-                        <label class="pp-form_label" for="nm_responsavel">Nome do cliente</label>
+                        <label class="pp-form_label" for="nm_responsavel">Nome do Responsável</label>
                         <input type="text" class="pp-form_input__text form-control" id="nm_responsavel" name="nm_responsavel" placeholder="Nome do cliente">
                     </div>
                     <div class="form-group">
-                        <label class="pp-form_label" for="ds_responsavel_email">Email</label>
+                        <label class="pp-form_label" for="ds_responsavel_email">Email do Responsável</label>
                         <input type="email" class="pp-form_input__text form-control" id="ds_responsavel_email" name="ds_responsavel_email" placeholder="exemplo@email.com">
                     </div>
                     <div class="form-group">
-                        <label class="pp-form_label" for="cd_responsavel_telefone">Telefone</label>
-                        <input type="text" class="pp-form_input__text form-control" id="cd_responsavel_telefone" name="cd_responsavel_telefone" placeholder="Telefone do cliente">
+                        <label class="pp-form_label" for="cd_responsavel_telefone">Telefone do Responsável</label>
+                        <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_responsavel_telefone" name="cd_responsavel_telefone" placeholder="Telefone do cliente">
                     </div>
                     <div class="modal-footer">
                         <div class="container-fluid">
