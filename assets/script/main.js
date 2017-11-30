@@ -119,11 +119,10 @@ Vue.component('tarefas-listar', {
     props: ['tarefa'],
     // Redireciona para o link do cliente pelo id
     template: '<tr>\
-                    <td>{{ tarefa.cd_tarefa }}</td>\
                     <td>{{ tarefa.nm_tarefa }}</td>\
-                    <td>{{ tarefa.nm_projeto }}</td>\
-                    <td>{{ tarefa.nm_servico }}</td>\
-                    <td>{{ tarefa.nm_funcionario }}</td>\
+                    <td><a class="text-white" v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'tarefa.cd_projeto">{{ tarefa.cd_projeto }}</a></td>\
+                    <td><a class="text-white" v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'tarefa.cd_servico">{{ tarefa.nm_servico }}</a></td>\
+                    <td>{{ tarefa.cd_funcionario }}</td>\
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"tarefas/ver/'+"+'tarefa.cd_tarefa">\
                             <span class="text-info">\

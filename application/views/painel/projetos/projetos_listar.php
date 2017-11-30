@@ -1,5 +1,5 @@
 <div id="projetos">
-    	<div class="container">
+    	<div class="container general">
     		<div class="row">
     			<div class="col-6">
     				<h3> <small>Projetos</small> <br> <strong>Cadastrados</strong> </h3>

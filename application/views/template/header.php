@@ -70,7 +70,7 @@
         <div class="painel-main">
                 
             <!-- Alert de Sucesso -->
-            <div id="alert-msg" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none; position: fixed; top: 10px; left: 40%">
+            <div id="alert-msg" class="alert alert-success alert-dismissible fade show" role="alert" style="display: none; position: fixed; top: 10px; width: 35%; height: 50px;">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

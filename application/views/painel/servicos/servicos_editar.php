@@ -1,6 +1,6 @@
 <?php $query; ?>
 <template>
-    <div class="container">
+    <div class="container general">
     <div class="row">
         <div class="col-6">
             <h3> <small>Editar</small> <br> <strong>Serviço</strong> </h3>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="row">
-        <form class="pp-form offset-md-1 col-md-10" id="editar">
+        <form class="pp-form col-md-8" id="editar">
             <input type="hidden" name="cd_servico" value="<?= $servico->getChavePrimariaValor(); ?>"/>
             <div class="form-group">
                 <label class="pp-form_label" for="nm_servico">Nome do Serviço</label>
