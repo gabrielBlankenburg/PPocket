@@ -59,7 +59,7 @@
                     <label class="pp-form_label" for="ds_servico">Descrição do Serviço</label>
                     <textarea class="pp-form_input__text  form-control" id="ds_servico" name="ds_servico" placeholder="Descrição do serviço"></textarea>
                     <label class="pp-form_label" for="vl_servico">Valor do Serviço</label>
-                    <input type="number" class="pp-form_input__text form-control" id="vl_servico" name="vl_servico" placeholder="Valor do serviço">
+                    <input type="text" class="pp-form_input__text form-control money" id="vl_servico" name="vl_servico" placeholder="Valor do serviço">
                     <label class="pp-form_label" for="cd_cargo">Cargo responsável pelo serviço</label>
                     <select class="pp-form_input__text  form-control" name="cd_cargo" id="cd_cargo">
                         <option>Escolha uma opção</option>

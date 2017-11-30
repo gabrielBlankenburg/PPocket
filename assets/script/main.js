@@ -100,7 +100,7 @@ Vue.component('servicos-listar', {
     template: '<tr>\
                     <td>{{ servico.nm_servico }} </td>\
                     <td>{{ servico.ds_servico }}</td>\
-                    <td>{{ servico.vl_servico }}</td>\
+                    <td>R$ <span class="money"> {{ servico.vl_servico }} </span></td>\
                     <td>{{ servico.nm_cargo }}</td>\
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico">\
@@ -120,9 +120,9 @@ Vue.component('tarefas-listar', {
     // Redireciona para o link do cliente pelo id
     template: '<tr>\
                     <td>{{ tarefa.nm_tarefa }}</td>\
-                    <td><a class="text-white" v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'tarefa.cd_projeto">{{ tarefa.cd_projeto }}</a></td>\
+                    <td><a class="text-white" v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'tarefa.cd_projeto">{{ tarefa.nm_projeto }}</a></td>\
                     <td><a class="text-white" v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'tarefa.cd_servico">{{ tarefa.nm_servico }}</a></td>\
-                    <td>{{ tarefa.cd_funcionario }}</td>\
+                    <td>{{ tarefa.nm_funcionario }}</td>\
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"tarefas/ver/'+"+'tarefa.cd_tarefa">\
                             <span class="text-info">\
