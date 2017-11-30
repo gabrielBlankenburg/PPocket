@@ -17,6 +17,7 @@
 	top: 0;
 	left: 0;
 	z-index: 2000;
+	overflow: auto;
 	background: rgba($complem, .8);
 	.modal-wrapper {
 		width: 50%;
@@ -28,6 +29,7 @@
 	    -ms-transform: translateX(-50%, 8%);
 	    transform: translate(-50%, 8%);
 		border-radius: 20px;
+		margin-bottom: 40px;
 		.modal-header {
 			width: 100%;
 			border: none;
@@ -70,6 +72,7 @@
 		background: transparent;
 		color: $primaria;
 	    border: none;
+	    border-radius: 20px;
 	    box-shadow: 0 0 40px #111;
 		// Setas number
 		input[type=number], input[tyepe=date], input[type=date], input[type=datetime-local], input[type=month], input[type=time] { 

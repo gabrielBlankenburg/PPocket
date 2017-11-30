@@ -1,6 +1,6 @@
 <?php $query; ?>
 <template>
-<div class="container">
+<div class="container general">
     <div class="row">
         <div class="col-6">
             <h3> <small>Editar</small> <br> <strong>Clientes</strong> </h3>

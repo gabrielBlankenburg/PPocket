@@ -3,7 +3,7 @@
  =========================================================
  * Login PPocket - v1.0.0
 
-  Estilização da Página de Login do Sistema
+  Estilizacao da Pagina de Login do Sistema
  =========================================================
 
  */
@@ -78,6 +78,7 @@ html, body {
 					background: transparent;
 					color: $primaria;
 				    border: none;
+				    border-radius: 20px; 
 				    box-shadow: 0 0 40px #111;
 				    &:focus {
 						background: $complem;
@@ -86,7 +87,7 @@ html, body {
 				.login-form_input__submit {
 					margin-top: 0px;
 					display: flex;
-				    @include btnCor($primaria, $complem, $primaria, $complem);
+				    @include btnCor($primaria, $complem, $complem, $primaria);
 				} // Login Form Input Submit
 				.login-form_p > small {
 					font-size: 65%;

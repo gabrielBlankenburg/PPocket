@@ -135,6 +135,14 @@ class Querydao extends CI_Model
         
         return true; 
     }
+    
+    // Função temporária de login
+    public function buscaPorEmailSenha($login, $senha, $tabela){
+        $this->db->where("nm_usuario", $login);
+        $this->db->where("ds_hash", $senha);
+        $usuario = $this->db->get($tabela)->row_array();
+        return $usuario;
+    }
 }
 
 ?>

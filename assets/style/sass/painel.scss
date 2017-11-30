@@ -134,7 +134,12 @@ html, body {
 		    width: 10%;
 		    margin-left: 0;
 	    }
-
+		.general, .projetos, #cargos, #clientes, #servicos, #funcionarios, #tarefas {
+			background: #222222e6;
+		    padding: 30px;
+		    border-radius: 20px;
+		    box-shadow: 0 0 10px #111;
+		}
 	    // Componente: Projetos
 		.projetos {
 			.projetos-novo_wrapper__btn {

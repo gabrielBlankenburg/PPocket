@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $titulo ?></title>
     
+    <!-- Fav -->
+    <link rel="shortcut icon" href="<?= base_url(); ?>assets/img/PPocket-branco.png" type="image/x-icon"> 
+    <link rel="icon" href="<?= base_url(); ?>assets/img/PPocket-branco.png" type="image/x-icon"> 
+    
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     

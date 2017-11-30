@@ -1,3 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><?= $titulo ?></title>
+    
+    <!-- Fav -->
+	 <link rel="shortcut icon" href="<?= base_url(); ?>assets/img/PPocket-branco.png" type="image/x-icon"> 
+	 <link rel="icon" href="<?= base_url(); ?>assets/img/PPocket-branco.png" type="image/x-icon"> 
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/style/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/style/normalize.min.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/style/login.min.css">
+
+
+</head>
+<body>
 	<div class="login">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280.17 243.1">
 			<circle cx="168.1" cy="112.07" r="112.07" style="fill:#2a2a2a"/>
@@ -13,7 +39,7 @@
 					</div>
 					<div class="row">
 						<div class="login-wrapper_form">
-							<form action="painel.html" class="form form-group login-form">
+							<form action="<?= base_url(); ?>" class="form form-group login-form">
 								<label for="login" class="login-form_label">
 									<input type="text" name="login" class="form-control login-form_input__text" placeholder="Digite seu login..." required="required" autofocus>
 								</label>
@@ -33,7 +59,3 @@
 		<!-- <div class="copyright">Desenvolvido por ApolloUX</div> -->
 	</div> <!-- Login -->
 	<!-- Fim Login -->
-	
-
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/login.min.css">
