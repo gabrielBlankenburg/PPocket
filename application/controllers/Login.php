@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
 	}
 	
@@ -26,10 +27,11 @@ class Login extends CI_Controller {
 	
 	public function autenticar(){
 		
-	    $login = $this->input->post("email");// pega via post o email do formulario
+	    $email = $this->input->post("email");// pega via post o email do formulario
         $senha = $this->input->post("senha"); // pega via post a senha do formulario
-        $usuario = $this->querydao->buscaPorEmailSenha($login,$senha); // acessa a função buscaPorEmailSenha do modelo
- 
+        $condicoes = array('ds_email' => $email);
+        $usuario = $this->querydao->selectWhere(Usuario::getClassName(), $condicoes, Usuario::getJoins()); // acessa a função buscaPorEmailSenha do modelo
+        
         if($usuario){
             $this->session->set_userdata("usuario_logado", $usuario);
             $dados['msg_logado'] = "Logado com sucesso!";

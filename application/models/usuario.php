@@ -1,15 +1,10 @@
 <?php
     require_once APPPATH."models/login.php";
-    abstract class Usuario implements Login{
+    class Usuario extends SignIn{
         
-        private $cd_usuario, $nm_usuario, $ds_email, $ic_ativo;
-        
-        public function __construct($cd_usuario, $nm_usuario, $ds_email, $ic_ativo)
+        public function __construct($nm_usuario, $ds_email, $ic_ativo, $cd_usuario)
         {
-            $this->cd_usuario = $cd_usuario;
-            $this->nm_usuario = $nm_usuario;
-            $this->ds_email= $ds_email;
-            $this->ic_ativo = $ic_ativo;
+            parent::__construct($nm_usuario, $ds_email, $ic_ativo, $cd_usuario);
         }
         
         public function getAll()
@@ -67,7 +62,19 @@
             return 'cd_usuario';
         }
         
-        abstract public function auth();
+        
+        public function getJoins()
+        {
+           $joins = array('tabela_nome' => Funcionario::getClassName(),
+                        'on' => 'usuario.cd_usuario = '.Funcionario::getClassName().'.cd_usuario');
+            return array($joins); 
+        }
+        
+        // Arrumar
+        public function getAuth()
+        {
+            return true;
+        }
             
     }
 ?>
