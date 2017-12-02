@@ -30,16 +30,46 @@ class Login extends CI_Controller {
 	    $email = $this->input->post("email");// pega via post o email do formulario
         $senha = $this->input->post("senha"); // pega via post a senha do formulario
         $condicoes = array('ds_email' => $email);
-        $usuario = $this->querydao->selectWhere(Usuario::getClassName(), $condicoes, Usuario::getJoins()); // acessa a função buscaPorEmailSenha do modelo
+        $query = $this->querydao->selectWhere(Usuario::getClassName(), $condicoes, Usuario::getJoins()); // acessa a função buscaPorEmailSenha do modelo
         
-        if($usuario){
-            $this->session->set_userdata("usuario_logado", $usuario);
-            $dados['msg_logado'] = "Logado com sucesso!";
-            redirect('painel', $dados);
-        }else{
-            $dados['msg_erro'] = "Não foi possível fazer o Login!";
-            redirect('login', $dados);
+        if (isset($query) && !empty($query)){
+        	// Verifica se batem login e senha
+	        $verificacaoSenha = password_hash($query->ds_salt.$senha, PASSWORD_BCRYPT);
+	        if (strcmp($verificaoSenha, $query->ds_hash) == 0){
+	        	$usuario = new Usuario($query->ds_email, $query->ic_ativo, $query->cd_usuario);
+	        	// Busca o funcionário
+	        	$condicoesFuncionario = array($cd_usuario => $usuario->getChavePrimariaValor());
+	        	$queryFuncionario = $this->querydao->selectWhere(Funcionario::getClassName, $condicoesFuncionario, 
+	        														Funcionario::getJoins());
+	        	
+	        	if (isset($queryFuncionario) && !empty($queryFuncionario)){
+	        		// Cria uma instância do cargo
+	        		$cargo = new Cargo($queryFuncionario->nm_cargo, $queryFuncionario->cd_cargo);
+	        		// Cria uma instância de funcionário
+	        		$funcionario = new Funcionario($queryFuncionario->nm_funcionario, $queryFuncionario->vl_salario,
+	        										$queryFuncionario->ds_email, $queryFuncionario->cd_telefone,
+	        										$queryFuncionario->cd_celular, $queryFuncionario->dt_nascimento,
+	        										$queryFuncionario->cd_rg, $queryFuncionario->cd_cpf, 
+	        										$cargo, $queryFuncionario->cd_funcionario);
+	        	}
+	        }	
         }
         
+        
+        // if($usuario){
+        //     $this->session->set_userdata("usuario_logado", $usuario);
+        //     $dados['msg_logado'] = "Logado com sucesso!";
+        //     redirect('painel', $dados);
+        // }else{
+        //     $dados['msg_erro'] = "Não foi possível fazer o Login!";
+        //     redirect('login', $dados);
+        // }
+        
+    }
+    
+    public function criaAdmin()
+    {
+    	$this->load->model('admin');
+    	$this->admin->cria();
     }
 }

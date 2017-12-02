@@ -2,15 +2,14 @@
     require_once APPPATH."models/login.php";
     class Usuario extends SignIn{
         
-        public function __construct($nm_usuario, $ds_email, $ic_ativo, $cd_usuario)
+        public function __construct($ds_email, $ic_ativo, $cd_usuario)
         {
-            parent::__construct($nm_usuario, $ds_email, $ic_ativo, $cd_usuario);
+            parent::__construct($ds_email, $ic_ativo, $cd_usuario);
         }
         
         public function getAll()
         {
             $dados['cd_usuario'] = $this->cd_usuario;
-            $dados['nm_usuario'] = $this->nm_usuario;
             $dados['ds_email'] = $this->ds_email;
             $dados['ic_ativo'] = $this->ic_ativo;
             
