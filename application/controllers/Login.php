@@ -26,16 +26,16 @@ class Login extends CI_Controller {
 	}
 	
 	public function autenticar(){
-		
 	    $email = $this->input->post("email");// pega via post o email do formulario
         $senha = $this->input->post("senha"); // pega via post a senha do formulario
-        $condicoes = array('ds_email' => $email);
+        $condicoes = array('usuario.ds_email' => $email);
         $query = $this->querydao->selectWhere(Usuario::getClassName(), $condicoes, Usuario::getJoins()); // acessa a função buscaPorEmailSenha do modelo
-        
+		echo password_hash('PgBjpq9y048D5mXgJqKq123', PASSWORD_BCRYPT); die;
         if (isset($query) && !empty($query)){
         	// Verifica se batem login e senha
-	        $verificacaoSenha = password_hash($query->ds_salt.$senha, PASSWORD_BCRYPT);
-	        if (strcmp($verificaoSenha, $query->ds_hash) == 0){
+	        $verificacaoSenha = password_hash($query[0]['ds_salt'].$senha, PASSWORD_BCRYPT);
+	        if (strcmp($verificacaoSenha, $query[0]['ds_hash']) == 0){
+	        	echo 'oi';
 	        	$usuario = new Usuario($query->ds_email, $query->ic_ativo, $query->cd_usuario);
 	        	// Busca o funcionário
 	        	$condicoesFuncionario = array($cd_usuario => $usuario->getChavePrimariaValor());
@@ -51,6 +51,7 @@ class Login extends CI_Controller {
 	        										$queryFuncionario->cd_celular, $queryFuncionario->dt_nascimento,
 	        										$queryFuncionario->cd_rg, $queryFuncionario->cd_cpf, 
 	        										$cargo, $queryFuncionario->cd_funcionario);
+	        		print_r($funcrionario); die;
 	        	}
 	        }	
         }

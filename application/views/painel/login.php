@@ -39,12 +39,12 @@
 					</div>
 					<div class="row">
 						<div class="login-wrapper_form">
-							<form action="<?= base_url(); ?>" class="form form-group login-form">
+							<form action="<?= base_url().'login/autenticar'; ?>" method="POST" class="form form-group login-form">
 								<label for="login" class="login-form_label">
-									<input type="text" name="login" class="form-control login-form_input__text" placeholder="Digite seu login..." required="required" autofocus>
+									<input type="text" name="email" class="form-control login-form_input__text" placeholder="Digite seu login..." required autofocus>
 								</label>
 								<label for="senha" class="login-form_label">
-									<input type="password" name="senha" class="form-control login-form_input__text" placeholder="Digite sua senha..." required="required">
+									<input type="password" name="senha" class="form-control login-form_input__text" placeholder="Digite sua senha..." required>
 								</label>
 								<p class="login-form_p text-center">
 									<small>Não consegue entrar? <span>Resgatar acesso.</span></small>

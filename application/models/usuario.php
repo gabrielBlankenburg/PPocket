@@ -1,5 +1,6 @@
 <?php
     require_once APPPATH."models/login.php";
+    require_once APPPATH."models/funcionario.php";
     class Usuario extends SignIn{
         
         public function __construct($ds_email, $ic_ativo, $cd_usuario)
@@ -62,7 +63,7 @@
         }
         
         
-        public function getJoins()
+        public static function getJoins()
         {
            $joins = array('tabela_nome' => Funcionario::getClassName(),
                         'on' => 'usuario.cd_usuario = '.Funcionario::getClassName().'.cd_usuario');
