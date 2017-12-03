@@ -29,6 +29,17 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="cd_permissao">Permissões</label>
+                <select class="pp-form_input__text form-control" name="cd_permissao" id="cd_permissao">
+                    <option>Selecione</option>
+                    <option value="1" <?php echo $funcionario->getPermissao() == 1 ? 'selected' : '' ?>>Ver tarefas</option>
+                    <option value="2" <?php echo $funcionario->getPermissao() == 2 ? 'selected' : '' ?>>Ver e abrir tarefas</option>
+                    <option value="3" <?php echo $funcionario->getPermissao() == 3 ? 'selected' : '' ?>>Ver e editar projetos e clientes</option>
+                    <option value="4" <?php echo $funcionario->getPermissao() == 4 ? 'selected' : '' ?>>Ver e editar funcionários</option>
+                    <option value="5" <?php echo $funcionario->getPermissao() == 5 ? 'selected' : '' ?>>Permissão total</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="vl_salario">Salário</label>
                 <input type="text" class="pp-form_input__text form-control money" id="vl_salario" name="vl_salario" value="<?= $funcionario->getSalarioFuncionario(); ?>" placeholder="Salário do funcionário">
             </div>

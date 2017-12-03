@@ -5,11 +5,11 @@ require_once APPPATH.'models/cargo.php';
 
 class Funcionario implements Serializablee
 {
-    private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario, $cd_rg, $cd_cpf, $cargo;
+    private $cd_funcionario, $nm_funcionario, $cd_telefone, $cd_celular, $ds_email, $dt_nascimento, $vl_salario, $cd_rg, $cd_cpf, $cargo, $cd_permissao;
     
     // Recebe um array contendo os dados
     public function __construct($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, $dt_nascimento, 
-                                    $cd_rg, $cd_cpf, Cargo $cargo, $cd_funcionario = null)
+                                    $cd_rg, $cd_cpf, $cd_permissao, Cargo $cargo, $cd_funcionario = null)
     {
         $this->cd_funcionario = $cd_funcionario;
         $this->nm_funcionario = $nm_funcionario;
@@ -20,6 +20,7 @@ class Funcionario implements Serializablee
         $this->vl_salario = $vl_salario;
         $this->cd_rg = $cd_rg;
         $this->cd_cpf = $cd_cpf;
+        $this->cd_permissao = $cd_permissao;
         $this->cargo = $cargo;
     }
     
@@ -36,6 +37,7 @@ class Funcionario implements Serializablee
         $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
         $dados['cd_rg'] = $this->cd_rg;
         $dados['cd_cpf'] = $this->cd_cpf;
+        $dados['cd_permissao'] = $this->cd_permissao;
         $dados['nm_cargo'] = $this->cargo->getNomeCargo();
         
         return $dados;
@@ -86,6 +88,11 @@ class Funcionario implements Serializablee
         return $this->cd_cpf;
     }
     
+    public function getPermissao()
+    {
+        return $this->cd_permissao;
+    }
+    
     // Retorna um array contendo o nome da tabela que deverá ser feito um join e os campos que devem ser comparados
     public static function getJoins()
     {
@@ -112,6 +119,7 @@ class Funcionario implements Serializablee
         $dados['vl_salario'] = $this->vl_salario;
         $dados['cd_rg'] = $this->cd_rg;
         $dados['cd_cpf'] = $this->cd_cpf;
+        $dados['cd_permissao'] = $this->cd_permissao;
         $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
         
         return $dados;

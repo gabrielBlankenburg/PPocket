@@ -56,6 +56,7 @@ class Login extends CI_Controller {
 	        				'funcionario' => $funcionario,
 	        				'logado' => true);
 	        			$this->session->set_userdata($session_data);
+	        			
 	        		} else{
 	        			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
 												  <strong>Erro!</strong> Ocorreu um erro no sistema, 

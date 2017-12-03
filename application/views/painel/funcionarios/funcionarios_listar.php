@@ -86,6 +86,17 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label class="pp-form_label" for="cd_permissao">Permissões</label>
+                    <select class="pp-form_input__text form-control" name="cd_permissao" id="cd_permissao">
+                        <option>Selecione</option>
+                        <option value="1">Ver tarefas</option>
+                        <option value="2">Ver e abrir tarefas</option>
+                        <option value="3">Ver e editar projetos e clientes</option>
+                        <option value="4">Ver e editar funcionários</option>
+                        <option value="5">Permissão total</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label class="pp-form_label" for="cd_rg">RG</label>
                     <input type="number" class="pp-form_input__text form-control" id="cd_rg" name="cd_rg" placeholder="rg">
                 </div>
