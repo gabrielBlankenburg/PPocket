@@ -49,9 +49,35 @@ class Login extends CI_Controller {
 	        										$queryFuncionario[0]['cd_celular'], $queryFuncionario[0]['dt_nascimento'],
 	        										$queryFuncionario[0]['cd_rg'], $queryFuncionario[0]['cd_cpf'], 
 	        										$cargo, $queryFuncionario[0]['cd_funcionario']);
+	        		if (isset($funcionario)){
+	        			// Cria uma session com o usuario e funcionário
+	        			$session_data = array(
+	        				'usuario' => $usuario,
+	        				'funcionario' => $funcionario,
+	        				'logado' => true);
+	        			$this->session->set_userdata($session_data);
+	        		} else{
+	        			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        			redirect('/login/', 'refresh');
+	        		} 
 	        		
-	        	}
-	        }	
+	        	} else{
+	        		$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+        			redirect('/login/', 'refresh');
+        		}
+	        } else{
+	        	$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Falha!</strong> Usuario ou senha inválido. </div>');
+    			redirect('/login/', 'refresh');
+    		}	
+        } else{
+        	$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Falha!</strong> Usuario ou senha inválido. </div>');
+        	redirect('/login/', 'refresh');
         }
         
         

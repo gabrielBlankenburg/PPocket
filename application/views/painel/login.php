@@ -31,6 +31,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="login-wrapper">
+					<?php
+						if (!empty($this->session->flashdata('autenticacao'))){
+							echo $this->session->flashdata('autenticacao');
+						}
+					?>
 					<div class="row">
 						<div class="login-wrapper_titulo">
 							<p><small>Bem-vindo ao</small></p>
