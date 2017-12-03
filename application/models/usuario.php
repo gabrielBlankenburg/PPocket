@@ -47,11 +47,6 @@
             return $dados;
         }
         
-        public function getChavePrimariaValor()
-        {
-            return $this->cd_usuario;
-        }
-        
         public static function getClassName()
         {
             return 'usuario';

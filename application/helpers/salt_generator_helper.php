@@ -1,6 +1,6 @@
 <?php
 
-function gerar_salt($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+function gera_salt($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 {
     $str = '';
     $max = mb_strlen($keyspace, '8bit') - 1;
