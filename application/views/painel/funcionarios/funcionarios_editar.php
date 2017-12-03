@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label for="cd_cpf">CPF</label>
-                <input type="number" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" value="<?= $funcionario->getCpfFuncionario(); ?>" placeholder="CPF">
+                <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" value="<?= $funcionario->getCpfFuncionario(); ?>" placeholder="CPF">
             </div>
             <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Funcionário</button>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Funcionário</button>

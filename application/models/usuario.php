@@ -1,25 +1,32 @@
 <?php
-    require_once APPPATH."models/login.php";
     require_once APPPATH."models/funcionario.php";
-    class Usuario extends SignIn{
+    require_once APPPATH."models/serializable.php";
+    class Usuario implements serializablee
+    {
         
-        public function __construct($ds_email, $ic_ativo, $cd_usuario)
+        private $cd_usuario, $ds_email, $ic_primeiro_acesso, $ds_hash, $cd_permissao;
+        public function __construct($ds_email, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_usuario = null)
         {
-            parent::__construct($ds_email, $ic_ativo, $cd_usuario);
+            $this->cd_usuario = $cd_usuario;
+            $this->ds_email = $ds_email;
+            $this->ds_hash = $ds_hash;
+            $this->ic_primeiro_acesso = $ic_primeiro_acesso;
+            $this->cd_permissao = $cd_permissao;
         }
         
         public function getAll()
         {
             $dados['cd_usuario'] = $this->cd_usuario;
             $dados['ds_email'] = $this->ds_email;
-            $dados['ic_ativo'] = $this->ic_ativo;
+            $dados['ic_primeiro_acesso'] = $this->ic_primeiro_acesso;
+            $dados['cd_permissao'] = $this->cd_permissao;
             
             return $dados;
         }
         
-        public function getNomeUsuario()
+        public function getChavePrimariaValor()
         {
-            return $this->nm_usuario;
+            return $this->cd_usuario;
         }
         
         public function getEmailUsuario()
@@ -27,13 +34,13 @@
             return $this->ds_email;
         }
         
-        public function getUsuarioAtivo()
+        public function getPrimeiroAcesso()
         {
-            return $this->ic_ativo;
+            return $this->ic_primeiro_acesso;
         }
         
         // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
-        public function addChavePrimaria($cd_usuario)
+        public function addChavePrimariaPai($cd_usuario)
         {
             $this->cd_usuario = $cd_usuario;
         }
@@ -41,9 +48,10 @@
         public function toArray()
         {
             $dados['cd_usuario'] = $this->cd_usuario;
-            $dados['nm_usuario'] = $this->nm_usuario;
             $dados['ds_email'] = $this->ds_email;
-            $dados['ic_ativo'] = $this->ic_ativo;
+            $dados['ds_hash'] = $this->ds_hash;
+            $dados['ic_primeiro_acesso'] = $this->ic_primeiro_acesso;
+            $dados['cd_permissao'] = $this->cd_permissao;
             return $dados;
         }
         
@@ -65,10 +73,9 @@
             return array($joins); 
         }
         
-        // Arrumar
         public function getAuth()
         {
-            return true;
+            return $this->cd_permissao;
         }
             
     }

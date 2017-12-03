@@ -34,7 +34,8 @@ class Login extends CI_Controller {
         if (isset($query) && !empty($query)){
         	// Verifica se batem login e senha
 	        if (password_verify($senha, $query[0]['ds_hash'])){
-	        	$usuario = new Usuario($query[0]['ds_email'], $query[0]['ic_ativo'], $query[0]['cd_usuario']);
+	        	$usuario = new Usuario($query[0]['ds_email'], $query[0]['ic_primeiro_acesso'], $query[0]['cd_permissao'],
+	        							$query[0]['cd_usuario']);
 	        	// Busca o funcionário
 	        	$condicoesFuncionario = array('cd_usuario' => $usuario->getChavePrimariaValor());
 	        	$queryFuncionario = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoesFuncionario, 

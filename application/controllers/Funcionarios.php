@@ -8,6 +8,7 @@ class Funcionarios extends CI_Controller
 		parent::__construct();
 		require_once APPPATH.'models/cargo.php';
 		require_once APPPATH.'models/funcionario.php';
+		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
 		
 	}
@@ -41,7 +42,15 @@ class Funcionarios extends CI_Controller
         $vl_salario = $this->input->post('vl_salario');
         $cd_rg = $this->input->post('cd_rg');
         $cd_cpf = $this->input->post('cd_cpf');
+        
+        $ds_email_corporacional = $this->input->post('ds_email_corporacional');
         $cd_permissao = $this->input->post('cd_permissao');
+        
+        // Carrega o gerador de string para gerar a senha aleatória
+        $this->load->helper('gerador_senha');
+        $senha = gera_senha(30);
+        $ds_hash = password_hash($senha, PASSWORD_BCRYPT);
+        
 		
 		// Verifica se existe um cargo com o cd_cargo informado
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
@@ -57,11 +66,28 @@ class Funcionarios extends CI_Controller
 		}
 		//Dúvida - Se não existir, é criado automaticamente?
 		$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
-										$dt_nascimento, $cd_rg, $cd_cpf, $cd_permissao, $cargo);
+										$dt_nascimento, $cd_rg, $cd_cpf, $ds_email_corporacional, 1,
+										$ds_hash, $cd_permissao, $cargo);
 		
 		$insert = $this->querydao->insert($funcionario);
 		if ($insert != false){
 			$funcionario->addChavePrimaria($insert->cd_funcionario);
+			
+			$this->load->helper('gerador_senha');
+			$usuario_email = $this->input->post('email_corporacional');
+			$cd_permissao = $this->input->post('cd_permissao');
+			$senha = gera_senha(30);
+			$ds_hash = password_hash($senha, PASSWORD_BCRYPT);
+			
+			$usuario = new Usuario($usuario_email, 1, $ds_hash, $cd_permissao);
+			if (!$this->querydao->insert($usuario)){
+				$this->querydao->remove($funcionario);
+				return 'Falha! Verifique se o e-mail corporacional já existe';
+				die;
+			}
+			
+		} else{
+			echo false;
 		}
 		
 		$retorno = $funcionario->getAll();
@@ -90,12 +116,13 @@ class Funcionarios extends CI_Controller
 			$dt_nascimento = $query[0]['dt_nascimento'];
 			$cd_rg = $query[0]['cd_rg'];
 			$cd_cpf = $query[0]['cd_cpf'];
-			$cd_permissao = $query[0]['cd_permissao'];
 			$cd_funcionario = $query[0]['cd_funcionario'];
 			
 			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
-											$dt_nascimento, $cd_rg, $cd_cpf, $cd_permissao, $cargo, $cd_funcionario);
+											$dt_nascimento, $cd_rg, $cd_cpf, $cargo, $cd_funcionario);
 			$cargos = $this->querydao->selectAll(Cargo::getClassName());
+			
+			
 		} else{
 			echo 'nao encontrado'; die;
 		}
@@ -121,7 +148,6 @@ class Funcionarios extends CI_Controller
         $vl_salario = $this->input->post('vl_salario');
         $cd_rg = $this->input->post('cd_rg');
         $cd_cpf = $this->input->post('cd_cpf');
-        $cd_permissao = $this->input->post('cd_permissao');
 		
 		// Busca o cargo
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
@@ -134,7 +160,7 @@ class Funcionarios extends CI_Controller
 			$query = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes);
 			
 			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
-										$dt_nascimento, $cd_rg, $cd_cpf, $cd_permissao, $cargo, $cd_funcionario);
+										$dt_nascimento, $cd_rg, $cd_cpf, $cargo, $cd_funcionario);
 		}
 		
 		
@@ -157,7 +183,6 @@ class Funcionarios extends CI_Controller
         $vl_salario = $this->input->post('vl_salario');
         $cd_rg = $this->input->post('cd_rg');
         $cd_cpf = $this->input->post('cd_cpf');
-        $cd_permissao = $this->input->post('cd_permissao');
 		
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
 		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
@@ -165,7 +190,7 @@ class Funcionarios extends CI_Controller
 		$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
 		
 		$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
-										$dt_nascimento, $cd_rg, $cd_cpf, $cd_permissao, $cargo, $cd_funcionario);
+										$dt_nascimento, $cd_rg, $cd_cpf, $cargo, $cd_funcionario);
 		
 		$query = $this->querydao->remove($funcionario);
 		if ($query){

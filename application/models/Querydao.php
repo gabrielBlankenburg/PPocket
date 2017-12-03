@@ -9,15 +9,32 @@ class Querydao extends CI_Model
     // JSON o mesmo
     public function insert(Serializablee $tabela)
     {
-        $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
-        // Se inseriu com sucesso retorna o ultimo registro
-        if ($insert){
-            $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
-    		->limit(1)
-    		->get($tabela::getClassName())
-    		->row();
+        if (method_exists($tabela, 'toArrayFilho')){
+            $insertPai = $this->db->insert($tabela->getClassName(), $tabela->toArray());
+            if (!$insertPai){
+                return false;
+            }
+            $insert = $this->db->insert($tabela->getClassNameFilho(), $tabela->toArrayFilho());
+            // Se inseriu com sucesso retorna o ultimo registro
+            if ($insert){
+                $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
+        		->limit(1)
+        		->get($tabela::getClassNameFilho())
+        		->row();
+            } else{
+                $resp = false;
+            }
         } else{
-            $resp = false;
+            $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
+            // Se inseriu com sucesso retorna o ultimo registro
+            if ($insert){
+                $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
+        		->limit(1)
+        		->get($tabela::getClassName())
+        		->row();
+            } else{
+                $resp = false;
+            }
         }
         header('Content-Type: application/json');
         return $resp;
