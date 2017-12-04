@@ -71,13 +71,6 @@
         }
         
         
-        public static function getJoins()
-        {
-           $joins = array('tabela_nome' => Funcionario::getClassName(),
-                        'on' => 'usuario.cd_usuario = '.Funcionario::getClassName().'.cd_usuario');
-            return array($joins); 
-        }
-        
         public function getPermissao()
         {
             return $this->cd_permissao;
