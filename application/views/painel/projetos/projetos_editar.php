@@ -50,7 +50,7 @@
                     <p class="d-block mx-auto text-danger remove-multiple-input"><i class="fa fa-close"></i> Remover serviço</p>
                 </div>
                 <div class="row">
-                    <p class="d-block mx-auto text-primary add-multiple-input"><i class="fa fa-plus"></i> Adcionar serviço</p>
+                    <p class="d-block mx-auto text-primary add-multiple-input"><i class="fa fa-plus"></i> Adicionar serviço</p>
                 </div>
             </div>
             <div class="row">
@@ -68,7 +68,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <h2 class="h3"><small>Tem</small> <br> <strong>Certeza?</strong></h2>
+                                <h2 class="h3 text-left"><small>Tem</small> <br> <strong>Certeza?</strong></h2>
                             </div>
                             <div class="col">
                                 <p class="float-right modal-close modal-btn_close" data-dismiss="modal"><i class="fa fa-close"></i></p>

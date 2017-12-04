@@ -36,14 +36,14 @@ Vue.component('projetos-listar', {
                     <!-- Projeto Item Corpo -->\
                     <div class="projeto-item_corpo">\
                         <ul class="list-unstyled projeto-corpo_ul">\
-                            <li class="projeto-corpo_categoria">\
-                                <b>Data Término:</b> <small>{{ projeto.dt_termino }}</small>\
-                            </li>\
                             <li class="projeto-corpo_cliente">\
                                 <b>Cliente:</b> <small>{{ projeto.nm_cliente }}</small>\
                             </li>\
                             <li class="projeto-corpo_descricao">\
                                 <b>Descrição:</b> <small>{{ projeto.ds_projeto }}</small>\
+                            </li>\
+                            <li class="projeto-corpo_categoria">\
+                                <b>Data Término:</b> <small>{{ projeto.dt_termino }}</small>\
                             </li>\
                         </ul>\
                     </div>\
@@ -257,8 +257,16 @@ function inserir(){
         method: 'POST',
         url: url,
         data: data,
+        beforeSend: function () {
+            $('.painel-main').append('\
+                <div id="alert-msg" class="alert alert-success fade show" role="alert" style="position: fixed;top: 10px; left: 35%; width: 35%; height: 50px; z-index:2000">\
+                    <p>Processando... Aguarde um instante.</p>\
+                </div>\
+            ');
+        },
         success: function(resp){
             if(resp != 'false' && resp != false){
+                $(".alert").alert('close');
                 painel.conteudoListar.push(resp);
                 $('.modal-ppocket').modal('toggle');
                 document.getElementById("inserir").reset();
@@ -278,10 +286,18 @@ function editar(){
         method: 'POST',
         url: urlEdit,
         data: data,
+        beforeSend: function () {
+            $('.painel-main').append('\
+                <div id="alert-msg" class="alert alert-success fade show" role="alert" style="position: fixed;top: 10px; left: 35%; width: 35%; height: 50px; z-index:2000">\
+                    <p>Processando... Aguarde um instante.</p>\
+                </div>\
+            ');
+        },
         success: function(resp){
             // Mudar isso
             if(resp == true || resp == 'true')
-                alert('inserido com sucesso!!!');
+                $(".alert").alert('close');
+                window.location = '';
         }
     });
 }
@@ -293,10 +309,18 @@ function remover(){
         method: 'POST',
         url: urlDel,
         data: data,
+        beforeSend: function () {
+            $('.painel-main').append('\
+                <div id="alert-msg" class="alert alert-success fade show" role="alert" style="position: fixed;top: 10px; left: 35%; width: 35%; height: 50px; z-index:2000">\
+                    <p>Processando... Aguarde um instante.</p>\
+                </div>\
+            ');
+        },
         success: function(resp){
             if (resp == 'false' || resp == false){
                 alert('Não foi possível remover do banco de dados');
             } else{
+                $(".alert").alert('close');
                 window.location = resp;
             }
         }

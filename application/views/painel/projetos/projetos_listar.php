@@ -67,7 +67,7 @@
                                 <option value="<?= $cliente['cd_cliente']; ?>"><?= $cliente['nm_cliente']; ?></option>
                             <?php } ?>
                         </select>
-                        <div class="multiple-inputs">
+                        <div class="multiple-inputs pp-form_label">
                             <label>Serviços</label>
                             <select class="pp-form_input__text form-control multiple-input" name="cd_servico[]" id="cd_servico[]">
                                 <option>Escolha uma opção</option>

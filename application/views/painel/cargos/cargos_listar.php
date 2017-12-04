@@ -48,9 +48,14 @@
         </div>
         <div class="modal-body">
             <form class="pp-form" id="inserir">
+                <div class="form_error">
+                  <?php echo validation_errors(); ?>
+                </div>
+                 
+                <?php echo form_open(); ?>
                 <div class="form-group">
                     <label for="nm_cargo">Nome do cargo</label>
-                    <input type="text" class="pp-form_input__text form-control" id="nm_cargo" name="nm_cargo" placeholder="Nome do cargo">
+                    <input type="text" class="pp-form_input__text form-control" id="nm_cargo" name="nm_cargo" size="30" value="<?php echo set_value('nm_cargo'); ?>" placeholder="Nome do cargo" required>
                 </div>
                 <button type="button" class="btn btn-outline-warning float-left" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-default btn-outline-success float-right">Cadastrar Cargo</button>
