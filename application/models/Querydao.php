@@ -20,6 +20,7 @@ class Querydao extends CI_Model
             $resp = false;
         }
         if (method_exists($tabela, 'toArrayFilho')){
+            $tabela->addChavePrimariaPai($resp->cd_usuario);
             $insert = $this->db->insert($tabela->getClassNameFilho(), $tabela->toArrayFilho());
             // Se inseriu com sucesso retorna o ultimo registro
             if ($insert){
@@ -51,6 +52,12 @@ class Querydao extends CI_Model
     public function updateAll(Serializablee $tabela)
     {
         if (method_exists($tabela, 'toArrayFilho')){
+            $this->db->set($tabela->toArray());
+            $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+            $update = $this->db->update($tabela::getClassName()); 
+            if (!$update){
+                return false;
+            }
             $this->db->set($tabela->toArrayFilho());
             $this->db->where($tabela::getChavePrimariaNomeFilho(), $tabela->getChavePrimariaValorFilho());
             return $this->db->update($tabela::getClassNameFilho());
@@ -78,7 +85,9 @@ class Querydao extends CI_Model
     {
         if (method_exists($tabela, 'toArrayFilho')){
             $this->db->where($tabela::getChavePrimariaNomeFilho(), $tabela->getChavePrimariaValorFilho());
-            return $this->db->delete($tabela::getClassNameFilho());
+            if (!$this->db->delete($tabela::getClassNameFilho())){
+                return false;
+            }
         }
         $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
         return $this->db->delete($tabela::getClassName());

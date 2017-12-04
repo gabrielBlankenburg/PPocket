@@ -11,9 +11,9 @@ class Funcionario extends Usuario
     // Recebe um array contendo os dados
     public function __construct($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, $dt_nascimento, 
                                     $cd_rg, $cd_cpf, $ds_email_corporacional, $ic_primeiro_acesso, $ds_hash,
-                                    $cd_permissao, Cargo $cargo, $cd_funcionario = null)
+                                    $cd_permissao, Cargo $cargo, $cd_funcionario = null, $cd_usuario = null)
     {
-        parent::__construct($ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_funcionario);
+        parent::__construct($ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_usuario);
         $this->cd_funcionario = $cd_funcionario;
         $this->nm_funcionario = $nm_funcionario;
         $this->cd_telefone = $cd_telefone;
@@ -119,6 +119,7 @@ class Funcionario extends Usuario
         $dados['cd_rg'] = $this->cd_rg;
         $dados['cd_cpf'] = $this->cd_cpf;
         $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
+        $dados['cd_usuario'] = $this->getChavePrimariaValor();
         
         return $dados;
     }

@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         <form class="pp-form col-8" id="editar">
-            <input type="hidden" name="cd_funcionario" value="<?= $funcionario->getChavePrimariaValor(); ?>"/>
+            <input type="hidden" name="cd_funcionario" value="<?= $funcionario->getChavePrimariaValorFilho(); ?>"/>
             <div class="form-group">
                 <label for="nm_cargo">Nome</label>
                 <input type="text" class="pp-form_input__text form-control" id="nm_cargo" name="nm_funcionario" value="<?= $funcionario->getNomeFuncionario(); ?>" placeholder="Nome do funcionário">
@@ -72,6 +72,8 @@
                 <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" value="<?= $funcionario->getCpfFuncionario(); ?>" placeholder="CPF">
             </div>
             <input type="hidden" name="ic_primeiro_acesso" value="<?= $funcionario->getPrimeiroAcesso(); ?>" />
+            <input type="hidden" name="cd_usuario" value="<?= $funcionario->getChavePrimariaValor(); ?>" />
+            <input type="hidden" name="ds_hash" value="<?= $funcionario->getHash(); ?>" />
             <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Funcionário</button>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Funcionário</button>
     

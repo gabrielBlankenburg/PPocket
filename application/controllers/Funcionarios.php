@@ -106,10 +106,11 @@ class Funcionarios extends CI_Controller
 			$ds_email_corporacional = $query[0]['ds_email_corporacional'];
 			$ds_hash = $query[0]['ds_hash'];
 			$ic_primeiro_acesso = $query[0]['ic_primeiro_acesso'];
+			$cd_usuario = $query[0]['cd_usuario'];
 			
 			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
 											$dt_nascimento, $cd_rg, $cd_cpf,$ds_email_corporacional, 
-											$ic_primeiro_acesso, $ds_hash, $cd_permissao, $cargo, $cd_funcionario);
+											$ic_primeiro_acesso, $ds_hash, $cd_permissao, $cargo, $cd_funcionario, $cd_usuario);
 			$cargos = $this->querydao->selectAll(Cargo::getClassName());
 			
 			
@@ -138,6 +139,13 @@ class Funcionarios extends CI_Controller
         $vl_salario = $this->input->post('vl_salario');
         $cd_rg = $this->input->post('cd_rg');
         $cd_cpf = $this->input->post('cd_cpf');
+        
+        $cd_usuario = $this->input->post('cd_usuario');
+        $ds_email_corporacional = $this->input->post('ds_email_corporacional');
+        $cd_permissao = $this->input->post('cd_permissao');
+        $ic_primeiro_acesso = $this->input->post('ic_primeiro_acesso');
+        $ds_hash = $this->input->post('ds_hash');
+        
 		
 		// Busca o cargo
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
@@ -150,7 +158,8 @@ class Funcionarios extends CI_Controller
 			$query = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes);
 			
 			$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
-										$dt_nascimento, $cd_rg, $cd_cpf, $cargo, $cd_funcionario);
+										$dt_nascimento, $cd_rg, $cd_cpf, $ds_email_corporacional, $ic_primeiro_acesso, 
+										$ds_hash, $cd_permissao, $cargo, $cd_funcionario, $cd_usuario);
 		}
 		
 		
@@ -173,6 +182,12 @@ class Funcionarios extends CI_Controller
         $vl_salario = $this->input->post('vl_salario');
         $cd_rg = $this->input->post('cd_rg');
         $cd_cpf = $this->input->post('cd_cpf');
+        
+        $cd_usuario = $this->input->post('cd_usuario');
+        $ds_email_corporacional = $this->input->post('ds_email_corporacional');
+        $cd_permissao = $this->input->post('cd_permissao');
+        $ic_primeiro_acesso = $this->input->post('ic_primeiro_acesso');
+        $ds_hash = $this->input->post('ds_hash');
 		
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
 		$query = $this->querydao->selectWhere(Cargo::getClassName(), $condicoes);
@@ -180,7 +195,8 @@ class Funcionarios extends CI_Controller
 		$cargo = new Cargo($query[0]['nm_cargo'], $query[0]['cd_cargo']);
 		
 		$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, 
-										$dt_nascimento, $cd_rg, $cd_cpf, $cargo, $cd_funcionario);
+										$dt_nascimento, $cd_rg, $cd_cpf, $ds_email_corporacional, $ic_primeiro_acesso, 
+										$ds_hash, $cd_permissao, $cargo, $cd_funcionario, $cd_usuario);
 		
 		$query = $this->querydao->remove($funcionario);
 		if ($query){

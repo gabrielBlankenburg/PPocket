@@ -65,6 +65,11 @@
             return 'cd_usuario';
         }
         
+        public function getHash()
+        {
+            return $this->ds_hash;
+        }
+        
         
         public static function getJoins()
         {
