@@ -60,6 +60,11 @@ class Login extends CI_Controller {
 	        				'funcionario' => $funcionario,
 	        				'logado' => true);
 	        			$this->session->set_userdata($session_data);
+	        			if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
+	        				redirect('/tarefas/', 'refresh');
+	        			} else{
+	        				redirect('/projetos/', 'refresh');
+	        			}
 	        			
 	        		} else{
 	        			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
@@ -84,16 +89,6 @@ class Login extends CI_Controller {
 												  <strong>Falha!</strong> Usuario ou senha inválido. </div>');
         	redirect('/login/', 'refresh');
         }
-        
-        
-        // if($usuario){
-        //     $this->session->set_userdata("usuario_logado", $usuario);
-        //     $dados['msg_logado'] = "Logado com sucesso!";
-        //     redirect('painel', $dados);
-        // }else{
-        //     $dados['msg_erro'] = "Não foi possível fazer o Login!";
-        //     redirect('login', $dados);
-        // }
         
     }
     

@@ -33,7 +33,10 @@ h1 {
 }
 
 #container {
-	background-image: url("../assets/img/404.png");
+	
+	background-image: url("../../assets/img/404.png");
+    background-repeat: repeat-y;
+	height: 100%;
 }
 img{
 	width: 300px;
@@ -47,7 +50,7 @@ p {
 </head>
 <body>
 	<div id="container">
-		<h1><?php echo $heading; ?></h1>
+		<h1>404 Página não encontrada</h1>
 		<!--<img src="../../assets/img/404.png"></img>-->
 	</div>
 </body>
