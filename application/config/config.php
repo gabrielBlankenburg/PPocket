@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'https://admin-blankenburg.c9users.io/';
+$config['base_url'] = 'https://cms-renove-ihfernando.c9users.io/PPocket';
 
 /*
 |--------------------------------------------------------------------------

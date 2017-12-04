@@ -50,7 +50,7 @@ Vue.component('projetos-listar', {
                     <!-- Projeto Item Footer -->\
                     <div class="projeto-item_footer">\
                         <div class="row"><div class="btn btn-default btn-block btn-principal">\
-                            <a v-bind:href="'+"'"+baseUrl+"projetos/ver/'+"+'projeto.cd_projeto" class="text-danger"> Ver projeto </a>\
+                            <a v-bind:href="'+"'"+baseUrl+"projetos/info/'+"+'projeto.cd_projeto" class="text-danger"> Ver projeto </a>\
                         </div>\
                     </div>\
                 </div>'

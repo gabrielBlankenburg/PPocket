@@ -54,6 +54,10 @@ $route['default_controller'] = 'projetos';
 $route['login/'] = 'login/';
 $route['login/autenticar/'] = 'login/autenticar/';
 
+$route['projetos/ver/(:num)'] = 'projetos/edita_projeto/$1';
+$route['projetos/info/(:num)'] = 'projetos/info_projeto/$1';
+// $route['projetos/edit/(:num)'] = 'projetos/edita_projeto/$1';
+
 $route['clientes/ver/(:num)'] = 'clientes/edita_cliente/$1';
 $route['cargos/ver/(:num)'] = 'cargos/edita_cargo/$1';
 $route['servicos/ver/(:num)'] = 'servicos/edita_servico/$1';

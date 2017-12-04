@@ -7,7 +7,7 @@
         </div>  
         <div class="col-6">
             <div class="projetos-novo_wrapper__btn">
-                <a href="<?= base_url(); ?>projetos" class="btn btn-default btn-principal float-right">Voltar para projetos</a>
+                <a type="button" href="<?= base_url(); ?>projetos/info/<?= $projeto->getChavePrimariaValor() ?>"  class="btn btn-default btn-principal float-right" style="-webkit-appearance: none;">Voltar para projetos</a>
             </div>
         </div>
     </div>
@@ -58,43 +58,74 @@
                     <button type="button" class="btn btn-default btn-outline-danger modal-btn_close float-left" data-toggle="modal" data-target="#modal">Remover Projeto</button>
                 </div>
                 <div class="col">
-                    <button type="submit" class="btn btn-default btn-outline-success float-right">Atualizar Projeto</button>
+                    <button type="button" class="btn btn-default btn-outline-success float-right" data-toggle="modal" data-target="#modal-att">Atualizar Projeto</button>
                 </div>
             </div>
-            
+             <!-- Deseja salvar as alterações -->
+            <div id="modal-att" class="modal-ppocket" role="dialog">
+              <div class="modal-wrapper">
+                <div class="modal-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <h2 class="h3"><small>Tem</small> <br> <strong>Certeza?</strong></h2>
+                            </div>
+                            <div class="col">
+                                <p class="float-right modal-close modal-btn_close" data-dismiss="modal"><i class="fa fa-close"></i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="modal-body">-->
+                <!--</div> -->
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-outline-warning float-left" data-dismiss="modal">Cancelar</button>
+                            </div>
+                            <div class="col">
+                                <input type="submit" class="btn btn-outline-info float-right"  value="Atualizar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
         </form>
     </div>
 </div>
     
-    <!-- Modal -->
-    <div id="modal" class="modal-ppocket" role="dialog">
-      <div class="modal-wrapper">
-        <div class="modal-header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <h2 class="h3"><small>Tem</small> <br> <strong>Certeza?</strong></h2>
-                    </div>
-                    <div class="col">
-                        <p class="float-right modal-close modal-btn_close" data-dismiss="modal"><i class="fa fa-close"></i></p>
-                    </div>
+<!-- Modal -->
+<div id="modal" class="modal-ppocket" role="dialog">
+  <div class="modal-wrapper">
+    <div class="modal-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <h2 class="h3"><small>Tem</small> <br> <strong>Certeza?</strong></h2>
+                </div>
+                <div class="col">
+                    <p class="float-right modal-close modal-btn_close" data-dismiss="modal"><i class="fa fa-close"></i></p>
                 </div>
             </div>
         </div>
-       <!--  <div class="modal-body">
-            <p>Isso irá remover o cliente definitivamente!</p>
-        </div> -->
-        <div class="modal-footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-warning float-left" data-dismiss="modal">Cancelar</button>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-outline-danger float-right" id="remover" data-dismiss="modal">Remover</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
     </div>
+   <!--  <div class="modal-body">
+        <p>Isso irá remover o cliente definitivamente!</p>
+    </div> -->
+    <div class="modal-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-outline-warning float-left" data-dismiss="modal">Cancelar</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-outline-danger float-right" id="remover" data-dismiss="modal">Remover</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
