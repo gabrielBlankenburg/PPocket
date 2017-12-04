@@ -364,8 +364,8 @@ class Tarefas extends CI_Controller
 			}
 			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
 			
-			$condicoes = array(Funcionario::getChavePrimariaNome() => $cd_funcionario);
-			$query_funcionario = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes, Funcionario::getJoins());
+			$condicoes = array(Funcionario::getChavePrimariaNomeFilho() => $cd_funcionario);
+			$query_funcionario = $this->querydao->selectWhere(Funcionario::getClassNameFilho(), $condicoes, Funcionario::getJoins());
 			
 			// Não tiver exatamente um match significa que deu algum erro
 			if (count($query_funcionario) == 1){
@@ -379,8 +379,15 @@ class Tarefas extends CI_Controller
 				$cd_cpf = $query_funcionario[0]['cd_cpf'];
 				$cd_funcionario = $query_funcionario[0]['cd_funcionario'];
 				
+				$cd_permissao = $query_funcionario[0]['cd_permissao'];
+				$ds_email_corporacional = $query_funcionario[0]['ds_email_corporacional'];
+				$ds_hash = $query_funcionario[0]['ds_hash'];
+				$ic_primeiro_acesso = $query_funcionario[0]['ic_primeiro_acesso'];
+				$cd_usuario = $query_funcionario[0]['cd_usuario'];
+				
 				$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
-												$dt_nascimento, $cd_rg, $cd_cpf, $cargoEscolhido, $cd_funcionario);
+											$dt_nascimento, $cd_rg, $cd_cpf,$ds_email_corporacional, 
+											$ic_primeiro_acesso, $ds_hash, $cd_permissao, $cargo, $cd_funcionario, $cd_usuario);
 				$cargos = $this->querydao->selectAll(Cargo::getClassName());
 			} else{
 				echo 'nao encontrado'; die;
@@ -472,8 +479,8 @@ class Tarefas extends CI_Controller
 			}
 			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
 			
-			$condicoes = array(Funcionario::getChavePrimariaNome() => $cd_funcionario);
-			$query_funcionario = $this->querydao->selectWhere(Funcionario::getClassName(), $condicoes, Funcionario::getJoins());
+			$condicoes = array(Funcionario::getClassNameFilho().'.'.Funcionario::getChavePrimariaNomeFilho() => $cd_funcionario);
+			$query_funcionario = $this->querydao->selectWhere(Funcionario::getClassNameFilho(), $condicoes, Funcionario::getJoins());
 			
 			// Não tiver exatamente um match significa que deu algum erro
 			if (count($query_funcionario) == 1){
@@ -487,8 +494,15 @@ class Tarefas extends CI_Controller
 				$cd_cpf = $query_funcionario[0]['cd_cpf'];
 				$cd_funcionario = $query_funcionario[0]['cd_funcionario'];
 				
+				$cd_permissao = $query_funcionario[0]['cd_permissao'];
+				$ds_email_corporacional = $query_funcionario[0]['ds_email_corporacional'];
+				$ds_hash = $query_funcionario[0]['ds_hash'];
+				$ic_primeiro_acesso = $query_funcionario[0]['ic_primeiro_acesso'];
+				$cd_usuario = $query_funcionario[0]['cd_usuario'];
+				
 				$funcionario = new Funcionario($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular,
-												$dt_nascimento, $cd_rg, $cd_cpf,  $cargoEscolhido, $cd_funcionario);
+											$dt_nascimento, $cd_rg, $cd_cpf,$ds_email_corporacional, 
+											$ic_primeiro_acesso, $ds_hash, $cd_permissao, $cargo, $cd_funcionario, $cd_usuario);
 				$cargos = $this->querydao->selectAll(Cargo::getClassName());
 			} else{
 				echo 'nao encontrado'; die;
