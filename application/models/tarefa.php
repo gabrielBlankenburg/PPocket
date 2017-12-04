@@ -28,7 +28,7 @@ class Tarefa implements Serializablee
         $dados['ic_concluido'] = $this->ic_concluido;
         $dados['cd_servico'] = $this->servico->getChavePrimariaValor();
         $dados['cd_projeto'] = $this->projeto->getChavePrimariaValor();
-        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValor();
+        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValorFilho();
         
         return $dados;
     }
@@ -39,8 +39,8 @@ class Tarefa implements Serializablee
         $servico = array('tabela_nome' => Servico::getClassName(),
                         'on' => 'tarefa.cd_servico = '.Servico::getClassName().'.'.Servico::getChavePrimariaNome());
                         
-        $funcionario = array('tabela_nome' => Funcionario::getClassName(),
-                        'on' => 'tarefa.cd_funcionario = '.Funcionario::getClassName().'.'.Funcionario::getChavePrimariaNome());
+        $funcionario = array('tabela_nome' => Funcionario::getClassNameFilho(),
+                        'on' => 'tarefa.cd_funcionario = '.Funcionario::getClassNameFilho().'.'.Funcionario::getChavePrimariaNomeFilho());
                         
         $projeto = array('tabela_nome' => Projeto::getClassName(),
                         'on' => 'tarefa.cd_projeto = '.Projeto::getClassName().'.'.Projeto::getChavePrimariaNome());
@@ -74,12 +74,17 @@ class Tarefa implements Serializablee
     
     public function getChaveFuncionario()
     {
-        return $this->funcionario->getChavePrimariaValor();
+        return $this->funcionario->getChavePrimariaValorFilho();
     }
     
     public function addChavePrimaria($cd_tarefa)
     {
         $this->cd_tarefa = $cd_tarefa;
+    }
+    
+    public function getFuncionario()
+    {
+        return $this->funcionario;
     }
     
     public function getAll()
@@ -93,7 +98,7 @@ class Tarefa implements Serializablee
         $dados['nm_servico'] = $this->servico->getNomeServico();
         $dados['cd_servico'] = $this->servico->getChavePrimariaValor();
         $dados['nm_funcionario'] = $this->funcionario->getNomeFuncionario();
-        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValor();
+        $dados['cd_funcionario'] = $this->funcionario->getChavePrimariaValorFilho();
         
         return $dados;
     }
