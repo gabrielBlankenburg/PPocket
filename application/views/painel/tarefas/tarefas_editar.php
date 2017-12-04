@@ -54,6 +54,13 @@
                         <?php } ?>
                     </select>
                 </div>
+                
+                <input type="hidden" name="cd_permissao" value="<?= $tarefa->getFuncionario()->getPermissao(); ?>" />
+                <input type="hidden" name="ic_primeiro_acesso" value="<?= $tarefa->getFuncionario()->getPrimeiroAcesso(); ?>" />
+                <input type="hidden" name="cd_usuario" value="<?= $tarefa->getFuncionario()->getChavePrimariaValor(); ?>" />
+                <input type="hidden" name="ds_hash" value="<?= $tarefa->getFuncionario()->getHash(); ?>" />
+                <input type="hidden" name="ds_email_corporacional" value="<?= $tarefa->getFuncionario()->getEmailUsuario(); ?>" />
+                
             </div>
             <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Tarefa</button>
