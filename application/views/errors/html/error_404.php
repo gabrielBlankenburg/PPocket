@@ -33,7 +33,7 @@ h1 {
 }
 
 #container {
-
+	background-image: url("../assets/img/404.png");
 }
 img{
 	width: 300px;
@@ -41,7 +41,7 @@ img{
 }
 p {
 	color: #fff;
-	background: url("../../assets/img/404.png");
+	
 }
 </style>
 </head>
