@@ -4,11 +4,11 @@
     class Usuario implements serializablee
     {
         
-        private $cd_usuario, $ds_email, $ic_primeiro_acesso, $ds_hash, $cd_permissao;
-        public function __construct($ds_email, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_usuario = null)
+        private $cd_usuario, $ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao;
+        public function __construct($ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_usuario = null)
         {
             $this->cd_usuario = $cd_usuario;
-            $this->ds_email = $ds_email;
+            $this->ds_email_corporacional = $ds_email_corporacional;
             $this->ds_hash = $ds_hash;
             $this->ic_primeiro_acesso = $ic_primeiro_acesso;
             $this->cd_permissao = $cd_permissao;
@@ -17,7 +17,7 @@
         public function getAll()
         {
             $dados['cd_usuario'] = $this->cd_usuario;
-            $dados['ds_email'] = $this->ds_email;
+            $dados['ds_email_corporacional'] = $this->ds_email_corporacional;
             $dados['ic_primeiro_acesso'] = $this->ic_primeiro_acesso;
             $dados['cd_permissao'] = $this->cd_permissao;
             
@@ -31,7 +31,7 @@
         
         public function getEmailUsuario()
         {
-            return $this->ds_email;
+            return $this->ds_email_corporacional;
         }
         
         public function getPrimeiroAcesso()
@@ -48,7 +48,7 @@
         public function toArray()
         {
             $dados['cd_usuario'] = $this->cd_usuario;
-            $dados['ds_email'] = $this->ds_email;
+            $dados['ds_email_corporacional'] = $this->ds_email_corporacional;
             $dados['ds_hash'] = $this->ds_hash;
             $dados['ic_primeiro_acesso'] = $this->ic_primeiro_acesso;
             $dados['cd_permissao'] = $this->cd_permissao;
@@ -73,7 +73,7 @@
             return array($joins); 
         }
         
-        public function getAuth()
+        public function getPermissao()
         {
             return $this->cd_permissao;
         }

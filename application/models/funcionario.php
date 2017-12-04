@@ -93,9 +93,12 @@ class Funcionario extends Usuario
     public static function getJoins()
     {
         // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
-        $joins = array('tabela_nome' => Cargo::getClassName(),
+        $joins = array();
+        $joins[] = array('tabela_nome' => Cargo::getClassName(),
                         'on' => 'funcionario.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome());
-        return array($joins);
+        $joins[] = array('tabela_nome' => Usuario::getClassName(),
+                        'on' => 'funcionario.cd_usuario = '.Usuario::getClassName().'.'.Usuario::getChavePrimariaNome());
+        return $joins;
     }
     
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
@@ -120,7 +123,7 @@ class Funcionario extends Usuario
         return $dados;
     }
     
-    public function getChavePrimariaValor()
+    public function getChavePrimariaValorFilho()
     {
         return $this->cd_funcionario;
     }
@@ -130,7 +133,7 @@ class Funcionario extends Usuario
         return 'funcionario';
     }
     
-    public static function getChavePrimariaNome()
+    public static function getChavePrimariaNomeFilho()
     {
         return 'cd_funcionario';
     }

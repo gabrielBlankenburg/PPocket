@@ -48,6 +48,10 @@
                 <input type="email" class="pp-form_input__text form-control" id="ds_email" name="ds_email" value="<?= $funcionario->getEmailFuncionario(); ?>" placeholder="funcionario@empresa.com">
             </div>
             <div class="form-group">
+                <label for="ds_email_corporacional">Email Corporacional</label>
+                <input type="email" class="pp-form_input__text form-control" id="ds_email_corporacional" name="ds_email_corporacional" value="<?= $funcionario->getEmailUsuario(); ?>" placeholder="funcionario@empresa.com">
+            </div>
+            <div class="form-group">
                 <label for="cd_telefone">Telefone</label>
                 <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_telefone" name="cd_telefone" value="<?= $funcionario->getTelefoneFuncionario(); ?>" placeholder="Telefone do Funcionário">
             </div>
@@ -67,6 +71,7 @@
                 <label for="cd_cpf">CPF</label>
                 <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" value="<?= $funcionario->getCpfFuncionario(); ?>" placeholder="CPF">
             </div>
+            <input type="hidden" name="ic_primeiro_acesso" value="<?= $funcionario->getPrimeiroAcesso(); ?>" />
             <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Funcionário</button>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Funcionário</button>
     
