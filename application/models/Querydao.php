@@ -9,33 +9,30 @@ class Querydao extends CI_Model
     // JSON o mesmo
     public function insert(Serializablee $tabela)
     {
+        $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
+        // Se inseriu com sucesso retorna o ultimo registro
+        if ($insert){
+            $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
+    		->limit(1)
+    		->get($tabela::getClassName())
+    		->row();
+        } else{
+            $resp = false;
+        }
         if (method_exists($tabela, 'toArrayFilho')){
-            $insertPai = $this->db->insert($tabela->getClassName(), $tabela->toArray());
-            if (!$insertPai){
-                return false;
-            }
+            $tabela->addChavePrimariaPai($resp->cd_usuario);
             $insert = $this->db->insert($tabela->getClassNameFilho(), $tabela->toArrayFilho());
             // Se inseriu com sucesso retorna o ultimo registro
             if ($insert){
-                $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
+                $resp = $this->db->order_by($tabela::getChavePrimariaNomeFilho(), "desc")
         		->limit(1)
         		->get($tabela::getClassNameFilho())
         		->row();
             } else{
                 $resp = false;
             }
-        } else{
-            $insert = $this->db->insert($tabela->getClassName(), $tabela->toArray());
-            // Se inseriu com sucesso retorna o ultimo registro
-            if ($insert){
-                $resp = $this->db->order_by($tabela::getChavePrimariaNome(), "desc")
-        		->limit(1)
-        		->get($tabela::getClassName())
-        		->row();
-            } else{
-                $resp = false;
-            }
         }
+        
         header('Content-Type: application/json');
         return $resp;
     }
@@ -54,9 +51,22 @@ class Querydao extends CI_Model
     // Pega os valores de uma tabela (que é informado pelo método toArray()), seleciona a chave primária e da update
     public function updateAll(Serializablee $tabela)
     {
-        $this->db->set($tabela->toArray());
-        $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
-        return $this->db->update($tabela::getClassName()); 
+        if (method_exists($tabela, 'toArrayFilho')){
+            $this->db->set($tabela->toArray());
+            $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+            $update = $this->db->update($tabela::getClassName()); 
+            if (!$update){
+                return false;
+            }
+            $this->db->set($tabela->toArrayFilho());
+            $this->db->where($tabela::getChavePrimariaNomeFilho(), $tabela->getChavePrimariaValorFilho());
+            return $this->db->update($tabela::getClassNameFilho());
+        } else{
+            $this->db->set($tabela->toArray());
+            $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
+            return $this->db->update($tabela::getClassName()); 
+        }
+        
     }
     
     // Seleciona dados específicos, o parâmetro condições é um array de condições, que segue a regra do CodeIgniter
@@ -73,6 +83,12 @@ class Querydao extends CI_Model
     // Pega a chave primaria e o valor dela, e remove esse dado
     public function remove(Serializablee $tabela)
     {
+        if (method_exists($tabela, 'toArrayFilho')){
+            $this->db->where($tabela::getChavePrimariaNomeFilho(), $tabela->getChavePrimariaValorFilho());
+            if (!$this->db->delete($tabela::getClassNameFilho())){
+                return false;
+            }
+        }
         $this->db->where($tabela::getChavePrimariaNome(), $tabela->getChavePrimariaValor());
         return $this->db->delete($tabela::getClassName());
     }

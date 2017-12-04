@@ -11,9 +11,9 @@ class Funcionario extends Usuario
     // Recebe um array contendo os dados
     public function __construct($nm_funcionario, $vl_salario, $ds_email, $cd_telefone, $cd_celular, $dt_nascimento, 
                                     $cd_rg, $cd_cpf, $ds_email_corporacional, $ic_primeiro_acesso, $ds_hash,
-                                    $cd_permissao, Cargo $cargo, $cd_funcionario = null)
+                                    $cd_permissao, Cargo $cargo, $cd_funcionario = null, $cd_usuario = null)
     {
-        parent::__construct($ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_funcionario);
+        parent::__construct($ds_email_corporacional, $ic_primeiro_acesso, $ds_hash, $cd_permissao, $cd_usuario);
         $this->cd_funcionario = $cd_funcionario;
         $this->nm_funcionario = $nm_funcionario;
         $this->cd_telefone = $cd_telefone;
@@ -93,9 +93,12 @@ class Funcionario extends Usuario
     public static function getJoins()
     {
         // Na chave 'on', concatena a chave o nome da tabela atual, o nome da classe do join e da foreign key
-        $joins = array('tabela_nome' => Cargo::getClassName(),
+        $joins = array();
+        $joins[] = array('tabela_nome' => Cargo::getClassName(),
                         'on' => 'funcionario.cd_cargo = '.Cargo::getClassName().'.'.Cargo::getChavePrimariaNome());
-        return array($joins);
+        $joins[] = array('tabela_nome' => Usuario::getClassName(),
+                        'on' => 'funcionario.cd_usuario = '.Usuario::getClassName().'.'.Usuario::getChavePrimariaNome());
+        return $joins;
     }
     
     // A chave primária foge do padrão porque chave primarias só podem ser adicionadas, nunca alteradas
@@ -116,11 +119,12 @@ class Funcionario extends Usuario
         $dados['cd_rg'] = $this->cd_rg;
         $dados['cd_cpf'] = $this->cd_cpf;
         $dados['cd_cargo'] = $this->cargo->getChavePrimariaValor();
+        $dados['cd_usuario'] = $this->getChavePrimariaValor();
         
         return $dados;
     }
     
-    public function getChavePrimariaValor()
+    public function getChavePrimariaValorFilho()
     {
         return $this->cd_funcionario;
     }
@@ -130,7 +134,7 @@ class Funcionario extends Usuario
         return 'funcionario';
     }
     
-    public static function getChavePrimariaNome()
+    public static function getChavePrimariaNomeFilho()
     {
         return 'cd_funcionario';
     }
