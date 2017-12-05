@@ -38,12 +38,15 @@ class Querydao extends CI_Model
     }
     
     // Busca todos os resultados da tabela específicada. se tiver joins, ele percorre todos e o aplica
-    public function selectAll($tabela_nome, $joins = null)
+    public function selectAll($tabela_nome, $joins = null, $order = null)
     {
         if (isset($joins)){
             foreach ($joins as $join) {
                 $this->db->join($join['tabela_nome'], $join['on']);
             }
+        }
+        if (isset($order)){
+            $this->db->order_by($order[0], $order[1]);
         }
         return $this->db->get($tabela_nome)->result_array();
     }
