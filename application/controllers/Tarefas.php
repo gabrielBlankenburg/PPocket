@@ -31,7 +31,7 @@ class Tarefas extends CI_Controller
 	{
 	    $dados['titulo'] = 'Tarefas';
 		if ($this->session->userdata('cd_permissao') != 1){
-			$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
+			$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins(), array('ic_concluido', 'desc'));
 		} else{
 			$condicoes = array('tarefa.cd_funcionario' => $this->session->userdata('cd_funcionario'));
 			$dados['query'] = $this->querydao->selectWhere(Tarefa::getClassName(), $condicoes, Tarefa::getJoins());
