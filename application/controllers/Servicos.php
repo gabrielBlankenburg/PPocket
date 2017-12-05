@@ -14,11 +14,11 @@ class Servicos extends CI_Controller
 										  <strong>Erro!</strong> Você deve estar logado para acessar essa página</div>');
 			redirect('/login/', 'refresh');
 		}
-		if ($this->session->userdata('permissao') == 1 || $this->session->userdata('permissao') == 2){
+		if ($this->session->userdata('cd_permissao') == 1 || $this->session->userdata('cd_permissao') == 2){
 			redirect('/tarefas/', 'refresh');
-		} else if($this->session->userdata('permissao') == 3){
+		} else if($this->session->userdata('cd_permissao') == 3){
 			redirect('/projetos/', 'refresh');
-		} else if ($this->session->userdata('permissao') == 4){
+		} else if ($this->session->userdata('cd_permissao') == 4){
 			redirect('/funcionarios/', 'refresh');
 		}
 	}
