@@ -43,17 +43,8 @@
                         </div>
                         <div class="col">
                             <p class="text-right msg-usuario"> 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                <i class="fa fa-user"></i> <?php $t->user ?> &nbsp;&nbsp;&nbsp;&nbsp; 
-                                <a href="<?= base_url(); ?>index.php/login/">
-=======
-                                <i class="fa fa-user"></i> Bem-vindo Marquinhos &nbsp;&nbsp;&nbsp;&nbsp; 
-=======
                                 <i class="fa fa-user"></i> Bem-vindo <?= $this->session->userdata('nm_funcionario'); ?> &nbsp;&nbsp;&nbsp;&nbsp; 
->>>>>>> origin/primeiro_acesso
                                 <a href="<?= base_url(); ?>/login/">
->>>>>>> novasMask
                                     <i class="fa fa-sign-out"></i> Sair</a>
                             </p>
                             <!-- <p class="text-right msg-usuario"> <i class="fa fa-user"></i> Sair </p> -->
