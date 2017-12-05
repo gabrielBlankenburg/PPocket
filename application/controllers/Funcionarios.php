@@ -63,6 +63,7 @@ class Funcionarios extends CI_Controller
         // Carrega o gerador de string para gerar a senha aleatória
         $this->load->helper('gerador_senha');
         $senha = gera_senha(30);
+        // $senha = '123';
         $ds_hash = password_hash($senha, PASSWORD_BCRYPT);
         
         $mgClient = new Mailgun($this->config->item('key_mail'));

@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = 'https://admin-blankenburg.c9users.io';
-$config['base_url'] = 'https://cms-renove-ihfernando.c9users.io/PPocket';
+$config['base_url'] = 'https://admin-blankenburg.c9users.io';
+// $config['base_url'] = 'https://cms-renove-ihfernando.c9users.io/PPocket';
 
 /*
 |--------------------------------------------------------------------------
