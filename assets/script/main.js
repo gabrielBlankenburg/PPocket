@@ -111,7 +111,7 @@ Vue.component('tarefas-listar', {
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"tarefas/ver/'+"+'tarefa.cd_tarefa">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Ver/Editar\
                             </span>\
                         </a>\
                     </td>\

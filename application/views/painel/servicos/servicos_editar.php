@@ -20,8 +20,8 @@
                 <input type="text" class="pp-form_input__text form-control" id="nm_servico" name="nm_servico" value="<?= $servico->getNomeServico(); ?>" placeholder="Nome do serviço">
                 <label class="pp-form_label" for="ds_servico">Descrição do Serviço</label>
                 <textarea class="pp-form_input__text form-control" id="ds_servico" name="ds_servico" placeholder="Descrição do serviço"><?= $servico->getDescricaoServico(); ?></textarea>
-                <label class="pp-form_label" for="vl_servico">Nome do Serviço</label>
-                <input type="number" class="pp-form_input__text form-control" id="vl_servico" name="vl_servico" value="<?= $servico->getValorServico(); ?>" placeholder="Valor estimado do serviço">
+                <label class="pp-form_label" for="vl_servico">Valor do Serviço</label>
+                <input type="text" class="pp-form_input__text form-control money" id="vl_servico" name="vl_servico" value="<?= $servico->getValorServico(); ?>" placeholder="Valor estimado do serviço">
                 <label class="pp-form_label" for="cd_cargo">Cargo</label>
                 <select class="pp-form_input__text form-control" name="cd_cargo" id="cd_cargo">
                     <option>Escolha uma opção</option>

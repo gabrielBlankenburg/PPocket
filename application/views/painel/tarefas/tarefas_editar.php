@@ -26,7 +26,7 @@
                     <option value="1" <?= $tarefa->getConcluido() == 1 ? 'selected' : '' ?>>Concluída</option>
                 </select>
                 <label class="pp-form_label" for="cd_projeto">Projeto</label>
-                <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" name="cd_projeto" id="cd_projeto">
+                <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" name="cd_projeto" id="cd_projeto" disabled>
                     <option>Escolha uma opção</option>
                     <?php foreach ($projetos as $projeto){ ?>
                         <option value="<?= $projeto['cd_projeto']; ?>" <?= $projeto['cd_projeto'] == $tarefa->getChaveProjeto() ? 'selected' : '' ?>><?= $projeto['nm_projeto']; ?></option>
@@ -34,7 +34,7 @@
                 </select>    
                 <div class="form-group">
                     <label class="pp-form_label" class="pp-form_label" for="cd_servico">Serviço</label>
-                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" id="cd_servico" name="cd_servico">
+                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" id="cd_servico" name="cd_servico" disabled>
                         <option value="0" selected>Escolha um serviço</option>
                         <?php foreach ($servicos as $servico) { ?>
                             <option value="<?= $servico['cd_servico'] ?>" <?= $servico['cd_servico'] == $tarefa->getChaveServico() ? 'selected' : '' ?>>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" class="pp-form_label" for="cd_funcionario">Funcionário</label>
-                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text pp-form_input__text form-control" id="cd_funcionario" name="cd_funcionario">
+                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text pp-form_input__text form-control" id="cd_funcionario" name="cd_funcionario" disabled>
                         <option value="0" selected>Escolha um funcionário</option>
                         <?php foreach ($funcionarios as $funcionario) { ?>
                             <option value="<?= $funcionario['cd_funcionario'] ?>" <?= $funcionario['cd_funcionario'] == $tarefa->getChaveFuncionario() ? 'selected' : '' ?>>
