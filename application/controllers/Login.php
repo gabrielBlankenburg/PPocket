@@ -58,11 +58,14 @@ class Login extends CI_Controller {
 	        			// Cria uma session com o usuario e funcionário
 	        			$session_data = array(
 	        				'cd_funcionario' => $funcionario->getChavePrimariaValorFilho(),
+	        				'cd_usuario' => $funcionario->getChavePrimariaValor(),
 	        				'cd_permissao' => $funcionario->getPermissao(),
 	        				'nm_funcionario' => $funcionario->getNomeFuncionario(),
 	        				'logado' => true);
 	        			$this->session->set_userdata($session_data);
-	        			if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
+	        			if ($funcionario->getPrimeiroAcesso()){
+							$this->load->view('painel/nova_senha');
+	        			}else if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
 	        				redirect('/tarefas/', 'refresh');
 	        			} else if ($funcionario->getPermissao() == 3 || $funcionario->getPermissao() == 5){
 	        				redirect('/projetos/', 'refresh');
@@ -100,6 +103,91 @@ class Login extends CI_Controller {
         }
         
     }
+    
+    public function novaSenha()
+    {
+    	$senha = $this->input->post('senha');
+    	$senha_verifica = $this->input->post('senha_verifica');
+    	
+    	if (strcmp($senha, $senha_verifica) != 0){
+    		$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Falha!</strong> As senhas não conferem. </div>');
+			$this->load->view('painel/nova_senha');
+    	} else{
+    		$ds_hash = password_hash($senha, PASSWORD_BCRYPT);
+    		$condicoes = array('usuario.cd_usuario' => $this->session->userdata('cd_usuario'));
+	        $query = $this->querydao->selectWhere(Usuario::getClassName(), $condicoes); // acessa a função buscaPorEmailSenha do modelo
+			
+	        if (isset($query) && !empty($query)){
+	        	// Verifica se batem login e senha
+	        	$usuario = new Usuario($query[0]['ds_email_corporacional'], $query[0]['ic_primeiro_acesso'], $query[0]['ds_hash'],
+	        	$query[0]['cd_permissao'], $query[0]['cd_usuario']);
+	        	// Busca o funcionário
+	        	$condicoesFuncionario = array('usuario.cd_usuario' => $usuario->getChavePrimariaValor());
+	        	$queryFuncionario = $this->querydao->selectWhere(Funcionario::getClassNameFilho(), $condicoesFuncionario, 
+	        														Funcionario::getJoins());
+	        	
+	        	if (isset($queryFuncionario) && !empty($queryFuncionario)){
+	        		// Cria uma instância do cargo
+	        		$cargo = new Cargo($queryFuncionario[0]['nm_cargo'], $queryFuncionario[0]['cd_cargo']);
+	        		// Cria uma instância de funcionário
+	        		$funcionario = new Funcionario($queryFuncionario[0]['nm_funcionario'], $queryFuncionario[0]['vl_salario'],
+	        										$queryFuncionario[0]['ds_email'], $queryFuncionario[0]['cd_telefone'],
+	        										$queryFuncionario[0]['cd_celular'], $queryFuncionario[0]['dt_nascimento'],
+	        										$queryFuncionario[0]['cd_rg'], $queryFuncionario[0]['cd_cpf'], 
+	        										$query[0]['ds_email_corporacional'], 0,
+	        										$ds_hash, $query[0]['cd_permissao'], $cargo, 
+	        										$queryFuncionario[0]['cd_funcionario'], $query[0]['cd_usuario']);
+	        		if (isset($funcionario)){
+	        			$update = $this->querydao->updateAll($funcionario);
+	        			if (!$update){
+	        					$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        			}
+	        			// Cria uma session com o usuario e funcionário
+	        			$session_data = array(
+	        				'cd_funcionario' => $funcionario->getChavePrimariaValorFilho(),
+	        				'cd_permissao' => $funcionario->getPermissao(),
+	        				'nm_funcionario' => $funcionario->getNomeFuncionario(),
+	        				'logado' => true);
+	        			$this->session->set_userdata($session_data);
+	        			if ($funcionario->getPrimeiroAcesso()){
+							$this->load->view('painel/nova_senha');
+	        			}else if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
+	        				redirect('/tarefas/', 'refresh');
+	        			} else if ($funcionario->getPermissao() == 3 || $funcionario->getPermissao() == 5){
+	        				redirect('/projetos/', 'refresh');
+	        			} else if ($funcionario->getPermissao() == 5){
+	        				redirect('/funcionarios/', 'refresh');
+	        			} else{
+	        				$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        				redirect('/login/', 'refresh');
+	        			}
+	        			
+	        		} else{
+	        			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        			redirect('/login/', 'refresh');
+	        		} 
+	        		
+	        	} else{
+	        		$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+        			redirect('/login/', 'refresh');
+        		}	
+	        } else{
+	        	$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+													  <strong>Falha!</strong> Usuario ou senha inválido. </div>');
+	        	redirect('/login/', 'refresh');
+	        }
+    	}
+    }
+    
     
     // public function criaAdmin()
     // {
