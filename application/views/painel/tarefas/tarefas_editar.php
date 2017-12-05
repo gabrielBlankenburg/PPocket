@@ -62,7 +62,9 @@
                 <input type="hidden" name="ds_email_corporacional" value="<?= $tarefa->getFuncionario()->getEmailUsuario(); ?>" />
                 
             </div>
-            <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
+            <?php if ($this->session->userdata('cd_permissao') != 1){ ?>
+                <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
+            <?php } ?>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Tarefa</button>
         </form>
         <!-- Modal -->
