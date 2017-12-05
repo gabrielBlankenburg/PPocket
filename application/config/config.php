@@ -521,3 +521,9 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+// Mail
+$config['key_mail'] = 'key-2e1004c73e6a460fe2ce249190b4a773';
+$config['domain_mail'] = 'sandbox8c24ecd2ddf847fb9a0441b6487f6675.mailgun.org';
+$config['from_mail'] = 'PPocket Team <postmaster@sandbox8c24ecd2ddf847fb9a0441b6487f6675.mailgun.org>';

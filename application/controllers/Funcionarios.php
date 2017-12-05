@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require 'vendor/autoload.php';
+use Mailgun\Mailgun;
+$mailgun = new Mailgun('api_key', new \Http\Adapter\Guzzle6\Client());
 
 class Funcionarios extends CI_Controller 
 {
@@ -62,6 +65,9 @@ class Funcionarios extends CI_Controller
         $senha = gera_senha(30);
         $ds_hash = password_hash($senha, PASSWORD_BCRYPT);
         
+        $mgClient = new Mailgun($this->config->item('key_mail'));
+		$domain = $this->config->item('domain_mail');
+        
 		
 		// Verifica se existe um cargo com o cd_cargo informado
 		$condicoes = array(Cargo::getChavePrimariaNome() => $cd_cargo);
@@ -86,7 +92,16 @@ class Funcionarios extends CI_Controller
 		} else{
 			echo false;
 		}
-		
+		$html = '<h1>Olá '.$funcionario->getNomeFuncionario().'</h1>';
+		$html .= '<br><br> Para logar no <strong>PPocket</strong> basta entrar com seu email'.
+					$funcionario->getEmailUsuario().' e a senha temporária: '.$senha.' .';
+		$html .= '<br> <strong>Lembre-se de trocar a senha assim que logar.</strong>';
+		$html .= '<br><br> Equipe PPocket.';
+		$result = $mgClient->sendMessage("$domain",
+		array('from'    => $this->config->item('from_mail'),
+		    'to'      => 'gabriel <gabriel.blankenburg.p.silva@gmail.com>',
+		    'subject' => 'Hello gabriel',
+		    'html'    => $html));
 		$retorno = $funcionario->getAll();
 		echo json_encode($retorno, JSON_UNESCAPED_SLASHES);
 	}

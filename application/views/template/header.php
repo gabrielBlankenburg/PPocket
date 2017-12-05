@@ -44,7 +44,7 @@
                         <div class="col">
                             <p class="text-right msg-usuario"> 
                                 <i class="fa fa-user"></i> Bem-vindo Marquinhos &nbsp;&nbsp;&nbsp;&nbsp; 
-                                <a href="<?= base_url(); ?>index.php/login/">
+                                <a href="<?= base_url(); ?>/login/">
                                     <i class="fa fa-sign-out"></i> Sair</a>
                             </p>
                             <!-- <p class="text-right msg-usuario"> <i class="fa fa-user"></i> Sair </p> -->
