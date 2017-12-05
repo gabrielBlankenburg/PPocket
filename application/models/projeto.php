@@ -7,10 +7,10 @@ require_once APPPATH.'models/tarefa.php';
 require_once APPPATH.'models/MuitosParaMuitos.php';
 class Projeto implements Serializablee, MuitosParaMuitos
 {
-    private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $cliente, $servicos, $ic_concluido, $vl_total;
+    private $cd_projeto, $nm_projeto, $dt_inicio, $dt_termino, $ds_projeto, $cliente, $servicos;
     
     // Recebe um array contendo os dados
-    public function __construct($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $ic_concluido, $vl_total, Cliente $cliente, 
+    public function __construct($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, Cliente $cliente, 
                                 $servicos = null, $cd_projeto = null)
     {
         $this->cd_projeto = $cd_projeto;
@@ -19,8 +19,6 @@ class Projeto implements Serializablee, MuitosParaMuitos
         $this->dt_inicio = $dt_inicio;
         $this->dt_termino = $dt_termino;
         $this->ds_projeto = $ds_projeto;
-        $this->ic_aberto = $ic_concluido;
-        $this->vl_total = $vl_total;
         $this->servicos = array();
         if (isset($servicos)){
             foreach ($servicos as $servico) {
@@ -35,8 +33,6 @@ class Projeto implements Serializablee, MuitosParaMuitos
         $dados['dt_inicio'] = $this->dt_inicio;
         $dados['dt_termino'] = $this->dt_termino;
         $dados['ds_projeto'] = $this->ds_projeto;
-        $dados['ic_concluido'] = $this->ic_concluido;
-        $dados['vl_total'] = $this->vl_total;
         $dados['cd_cliente'] = $this->cliente->getChavePrimariaValor();
         
         return $dados;
@@ -109,16 +105,6 @@ class Projeto implements Serializablee, MuitosParaMuitos
         return $this->servicos;
     }
     
-    public function getValorTotal()
-    {
-        return $this->vl_total;
-    }
-    
-    public function getConcluido()
-    {
-        return $this->ic_concluido;
-    }
-    
     public function getAll()
     {
         $dados['cd_projeto'] = $this->cd_projeto;
@@ -126,8 +112,6 @@ class Projeto implements Serializablee, MuitosParaMuitos
         $dados['dt_inicio'] = $this->dt_inicio;
         $dados['dt_termino'] = $this->dt_termino;
         $dados['ds_projeto'] = $this->ds_projeto;
-        $dados['ic_concluido'] = $this->ic_concluido;
-        $dados['vl_total'] = $this->vl_total;
         $dados['cd_cliente'] = $this->cliente->getChavePrimariaValor();
         $dados['nm_cliente'] = $this->cliente->getNomeCliente();
         
@@ -187,5 +171,4 @@ class Projeto implements Serializablee, MuitosParaMuitos
     }
     
 }
-
 ?>

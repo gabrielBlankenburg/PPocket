@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 // Faz as mesmas coisas que os outros controllers, porém é maior pois depende de mais instancias
 class Projetos extends CI_Controller 
 {
@@ -56,8 +55,6 @@ class Projetos extends CI_Controller
 			$dt_termino = $query[0]['dt_termino']; 
 			$ds_projeto = $query[0]['ds_projeto'];
 			$cd_cliente = $query[0]['cd_cliente'];
-			$ic_concluido = $query[0]['ic_concluido'];
-			$vl_total = $query[0]['vl_total'];
 			
 			$condicoes_cliente = array(Cliente::getChavePrimariaNome() => $cd_cliente);
 			$query_cliente = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes_cliente);
@@ -97,7 +94,7 @@ class Projetos extends CI_Controller
 					$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
 				}
 			}
-			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $ic_concluido, $vl_total, $cliente, $servicos, $cd_projeto);
+			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
 			
 		} else{
 			echo 'nao encontrado'; die;
@@ -119,7 +116,6 @@ class Projetos extends CI_Controller
         $dt_termino = $this->input->post('dt_termino');       
 		$ds_projeto = $this->input->post('ds_projeto');
 		$cd_cliente = $this->input->post('cd_cliente');
-		
 		$servicos = array();
 		
 		$condicoes = array(Cliente::getChavePrimariaNome() => $cd_cliente);
@@ -187,8 +183,6 @@ class Projetos extends CI_Controller
 			$dt_termino = $query[0]['dt_termino']; 
 			$ds_projeto = $query[0]['ds_projeto'];
 			$cd_cliente = $query[0]['cd_cliente'];
-			$ic_concluido = $query[0]['ic_concluido'];
-			$vl_total = $query[0]['vl_total'];
 			
 			$condicoes_cliente = array(Cliente::getChavePrimariaNome() => $cd_cliente);
 			$query_cliente = $this->querydao->selectWhere(Cliente::getClassName(), $condicoes_cliente);
@@ -228,7 +222,7 @@ class Projetos extends CI_Controller
 					$servicos[] = new Servico($nm_servico, $ds_servico, $vl_servico, $cargo, $cd_servico);
 				}
 			}
-			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $ic_concluido, $vl_total, $cliente, $servicos, $cd_projeto);
+			$projeto = new Projeto($nm_projeto, $ds_projeto, $dt_inicio, $dt_termino, $cliente, $servicos, $cd_projeto);
 			
 		} else{
 			echo 'nao encontrado'; die;
@@ -357,5 +351,4 @@ class Projetos extends CI_Controller
 		}
 	}
 }
-
 ?>
