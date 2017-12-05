@@ -43,7 +43,7 @@
                         </div>
                         <div class="col">
                             <p class="text-right msg-usuario"> 
-                                <i class="fa fa-user"></i> Bem-vindo Marquinhos &nbsp;&nbsp;&nbsp;&nbsp; 
+                                <i class="fa fa-user"></i> <?php $t->user ?> &nbsp;&nbsp;&nbsp;&nbsp; 
                                 <a href="<?= base_url(); ?>index.php/login/">
                                     <i class="fa fa-sign-out"></i> Sair</a>
                             </p>

@@ -8,17 +8,11 @@ Vue.component('clientes-listar', {
                     <td>{{ cliente.nm_responsavel }}</td>\
                     <td>{{ cliente.ds_responsavel_email }}</td>\
                     <td>\
-                        <span class="text-warning">\
-                            <i class="fa fa-envelope-o"></i>\
-                        </span>\
                         <a v-bind:href="'+"'"+baseUrl+"clientes/ver/'+"+'cliente.cd_cliente">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o"></i>\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
                             </span>\
                         </a>\
-                        <span class="text-danger">\
-                            <i class="fa fa-window-close-o"></i>\
-                            </span>\
                     </td>\
                 </tr>'
 });
@@ -64,12 +58,9 @@ Vue.component('cargos-listar', {
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"cargos/ver/'+"+'cargo.cd_cargo">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o"></i>\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
                             </span>\
                         </a>\
-                        <span class="text-danger">\
-                            <i class="fa fa-window-close-o"></i>\
-                        </span>\
                     </td>\
                 </tr>'
 });
@@ -84,12 +75,9 @@ Vue.component('funcionarios-listar', {
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"funcionarios/ver/'+"+'funcionario.cd_funcionario">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o"></i>\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
                             </span>\
                         </a>\
-                        <span class="text-danger">\
-                            <i class="fa fa-window-close-o"></i>\
-                        </span>\
                     </td>\
                 </tr>'
 });
@@ -105,12 +93,9 @@ Vue.component('servicos-listar', {
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"servicos/ver/'+"+'servico.cd_servico">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o"></i>\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
                             </span>\
                         </a>\
-                        <span class="text-danger">\
-                            <i class="fa fa-window-close-o"></i>\
-                        </span>\
                     </td>\
                 </tr>'
 });
@@ -126,12 +111,9 @@ Vue.component('tarefas-listar', {
                     <td>\
                         <a v-bind:href="'+"'"+baseUrl+"tarefas/ver/'+"+'tarefa.cd_tarefa">\
                             <span class="text-info">\
-                                <i class="fa fa-pencil-square-o"></i>\
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar\
                             </span>\
                         </a>\
-                        <span class="text-danger">\
-                            <i class="fa fa-window-close-o"></i>\
-                        </span>\
                     </td>\
                 </tr>'
 });
