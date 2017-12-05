@@ -13,6 +13,18 @@ class Tarefas extends CI_Controller
 		require_once APPPATH.'models/tarefa.php';
 		require_once APPPATH.'models/funcionario.php';
 		$this->load->model('querydao');
+		
+		if (!$this->session->userdata('logado')){
+			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+										  <strong>Erro!</strong> Você deve estar logado para acessar essa página</div>');
+			redirect('/login/', 'refresh');
+		}
+		
+		if($this->session->userdata('permissao') == 3){
+			redirect('/projetos/', 'refresh');
+		} else if ($this->session->userdata('permissao') == 4){
+			redirect('/funcionarios/', 'refresh');
+		}
 	}
 	
 	public function index()

@@ -10,6 +10,7 @@ class Login extends CI_Controller {
 		require_once APPPATH.'models/funcionario.php';
 		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
+		$this->session->sess_destroy();
 	}
 	
 	public function index()
