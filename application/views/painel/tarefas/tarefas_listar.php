@@ -6,11 +6,13 @@
                     <h3> <small>Lista de</small> <br> <strong>Tarefas</strong> </h3>
                     <hr>
                 </div>  
-                <div class="col-6">
-                    <div class="projetos-novo_wrapper__btn">
-                        <button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar Tarefa</button>
+                <?php if ($this->session->userdata('cd_permissao') != 1){ ?>
+                    <div class="col-6">
+                        <div class="projetos-novo_wrapper__btn">
+                            <button id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">Adicionar Tarefa</button>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
             <table class="table table-listar">
                 <thead class="table-listar_header">

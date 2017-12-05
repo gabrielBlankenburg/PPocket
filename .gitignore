@@ -38,3 +38,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .editorconfig
 php.ini_set
 php_errors.log
+sendgrid.env
+sendgrid.env
+sendgrid.env
+sendgrid.env

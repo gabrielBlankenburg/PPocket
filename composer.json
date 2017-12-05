@@ -12,7 +12,10 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"paragonie/random_compat": "^2.0"
+		"paragonie/random_compat": "^2.0",
+		"mailgun/mailgun-php": "^2.3",
+		"php-http/guzzle6-adapter": "^1.1",
+		"php-http/message": "^1.6"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

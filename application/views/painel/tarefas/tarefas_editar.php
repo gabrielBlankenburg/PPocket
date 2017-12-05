@@ -16,9 +16,9 @@
             <input type="hidden" name="cd_tarefa" value="<?= $tarefa->getChavePrimariaValor(); ?>"/>
             <div class="form-group">
                 <label class="pp-form_label" for="nm_tarefa">Tarefa</label> 
-                <input type="text" class="pp-form_input__text form-control" id="nm_tarefa" name="nm_tarefa" value="<?= $tarefa->getNomeTarefa(); ?>" placeholder="Nome da tarefa">
+                <input <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> type="text" class="pp-form_input__text form-control" id="nm_tarefa" name="nm_tarefa" value="<?= $tarefa->getNomeTarefa(); ?>" placeholder="Nome da tarefa">
                 <label class="pp-form_label" for="ds_tarefa">Descrição</label>
-                <textarea class="pp-form_input__text form-control" id="ds_tarefa" name="ds_tarefa"><?= $tarefa->getDescricaoTarefa(); ?></textarea>
+                <textarea <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" id="ds_tarefa" name="ds_tarefa"><?= $tarefa->getDescricaoTarefa(); ?></textarea>
                 <label class="pp-form_label" for="ic_concluido">Status</label>
                 <select class="pp-form_input__text form-control" name="ic_concluido" id="ic_concluido">
                     <option>Escolha uma opcao</option>
@@ -26,7 +26,7 @@
                     <option value="1" <?= $tarefa->getConcluido() == 1 ? 'selected' : '' ?>>Concluída</option>
                 </select>
                 <label class="pp-form_label" for="cd_projeto">Projeto</label>
-                <select class="pp-form_input__text form-control" name="cd_projeto" id="cd_projeto">
+                <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" name="cd_projeto" id="cd_projeto">
                     <option>Escolha uma opção</option>
                     <?php foreach ($projetos as $projeto){ ?>
                         <option value="<?= $projeto['cd_projeto']; ?>" <?= $projeto['cd_projeto'] == $tarefa->getChaveProjeto() ? 'selected' : '' ?>><?= $projeto['nm_projeto']; ?></option>
@@ -34,7 +34,7 @@
                 </select>    
                 <div class="form-group">
                     <label class="pp-form_label" class="pp-form_label" for="cd_servico">Serviço</label>
-                    <select class="pp-form_input__text form-control" id="cd_servico" name="cd_servico">
+                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text form-control" id="cd_servico" name="cd_servico">
                         <option value="0" selected>Escolha um serviço</option>
                         <?php foreach ($servicos as $servico) { ?>
                             <option value="<?= $servico['cd_servico'] ?>" <?= $servico['cd_servico'] == $tarefa->getChaveServico() ? 'selected' : '' ?>>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" class="pp-form_label" for="cd_funcionario">Funcionário</label>
-                    <select class="pp-form_input__text pp-form_input__text form-control" id="cd_funcionario" name="cd_funcionario">
+                    <select <?= $this->session->userdata('cd_permissao') == 1 ? 'disabled' : '' ?> class="pp-form_input__text pp-form_input__text form-control" id="cd_funcionario" name="cd_funcionario">
                         <option value="0" selected>Escolha um funcionário</option>
                         <?php foreach ($funcionarios as $funcionario) { ?>
                             <option value="<?= $funcionario['cd_funcionario'] ?>" <?= $funcionario['cd_funcionario'] == $tarefa->getChaveFuncionario() ? 'selected' : '' ?>>
@@ -62,7 +62,9 @@
                 <input type="hidden" name="ds_email_corporacional" value="<?= $tarefa->getFuncionario()->getEmailUsuario(); ?>" />
                 
             </div>
-            <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
+            <?php if ($this->session->userdata('cd_permissao') != 1){ ?>
+                <button type="button" class="btn btn-outline-danger float-left" data-toggle="modal" data-target="#modal">Remover Tarefa</button>
+            <?php } ?>
             <button type="submit" class="btn btn-outline-success float-right">Atualizar Tarefa</button>
         </form>
         <!-- Modal -->

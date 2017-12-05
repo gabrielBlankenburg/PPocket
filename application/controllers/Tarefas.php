@@ -20,9 +20,9 @@ class Tarefas extends CI_Controller
 			redirect('/login/', 'refresh');
 		}
 		
-		if($this->session->userdata('permissao') == 3){
+		if($this->session->userdata('cd_permissao') == 3){
 			redirect('/projetos/', 'refresh');
-		} else if ($this->session->userdata('permissao') == 4){
+		} else if ($this->session->userdata('cd_permissao') == 4){
 			redirect('/funcionarios/', 'refresh');
 		}
 	}
@@ -30,7 +30,12 @@ class Tarefas extends CI_Controller
 	public function index()
 	{
 	    $dados['titulo'] = 'Tarefas';
-		$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
+		if ($this->session->userdata('cd_permissao') != 1){
+			$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
+		} else{
+			$condicoes = array('tarefa.cd_funcionario' => $this->session->userdata('cd_funcionario'));
+			$dados['query'] = $this->querydao->selectWhere(Tarefa::getClassName(), $condicoes, Tarefa::getJoins());
+		}
 		$dados['projetos'] = $this->querydao->selectAll(Projeto::getClassName());
 		$dados['url'] = base_url().'tarefas/cadastra_tarefa_action';
 		
@@ -312,6 +317,7 @@ class Tarefas extends CI_Controller
 		$cd_projeto = $this->input->post('cd_projeto');
 		$cd_tarefa = $this->input->post('cd_tarefa');
 		// $cd_servico = $this->input->post('cd_servico');
+		
 		
 		// Serviço escolhido
 		$servicoEscolhido;

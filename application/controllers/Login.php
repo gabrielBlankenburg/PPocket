@@ -10,11 +10,11 @@ class Login extends CI_Controller {
 		require_once APPPATH.'models/funcionario.php';
 		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
-		$this->session->sess_destroy();
 	}
 	
 	public function index()
 	{
+		$this->session->sess_destroy();
 		$dados['titulo'] = 'Login | PPocket';
 		$dados['descricao'] = 'lorem ipsum';
 		$dados['url'] = base_url().'login/';
@@ -101,9 +101,9 @@ class Login extends CI_Controller {
         
     }
     
-    public function criaAdmin()
-    {
-    	$this->load->model('admin');
-    	$this->admin->cria();
-    }
+    // public function criaAdmin()
+    // {
+    // 	$this->load->model('admin');
+    // 	$this->admin->cria();
+    // }
 }
