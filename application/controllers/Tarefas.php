@@ -318,6 +318,7 @@ class Tarefas extends CI_Controller
 		$cd_tarefa = $this->input->post('cd_tarefa');
 		// $cd_servico = $this->input->post('cd_servico');
 		
+		
 		// Serviço escolhido
 		$servicoEscolhido;
 		$cargoEscolhido;
