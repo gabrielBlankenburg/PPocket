@@ -50,7 +50,7 @@
                             </ul>
                         </p>
                         <p> <a type="button" href="<?= base_url(); ?>projetos/ver/<?= $projeto->getChavePrimariaValor() ?>" class="btn btn-default btn-outline-info" style="-webkit-appearance: none;"> Editar Projeto </a> </p>
-                        <p> <button type="button" class="btn btn-default btn-outline-success"> Concluir Projeto </button> </p>
+                        
                     </div>
                 </div>
             </div>
