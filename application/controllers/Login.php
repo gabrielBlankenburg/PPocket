@@ -56,14 +56,22 @@ class Login extends CI_Controller {
 	        		if (isset($funcionario)){
 	        			// Cria uma session com o usuario e funcionário
 	        			$session_data = array(
-	        				'usuario' => $usuario,
-	        				'funcionario' => $funcionario,
+	        				'cd_funcionario' => $funcionario->getChavePrimariaValorFilho(),
+	        				'cd_permissao' => $funcionario->getPermissao(),
+	        				'nm_funcionario' => $funcionario->getNomeFuncionario(),
 	        				'logado' => true);
 	        			$this->session->set_userdata($session_data);
 	        			if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
 	        				redirect('/tarefas/', 'refresh');
-	        			} else{
+	        			} else if ($funcionario->getPermissao() == 3 || $funcionario->getPermissao() == 5){
 	        				redirect('/projetos/', 'refresh');
+	        			} else if ($funcionario->getPermissao() == 5){
+	        				redirect('/funcionarios/', 'refresh');
+	        			} else{
+	        				$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        				redirect('/login/', 'refresh');
 	        			}
 	        			
 	        		} else{

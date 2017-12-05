@@ -10,6 +10,8 @@ class Projetos extends CI_Controller
 		require_once APPPATH.'models/cliente.php';
 		require_once APPPATH.'models/projeto.php';
 		require_once APPPATH.'models/servico.php';
+		require_once APPPATH.'models/funcionario.php';
+		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
 	}
 	
