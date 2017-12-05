@@ -30,7 +30,12 @@ class Tarefas extends CI_Controller
 	public function index()
 	{
 	    $dados['titulo'] = 'Tarefas';
-		$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
+		if ($this->session->userdata('cd_permissao') != 1){
+			$dados['query'] = $this->querydao->selectAll(Tarefa::getClassName(), Tarefa::getJoins());
+		} else{
+			$condicoes = array('tarefa.cd_funcionario' => $this->session->userdata('cd_funcionario'));
+			$dados['query'] = $this->querydao->selectWhere(Tarefa::getClassName(), $condicoes, Tarefa::getJoins());
+		}
 		$dados['projetos'] = $this->querydao->selectAll(Projeto::getClassName());
 		$dados['url'] = base_url().'tarefas/cadastra_tarefa_action';
 		
