@@ -11,6 +11,17 @@ class Funcionarios extends CI_Controller
 		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
 		
+		if (!$this->session->userdata('logado')){
+			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+										  <strong>Erro!</strong> Você deve estar logado para acessar essa página</div>');
+			redirect('/login/', 'refresh');
+		}
+		if ($this->session->userdata('permissao') == 1 || $this->session->userdata('permissao') == 2){
+			redirect('/tarefas/', 'refresh');
+		} else if($this->session->userdata('permissao') == 3){
+			redirect('/projetos/', 'refresh');
+		}
+		
 	}
 	
 	// Para a view, carrega também a lista de todos os cargos para poder mostrar na tag <select>

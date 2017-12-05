@@ -57,12 +57,27 @@
             <nav class="painel-sidebar_nav">
                 <h2> <i class="fa fa-bars"></i> Menu </h2>
                 <ul class="list-unstyled painel-sidebar_nav__ul">
-                    <a href="<?= base_url(); ?>projetos"><li><i class="fa fa-files-o"></i> Projetos</li></a>
-                    <a href="<?= base_url(); ?>cargos"><li><i class="fa fa-user-o"></i> Cargos</li></a>
-                    <a href="<?= base_url(); ?>clientes"><li><i class="fa fa-address-card-o"></i> Clientes</li></a>
-                    <a href="<?= base_url(); ?>servicos"><li><i class="fa fa-handshake-o"></i> Serviços</li></a>
-                    <a href="<?= base_url(); ?>funcionarios"><li><i class="fa fa-users"></i> Funcionários</li></a>
-                    <a href="<?= base_url(); ?>tarefas"><li><i class="fa fa-file-archive-o"></i> Tarefa</li></a>
+                    <?php if ($this->session->userdata('cd_permissao') == 3 || $this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>projetos"><li><i class="fa fa-files-o"></i> Projetos</li></a>
+                    <?php } ?>
+                    <?php if ($this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>cargos"><li><i class="fa fa-user-o"></i> Cargos</li></a>
+                    <?php } ?>
+                    <?php if ($this->session->userdata('cd_permissao') == 3 || $this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>clientes"><li><i class="fa fa-address-card-o"></i> Clientes</li></a>
+                    <?php } ?>
+                    <?php if ($this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>servicos"><li><i class="fa fa-handshake-o"></i> Serviços</li></a>
+                    <?php } ?>
+                    <?php if ($this->session->userdata('cd_permissao') == 4 || $this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>funcionarios"><li><i class="fa fa-address-card-o"></i> Funcionários</li></a>
+                    <?php } ?>
+                    <?php if ($this->session->userdata('cd_permissao') == 1 || 
+                                $this->session->userdata('cd_permissao') == 2 || $this->session->userdata('cd_permissao') == 5){ ?>
+                        <a href="<?= base_url(); ?>tarefas"><li><i class="fa fa-file-archive-o"></i> Tarefa</li></a>
+                    <?php } ?>
+                
+                    
                 </ul>
             </nav>
         </div>

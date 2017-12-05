@@ -10,6 +10,7 @@ class Login extends CI_Controller {
 		require_once APPPATH.'models/funcionario.php';
 		require_once APPPATH.'models/usuario.php';
 		$this->load->model('querydao');
+		$this->session->sess_destroy();
 	}
 	
 	public function index()
@@ -56,10 +57,23 @@ class Login extends CI_Controller {
 	        		if (isset($funcionario)){
 	        			// Cria uma session com o usuario e funcionário
 	        			$session_data = array(
-	        				'usuario' => $usuario,
-	        				'funcionario' => $funcionario,
+	        				'cd_funcionario' => $funcionario->getChavePrimariaValorFilho(),
+	        				'cd_permissao' => $funcionario->getPermissao(),
+	        				'nm_funcionario' => $funcionario->getNomeFuncionario(),
 	        				'logado' => true);
 	        			$this->session->set_userdata($session_data);
+	        			if ($funcionario->getPermissao() == 1 || $funcionario->getPermissao() == 2){
+	        				redirect('/tarefas/', 'refresh');
+	        			} else if ($funcionario->getPermissao() == 3 || $funcionario->getPermissao() == 5){
+	        				redirect('/projetos/', 'refresh');
+	        			} else if ($funcionario->getPermissao() == 5){
+	        				redirect('/funcionarios/', 'refresh');
+	        			} else{
+	        				$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
+												  <strong>Erro!</strong> Ocorreu um erro no sistema, 
+												  tente novamente mais tarde</div>');
+	        				redirect('/login/', 'refresh');
+	        			}
 	        			
 	        		} else{
 	        			$this->session->set_flashdata('autenticacao', '<div class="alert alert-danger">
@@ -84,16 +98,6 @@ class Login extends CI_Controller {
 												  <strong>Falha!</strong> Usuario ou senha inválido. </div>');
         	redirect('/login/', 'refresh');
         }
-        
-        
-        // if($usuario){
-        //     $this->session->set_userdata("usuario_logado", $usuario);
-        //     $dados['msg_logado'] = "Logado com sucesso!";
-        //     redirect('painel', $dados);
-        // }else{
-        //     $dados['msg_erro'] = "Não foi possível fazer o Login!";
-        //     redirect('login', $dados);
-        // }
         
     }
     
