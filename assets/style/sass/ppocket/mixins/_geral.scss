@@ -52,12 +52,16 @@
     background: $cor;
     cursor: pointer;
     text-align: center;
-    border: 2px solid $corHover;
-    color: $corFont;
+    border: 1px solid $cor;
+    color: #fff;
+    margin-top: 10px;
     transition: .5s ease-out;
+    padding-left: 15px;
+    padding-right: 15px;
     &:hover {
         background: $corHover;
-        color: $corFontHover;    
+        color: $corFontHover;   
+        border: 1px solid $corFontHover;
         transition: .2s ease-in;
     }
 }

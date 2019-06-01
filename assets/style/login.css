@@ -1,0 +1,238 @@
+/*
+
+ =========================================================
+ * Login PPocket - v1.0.0
+
+  Estilizacao da Pagina de Login do Sistema
+ =========================================================
+
+ */
+/*
+
+ =========================================================
+ * Base PPocket - v1.0.0
+
+ Contem a ligacaoo entre os mixins e arquivos de base.
+ Estrutura de Css Padrao.
+ =========================================================
+
+ */
+/* color */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Lato', "Helvetica", Arial, sans-serif; }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-weight: 400;
+  margin: 30px 0 15px; }
+
+h1, .h1 {
+  font-size: 3.2em; }
+
+h2, .h2 {
+  font-size: 2.6em; }
+
+h3, .h3 {
+  font-size: 1.825em;
+  line-height: 1.4;
+  margin: 20px 0 10px; }
+
+h4, .h4 {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.2em; }
+
+h5, .h5 {
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1.4em;
+  margin-bottom: 15px; }
+
+h6, .h6 {
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+p {
+  font-size: 16px;
+  line-height: 1.4em; }
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+  color: #9A9A9A;
+  font-weight: 300;
+  line-height: 1.4em; }
+
+h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
+  font-size: 60%; }
+
+small {
+  font-family: 'Muli', sans-serif; }
+
+/* ======= Funcoes ======= */
+/* ======= Estilo ======= */
+/* ======= Efeitos ======= */
+/* ======= Complementares ======= */
+html, body {
+  width: 100%;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-seif;
+  background: #121212;
+  color: #fff;
+  box-sizing: border-box; }
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 50px; }
+
+.btn-principal {
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #fd6f69;
+  color: #fd6f69;
+  transition: .5s ease-out; }
+  .btn-principal:hover {
+    background: #fd6f69;
+    color: #222222;
+    transition: .2s ease-in; }
+
+.btn-principal_full {
+  background: #fd6f69;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid transparent;
+  color: #222222;
+  transition: .5s ease-out; }
+  .btn-principal_full:hover {
+    background: transparent;
+    color: #fd6f69;
+    transition: .2s ease-in; }
+
+svg {
+  width: 130px;
+  position: relative;
+  left: 30%;
+  top: 90px;
+  animation: circle 20s infinite cubic-bezier(0.645, 0.045, 0.355, 1); }
+
+@keyframes circle {
+  1% {
+    transform: scale(1.1, 1.1); }
+  11% {
+    left: 30%;
+    top: 90px;
+    transform: scale(1); }
+  33% {
+    left: 30%;
+    top: 400px; }
+  55% {
+    left: 50%;
+    top: 400px; }
+  77% {
+    left: 60%;
+    top: 90px; }
+  99% {
+    left: 30%;
+    top: 90px;
+    transform: scale(1.1, 1.1); } }
+html, body {
+  height: 100%;
+  overflow: hidden; }
+
+.form-control::-moz-placeholder {
+  color: #fd6f69;
+  opacity: 0.4; }
+
+.form-control:-moz-placeholder {
+  color: #fd6f69;
+  opacity: 0.4; }
+
+.form-control::-webkit-input-placeholder {
+  color: #fd6f69;
+  opacity: 0.4; }
+
+.form-control:-ms-input-placeholder {
+  color: #fd6f69;
+  opacity: 0.4; }
+
+.login {
+  width: 100%;
+  height: 100%;
+  background: url("../img/login-bg3.png") no-repeat center center fixed;
+  background-size: cover; }
+  .login .login-wrapper {
+    width: 30%;
+    min-height: 200px;
+    height: auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: #222222;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 60px #1a1a1a;
+    -webkit-box-shadow: 0px 0px 60px #1a1a1a;
+    -moz-box-shadow: 0px 0px 60px #1a1a1a;
+    -ms-box-shadow: 0px 0px 60px #1a1a1a;
+    -o-box-shadow: 0px 0px 60px #1a1a1a; }
+    .login .login-wrapper .login-wrapper_titulo {
+      width: 100%;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      color: #fff; }
+      .login .login-wrapper .login-wrapper_titulo .login-titulo {
+        color: #fd6f69;
+        font-weight: 900;
+        margin-top: 0; }
+      .login .login-wrapper .login-wrapper_titulo p {
+        margin-left: -26%;
+        margin-bottom: 0; }
+    .login .login-wrapper .login-wrapper_form {
+      width: 100%;
+      height: auto; }
+      .login .login-wrapper .login-wrapper_form .login-form .login-form_label {
+        width: 100%; }
+      .login .login-wrapper .login-wrapper_form .login-form .login-form_input__text, .login .login-wrapper .login-wrapper_form .login-form .login-form_input__submit {
+        margin: 0 auto;
+        text-align: center; }
+      .login .login-wrapper .login-wrapper_form .login-form .login-form_input__text {
+        width: 60%;
+        background: transparent;
+        color: #fd6f69;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 0 40px #111; }
+        .login .login-wrapper .login-wrapper_form .login-form .login-form_input__text:focus {
+          background: #1a1a1a; }
+      .login .login-wrapper .login-wrapper_form .login-form .login-form_input__submit {
+        margin-top: 0px;
+        display: flex;
+        background: #fd6f69;
+        cursor: pointer;
+        text-align: center;
+        border: 2px solid #1a1a1a;
+        color: #1a1a1a;
+        transition: .5s ease-out; }
+        .login .login-wrapper .login-wrapper_form .login-form .login-form_input__submit:hover {
+          background: #1a1a1a;
+          color: #fd6f69;
+          transition: .2s ease-in; }
+      .login .login-wrapper .login-wrapper_form .login-form .login-form_p > small {
+        font-size: 65%;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 4; }
+        .login .login-wrapper .login-wrapper_form .login-form .login-form_p > small span {
+          text-decoration: underline; }
+        .login .login-wrapper .login-wrapper_form .login-form .login-form_p > small:hover {
+          color: #fff;
+          text-decoration: underline;
+          cursor: pointer; }
+
+/*# sourceMappingURL=login.css.map */

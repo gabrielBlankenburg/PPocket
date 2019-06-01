@@ -20,47 +20,47 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/style/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="<?= base_url(); ?>assets/style/normalize.min.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/style/login.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/2.0.1/css/froala_blocks.min.css" type="text/css" />    
 
 
 </head>
 <body>
-	<div class="login">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280.17 243.1">
-			<circle cx="168.1" cy="112.07" r="112.07" style="fill:#2a2a2a"/>
-		</svg>
-		<div class="container">
-			<div class="row">
-				<div class="login-wrapper">
-					<?php
+	<section class="fdb-block py-0">
+  <div class="container py-5 my-5" style="background-image: url(https://cdn.jsdelivr.net/gh/froala/design-blocks@2.0.1/dist/imgs/shapes/4.svg);">
+    <div class=" row justify-content-end">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5 text-left">
+        <div class="fdb-box">
+          <div class="row">
+          		<?php
 						if (!empty($this->session->flashdata('autenticacao'))){
 							echo $this->session->flashdata('autenticacao');
 						}
 					?>
-					<div class="row">
-						<div class="login-wrapper_titulo">
-							<p><small>Bem-vindo ao</small></p>
-							<h1 class="login-titulo">PPocket</h1>
-						</div>
-					</div>
-					<div class="row">
-						<div class="login-wrapper_form">
-							<form action="<?= base_url().'login/autenticar'; ?>" method="POST" class="form form-group login-form">
-								<label for="login" class="login-form_label">
-									<input type="text" name="email" class="form-control login-form_input__text" placeholder="Digite seu login..." required autofocus>
-								</label>
-								<label for="senha" class="login-form_label">
-									<input type="password" name="senha" class="form-control login-form_input__text" placeholder="Digite sua senha..." required>
-								</label>
-								<p class="login-form_p text-center">
-									<small>Não consegue entrar? <span>Resgatar acesso.</span></small>
-								</p>
-								<input type="submit" class="btn btn-default login-form_input__submit" value="Entrar	">
-							</form> <!-- Form -->
-						</div> <!-- Login Wrapper Form-->
-					</div>
-				</div> <!-- Login Wrapper -->
-			</div>
-		</div>
-		<!-- <div class="copyright">Desenvolvido por ApolloUX</div> -->
-	</div> <!-- Login -->
-	<!-- Fim Login -->
+            <div class="col">
+              <h1><img src="/assets/img/PPocket.png" class="img-responsive" style="width: 30px"></img>ocket</h1>
+              <p class="lead">Bem vindo a sua nova ferramenta para organização de pequenos projetos.</p>
+            </div>
+          </div>
+         <form action="<?= base_url().'login/autenticar'; ?>" method="POST" class="">
+
+          <div class="row">
+            <div class="col mt-4">
+            	
+									<input type="text" name="email" class="form-control" placeholder="Digite seu login..." required autofocus>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+									<input type="password" name="senha" class="form-control" placeholder="Digite sua senha..." required>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+								<input type="submit" class="btn btn-secondary" value="Entrar	">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

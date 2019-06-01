@@ -19,11 +19,12 @@
 	z-index: 2000;
 	overflow: auto;
 	background: rgba($complem, .8);
+		@include box-shadow(0,0,2px,$white-bg);
+
 	.modal-wrapper {
 		width: 50%;
 		min-height: 175px;
-		background: $secundaria;
-		@include box-shadow(0,0,60px, #111);
+		background:$white-bg;
 		@include center('horizontal');
 		-webkit-transform: translateX(-50%, 8%);
 	    -ms-transform: translateX(-50%, 8%);
@@ -39,7 +40,7 @@
 			}
 		} // Modal Header
 		.modal-body {
-			background: $complem;
+			background: $white-bg;
 		    height: auto;
 		    max-height: 80vh;
 		    overflow: auto;
@@ -59,57 +60,11 @@
 
 
 .pp-form{
-	text-align: center;
-	.pp-form_label {
+	color: $fonte-1;
+	margin-top: 10px;
+	label {
 		width: 100%;
-		padding-top: 30px;
+		padding-top: 10px;
 	} // pp Form Label
-	.pp-form_input__text, .pp-form_input__submit {
-	    margin: 0 auto;
-	    text-align: center;
-	}
-	.pp-form_input__text {
-		width: 100%;
-		background: transparent;
-		color: $primaria;
-	    border: none;
-	    border-radius: 20px;
-	    box-shadow: 0 0 40px #111;
-		// Setas number
-		input[type=number], input[tyepe=date], input[type=date], input[type=datetime-local], input[type=month], input[type=time] { 
-		  -moz-appearance: textfield !important;
-		  appearance: textfield !important;
-		  margin: 0; 
-		}
-		
-		input[type=number]::-webkit-inner-spin-button, 
-		input[type=number]::-webkit-outer-spin-button,
-		input[tyepe=date]::-webkit-inner-spin-button,
-		input[tyepe=date]::-webkit-outer-spin-button,
-		input[type=date], input[type=datetime-local], input[type=month], input[type=time]{ 
-		      -webkit-appearance: none !important; 
-		      margin: 0; 
-		}
-	    &:focus {
-			background: $complem;
-	    }
-	} // pp Form Input Text
-	.pp-form_input__submit {
-		margin-top: 0px;
-		display: flex;
-	    @include btnCor($primaria, $complem, $primaria, $complem);
-	} // pp Form Input Submit
-	.pp-form_p > small {
-		font-size: 65%;
-		color: rgba($fonte-1, .8);
-		line-height: 4;
-		span {
-			text-decoration: underline;
-		}
-		&:hover {
-			color: $fonte-1;
-			text-decoration: underline;
-			cursor: pointer;
-		}
-	}
+
 } // PP Form

@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label for="cd_rg">RG</label>
-                <input type="number" class="pp-form_input__text form-control rg" id="cd_rg" name="cd_rg" value="<?= $funcionario->getRgFuncionario(); ?>" placeholder="RG">
+                <input type="text" class="pp-form_input__text form-control rg" id="cd_rg" name="cd_rg" value="<?= $funcionario->getRgFuncionario(); ?>" placeholder="RG">
             </div>
             <div class="form-group">
                 <label for="cd_cpf">CPF</label>

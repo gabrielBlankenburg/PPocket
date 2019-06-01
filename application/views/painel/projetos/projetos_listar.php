@@ -1,5 +1,5 @@
-<div id="projetos">
-    	<div class="container general">
+<div id="projetos" class="fdb-block" >
+    	<div class="container general" >
     		<div class="row">
     			<div class="col-6">
     				<h3> <small>Projetos</small> <br> <strong>Cadastrados</strong> </h3>
@@ -11,7 +11,7 @@
     				</div>
     			</div>
     		</div>
-    		<div class="row">
+    		<div class="row justify-content-center" >
     		    <!-- Cria novos projetos -->
     		    <div class="projeto-item projeto-add" id="projeto-novo" class="btn btn-default btn-principal float-right" data-toggle="modal" data-target=".modal-ppocket">
                 	<!-- Projeto Item Header -->
@@ -28,7 +28,7 @@
                 </div>
                 <!-- Projetos já criados -->
                 <template>
-                    <projetos-listar v-for="item in conteudoListar" v-bind:projeto="item" v-bind:key="item.<?= Projeto::getChavePrimariaNome(); ?>"></projetos-listar>
+                    <projetos-listar class="justify-content-center" v-for="item in conteudoListar" v-bind:projeto="item" v-bind:key="item.<?= Projeto::getChavePrimariaNome(); ?>"></projetos-listar>
                 </template>
     		</div>	
     	</div>
@@ -78,7 +78,7 @@
                         </div>
                         <br>
                         <div class="row">
-                            <p class="d-block mx-auto text-danger remove-multiple-input"><i class="fa fa-close"></i> Remover serviço</p>
+                            <p class="d-block mx-auto remove-multiple-input"><i class="fa fa-close"></i> Remover serviço</p>
                         </div>
                         <div class="row">
                             <p class="d-block mx-auto text-primary add-multiple-input"><i class="fa fa-plus"></i> Adcionar serviço</p>

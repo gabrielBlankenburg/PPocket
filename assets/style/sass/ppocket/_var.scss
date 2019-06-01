@@ -1,14 +1,22 @@
 //Cores
-$primaria: #fd6f69;
-$secundaria: #222222;
-$complem: #1a1a1a;
+$primaria: #3381b8;
+$secundaria: #fff;
+$complem: #eee;
+$sidebar-bg: #fff;
+$border-color: #fd6f69;
+
+
+$icon-sidebar: rgb(154, 160, 172);
+$icon-active: #6e7687;
+
 
 //Var para o fundo
-$escuro-bg: #222;
+$escuro-bg: #fff;
 $claro-bg: #f5f5f5;
 
 //Fonte
-$fonte-1: #fff;
+$fonte-1: rgb(73, 80, 87);
+$fonte-2: #fff;
 
 
 $font-color: #66615b !default;
@@ -28,7 +36,7 @@ $medium-pale-bg: #F1EAE0 !default;
 $table-line-color: #CCC5B9 !default;
 $muted-color: #a49e93 !default;
 
-$black-bg: rgba(30, 30, 30, .97) !default;
+$black-bg: #fff !default;
 
 $black-color: #333333 !default;
 $black-hr: #444444 !default;
@@ -67,9 +75,9 @@ $warning-color: #F3BB45 !default;
 $warning-bg: #F3BB45 !default;
 $warning-states-color: #BB992F !default;
 
-$danger-color: #EB5E28 !default;
-$danger-bg: #EB5E28 !default;
-$danger-states-color: #B33C12 !default;
+$danger-color: #eee !default;
+$danger-bg: #eee !default;
+$danger-states-color: #ccc !default;
 
 $link-disabled-color: #666666 !default;
 

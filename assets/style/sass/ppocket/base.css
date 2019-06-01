@@ -1,0 +1,133 @@
+/*
+
+ =========================================================
+ * Base PPocket - v1.0.0
+
+ Contem a ligacaoo entre os mixins e arquivos de base.
+ Estrutura de Css Padrao.
+ =========================================================
+
+ */
+/* color */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Lato', "Helvetica", Arial, sans-serif; }
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  font-weight: 400;
+  margin: 30px 0 15px; }
+
+h1, .h1 {
+  font-size: 3.2em; }
+
+h2, .h2 {
+  font-size: 2.6em; }
+
+h3, .h3 {
+  font-size: 1.825em;
+  line-height: 1.4;
+  margin: 20px 0 10px; }
+
+h4, .h4 {
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.2em; }
+
+h5, .h5 {
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1.4em;
+  margin-bottom: 15px; }
+
+h6, .h6 {
+  font-size: 0.9em;
+  font-weight: 600;
+  text-transform: uppercase; }
+
+p {
+  font-size: 16px;
+  line-height: 1.4em; }
+
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small, h1 .small, h2 .small, h3 .small, h4 .small, h5 .small, h6 .small, .h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+  color: #9A9A9A;
+  font-weight: 300;
+  line-height: 1.4em; }
+
+h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
+  font-size: 60%; }
+
+small {
+  font-family: 'Muli', sans-serif; }
+
+/* ======= Funcoes ======= */
+/* ======= Estilo ======= */
+/* ======= Efeitos ======= */
+/* ======= Complementares ======= */
+html, body {
+  width: 100%;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-seif;
+  background: #fff;
+  color: #fff;
+  box-sizing: border-box; }
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 50px; }
+
+.btn-principal {
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid #333;
+  color: #333;
+  transition: .5s ease-out; }
+  .btn-principal:hover {
+    background: #333;
+    color: #fff;
+    transition: .2s ease-in; }
+
+.btn-principal_full {
+  background: #333;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid transparent;
+  color: #fff;
+  transition: .5s ease-out; }
+  .btn-principal_full:hover {
+    background: transparent;
+    color: #333;
+    transition: .2s ease-in; }
+
+svg {
+  width: 130px;
+  position: relative;
+  left: 30%;
+  top: 90px;
+  animation: circle 20s infinite cubic-bezier(0.645, 0.045, 0.355, 1); }
+
+@keyframes circle {
+  1% {
+    transform: scale(1.1, 1.1); }
+  11% {
+    left: 30%;
+    top: 90px;
+    transform: scale(1); }
+  33% {
+    left: 30%;
+    top: 400px; }
+  55% {
+    left: 50%;
+    top: 400px; }
+  77% {
+    left: 60%;
+    top: 90px; }
+  99% {
+    left: 30%;
+    top: 90px;
+    transform: scale(1.1, 1.1); } }
+
+/*# sourceMappingURL=base.css.map */

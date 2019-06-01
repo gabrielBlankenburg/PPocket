@@ -19,21 +19,25 @@ html, body {
 	font-size: 16px;
 	margin: 0;
 	padding: 0;
-	font-family: 'Lato', sans-seif;
-	background: #121212;
+	font-family: 'Nunito', sans-seif;
+	background: #fff;
 	color: $fonte-1;
 	box-sizing: border-box;
 }
 
 // Padroes
 .btn {
-	@include btnRedon;
+	@include btnRedon
 }
 .btn-principal { 
-	@include btnCor(transparent, $primaria, $primaria, $secundaria); 
+	//@include btnCor(transparent, $primaria, $primaria, $secundaria); 
+					    @include btnCor($primaria, $fonte-2, $fonte-2, $primaria);
+
 }
 .btn-principal_full { 
-	@include btnCor($primaria, transparent, $secundaria, $primaria); 
+	//@include btnCor($primaria, transparent, $secundaria, $primaria); 
+					    @include btnCor($primaria, $fonte-2, $fonte-2, $primaria);
+
 }
 
 // Css das paginas e sections

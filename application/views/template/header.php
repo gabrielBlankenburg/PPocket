@@ -11,8 +11,8 @@
     <link rel="icon" href="<?= base_url(); ?>assets/img/PPocket-branco.png" type="image/x-icon"> 
     
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    
+<link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap" rel="stylesheet">
+
     <!-- Icons -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -26,6 +26,8 @@
 	<?php } else { 	?>
 			<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/style/painel.min.css">
 	<?php };	?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/froala-design-blocks/2.0.1/css/froala_blocks.min.css" type="text/css" />    
 
 </head>
 <body>

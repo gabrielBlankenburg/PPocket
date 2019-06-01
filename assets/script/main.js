@@ -20,15 +20,15 @@ Vue.component('clientes-listar', {
 Vue.component('projetos-listar', {
     props: ['projeto'],
     // Redireciona para o link do cliente pelo id
-    template: '<div class="projeto-item">\
+    template: '<div class="col-12 col-md-4 card projeto-item container bg-white fdb-block fdb-touch rounded p-0 pt-3 pb-3 ">\
                     <!-- Projeto Item Header -->\
-                    <div class="projeto-item_header">\
+                    <div class="projeto-item_header p-0 pt-2">\
                         <div class="projeto-header_titulo">\
-                            <h2>{{ projeto.nm_projeto }}</h2>\
+                            <h4>{{ projeto.nm_projeto }}</h2>\
                         </div>\
                     </div>\
                     <!-- Projeto Item Corpo -->\
-                    <div class="projeto-item_corpo">\
+                    <div class="projeto-item_corpo p-0 pt-1 card-body">\
                         <ul class="list-unstyled projeto-corpo_ul">\
                             <li class="projeto-corpo_cliente">\
                                 <b>Cliente:</b> <small>{{ projeto.nm_cliente }}</small>\
@@ -42,9 +42,9 @@ Vue.component('projetos-listar', {
                         </ul>\
                     </div>\
                     <!-- Projeto Item Footer -->\
-                    <div class="projeto-item_footer">\
-                        <div class="row"><div class="btn btn-default btn-block btn-principal">\
-                            <a v-bind:href="'+"'"+baseUrl+"projetos/info/'+"+'projeto.cd_projeto" class="text-danger"> Ver projeto </a>\
+                    <div class="projeto-item_footer p-0">\
+                        <div class="row"><div class=" mx-auto">\
+                            <a v-bind:href="'+"'"+baseUrl+"projetos/info/'+"+'projeto.cd_projeto" class="btn btn-primary"> Ver projeto </a>\
                         </div>\
                     </div>\
                 </div>'
@@ -189,18 +189,19 @@ $(document).ready(function(){
     
     // Jquery Mask
     $('.date').mask('00/00/0000');
-      $('.time').mask('00:00:00');
-      $('.date_time').mask('00/00/0000 00:00:00');
-      $('.cep').mask('00000-000');
-      $('.phone').mask('0000-0000');
-      $('.phone_with_ddd').mask('(00) 0000-0000');
-      $('.phone_us').mask('(000) 000-0000');
-      $('.mixed').mask('AAA 000-S0S');
-      $('.cpf').mask('000.000.000-00', {reverse: true});
-      $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-      $('.money').mask('000.000.000.000.000,00', {reverse: true});
-      $('.money2').mask("#.##0,00", {reverse: true});
-      $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+    $('.time').mask('00:00:00');
+    $('.date_time').mask('00/00/0000 00:00:00');
+    $('.cep').mask('00000-000');
+    $('.phone').mask('0000-0000');
+    $('.phone_with_ddd').mask('(00) 0000-0000');
+    $('.phone_us').mask('(000) 000-0000');
+    $('.mixed').mask('AAA 000-S0S');
+    $('.cpf').mask('000.000.000-00', {reverse: true});
+    $('.rg').mask('00.000.000-0', {reverse: true});
+    $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
+    $('.money').mask('000.000.000.000.000,00', {reverse: true});
+    $('.money2').mask("#.##0,00", {reverse: true});
+    $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
         translation: {
           'Z': {
             pattern: /[0-9]/, optional: true

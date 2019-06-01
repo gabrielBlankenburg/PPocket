@@ -58,11 +58,11 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_telefone">Telefone</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_telefone" name="cd_telefone" placeholder="Telefone do funcionário">
+                    <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_telefone" name="cd_telefone" placeholder="Telefone do funcionário">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_celular">Celular</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_celular" name="cd_celular" placeholder="Celular do funcionário">
+                    <input type="text" class="pp-form_input__text form-control phone_with_ddd" id="cd_celular" name="cd_celular" placeholder="Celular do funcionário">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="ds_email">Email Pessoal</label>
@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="vl_salario">Salário</label>
-                    <input type="number" class="pp-form_input__text form-control" id="vl_salario" name="vl_salario" placeholder="salario">
+                    <input type="text" class="pp-form_input__text form-control money" id="vl_salario" name="vl_salario" placeholder="salario">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_cargo">Cargo</label>
@@ -102,11 +102,11 @@
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_rg">RG</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_rg" name="cd_rg" placeholder="rg">
+                    <input type="text" class="pp-form_input__text form-control rg" id="cd_rg" name="cd_rg" placeholder="rg">
                 </div>
                 <div class="form-group">
                     <label class="pp-form_label" for="cd_cpf">CPF</label>
-                    <input type="number" class="pp-form_input__text form-control" id="cd_cpf" name="cd_cpf" placeholder="cpf">
+                    <input type="text" class="pp-form_input__text form-control cpf" id="cd_cpf" name="cd_cpf" placeholder="cpf">
                 </div>
                 <div class="modal-footer">
                     <div class="container-fluid">
