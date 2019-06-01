@@ -48,7 +48,7 @@
                 <input type="email" class="pp-form_input__text form-control" id="ds_email" name="ds_email" value="<?= $funcionario->getEmailFuncionario(); ?>" placeholder="funcionario@empresa.com">
             </div>
             <div class="form-group">
-                <label for="ds_email_corporacional">Email Corporacional</label>
+                <label for="ds_email_corporacional">Email Corporativo</label>
                 <input type="email" class="pp-form_input__text form-control" id="ds_email_corporacional" name="ds_email_corporacional" value="<?= $funcionario->getEmailUsuario(); ?>" placeholder="funcionario@empresa.com">
             </div>
             <div class="form-group">
